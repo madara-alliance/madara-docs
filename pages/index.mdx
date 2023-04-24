@@ -1,11 +1,35 @@
-# Introduction
- 
-Welcome to Nextra! This is a basic docs template. You can use it as a starting point for your own project :)
+import { Callout } from 'nextra-theme-docs'
 
-## What is Nextra?
+# Welcome Madara 🥷
 
-A **simple**, **powerful** and **flexible** site generation framework with everything you love from Next.js.
+**Madara is a standard, customizable and blazing fast ⚡ Starknet sequencer designed to make your projects soar!**
 
-## Documentation
+Built on the robust Substrate framework and fast, thanks to Rust, Madara delivers unmatched performance and scalability to power your Starknet-based Validity Rollup chain.
 
-The documentation is available at [https://nextra.site](https://nextra.site).
+Dive into the world of Madara and join our passionate community of contributors! 
+Together, we're pushing the boundaries of what's possible within the Starknet ecosystem.
+Discover the unparalleled flexibility and might of Madara, your gateway to launching your very own Starknet appchain or L3.
+Harness the prowess of Cairo, while maintaining complete control over your tailor-made appchain, designed to meet your project's unique demands.
+
+Experience the flexibility and power of Madara, enabling you to launch your very own Starknet appchain or L3. 
+Harness the capabilities of Cairo while maintaining complete control over your custom appchain, tailored to your specific requirements. 
+Madara is designed to empower a multitude of projects, fueling growth within the Starknet ecosystem.
+
+## Madara enhances the Cairo VM
+
+Madara is based on substrate and uses the [Cairo VM](https://github.com/lambdaclass/cairo-rs) more precisely the [blockifier](https://github.com/starkware-libs/blockifier) to execute Cairo programs and Starknet smart contracts.
+It leverages the power of Cairo to make any program execution actually provable. A prover or a prover market can ultimately listen to the blocks
+produced by the chain and generate proofs. Thus, a madara-chain can technically settle on any L1/L2.
+
+Because substrate is generic in its essence, your madara-chain is also generic. You can customize it to your own needs very easily, 
+and still take advantage of the beauty that is Cairo. No assumptions are being made on anything, you can use your own consensus protocol, your ownn hashing function, your own signature scheme, your own storage layout...
+There are basically no limits to what you can do and still it will be provable, thus inheriting the security of the chain you're settling upon whether it is Starknet or Ethereum directly.
+
+<Callout type="info" emoji="ℹ️">
+  The proving system is not part of Madara itself. Most of the current effort is towards building one to settle on Starknet which would be an order of magnitude cheaper than settling on L1.
+</Callout>
+
+If you pack it all up with the battle-tested software that is Substrate powering dozens of parachains and securing billions for years.
+You end up with a really powerful piece of software that aims to be at the core of the rollup-centric roadmap that Ethereum is taking.
+
+

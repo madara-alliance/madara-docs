@@ -2,17 +2,27 @@ import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
-  logo: <span>My Project</span>,
-  project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
+	logo: <span>Madara</span>,
+	project: {
+		link: "https://github.com/keep-starknet-strange/madara",
+	},
+	chat: {
+		link: "https://t.me/MadaraStarknet",
+	},
+	docsRepositoryBase: "https://github.com/shuding/nextra-docs-template",
+	footer: {
+		text: "Madara - Starknet App Stack",
   },
-  chat: {
-    link: 'https://discord.com',
-  },
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
-  footer: {
-    text: 'Nextra Docs Template',
-  },
-}
+  primaryHue: 10,
+	themeSwitch: {
+		useOptions() {
+			return {
+				light: "Light",
+				dark: "Dark",
+				system: "System",
+			};
+		},
+	},
+};
 
 export default config
