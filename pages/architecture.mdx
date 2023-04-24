@@ -1,3 +1,5 @@
+import { Callout } from 'nextra-theme-docs'
+
 # Madara Layout
 
 **Madara is built by the Starkware Exploration Team a.k.a *[Keep Starknet Strange](https://github.com/keep-starknet-strange)* in order to support the 
@@ -33,3 +35,44 @@ Cairo (CPU Algebraic Intermediate Representation) is a programming language for 
 
 - [Cairo Whitepaper](https://eprint.iacr.org/2021/1063) 🐺
 - [Cairo 1 Docs](https://www.cairo-lang.org/docs/v1.0/) 🦀
+
+<Callout type="info" emoji="ℹ️">
+  There are on-going experiments to tweak the Cairo VM by changing for example the field size to Goldilocks which could lead to a major performance increase.
+</Callout>
+
+### Settlement
+
+As a Validity Rollup, any madara-chain's state should be able to be built solely by looking at its settlement layer.<br></br>
+Madara itself doesn't make any assumption regarding the settlement layer chosen.<br></br>
+If we take the example of an L3, then it would regularly send a proof to Starknet for a batch of L3 blocks.
+
+<Callout type="info" emoji="ℹ️">
+  For example Starknet currently settles every ~5 hours mostly because its cost to settle on Ethereum. While an L3 could in practice settle way more often on Starknet for a fraction of the cost.
+</Callout>
+
+The **settlement** term can be misleading, it's important ultimately to make the difference between **SOFT** and **HARD** finality. 
+
+Once **HARD** finality is reached, meaning the transaction has been proven and verified on the settlement layer then it's set in the stone. 
+**SOFT** finality is ultimately about improving the user experience, however we will see that by decentralizing the sequencing layer we can aim for a quite strong soft finality.
+
+### Sequencing
+
+The sequencing is done by Madara and can be tweaked in different ways to fit your own needs.<br></br>
+For instance it could be a simple FCFS, PGA or more complex schemes such as Narwhall & Bullshark or [HotStuff](https://github.com/keep-starknet-strange/madara/issues/180).
+
+The ordering of transactions is fairly important to ensure a good MEV protection and ensure a fair ordering of transactions.
+Although, in some cases such as app-specific chains, encrypted mempools can be implemented ensuring a fair order.
+
+Madara is by default a **decentralized** sequencer, multiple nodes can join the network and the default consensus is [GRANDPA & BABE](https://docs.substrate.io/learn/consensus/), the one used by most of polkadot parachains.
+We believe that while centralized sequencers is the industry standard for now, decentralizing the sequencing layer is of the upmost importance to have 
+actual censorship-resistant systems.
+
+### Data Availability 
+
+Currently, Starknet operates in rollup mode as described [here](https://docs.starknet.io/documentation/architecture_and_concepts/Data_Availability/on-chain-data/).
+Data availability means that the full state tree is always available, which provides users with the security of knowing that if StarkEx ever stops functioning, they can prove custody of their funds.
+
+Many different DA schemes are being experimented as we speak for Madara : 
+- Validium mode : Data is available off-chain. The Data Availability Committee (DAC) stores it, providing a trusted solution.
+- Celestia 
+- Eigen DA
