@@ -1,5 +1,6 @@
 import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
+import { useRouter } from 'next/router';
 
 const config: DocsThemeConfig = {
 	logo: <span>Madara</span>,
@@ -11,9 +12,22 @@ const config: DocsThemeConfig = {
 	},
 	docsRepositoryBase: "https://github.com/shuding/nextra-docs-template",
 	footer: {
-		text: "Madara - Starknet App Stack",
-  },
-  primaryHue: 10,
+		text: (
+			<span>
+				MIT {new Date().getFullYear()} ©{" "}
+					Madara - Starknet App Stack
+			</span>
+		),
+	},
+	primaryHue: 10,
+	useNextSeoProps() {
+		const { asPath } = useRouter();
+		if (asPath !== "/") {
+			return {
+				titleTemplate: "%s",
+			};
+		}
+	},
 	themeSwitch: {
 		useOptions() {
 			return {

@@ -1,4 +1,8 @@
 {
+  "--": {
+    "type": "separator",
+    "title": "Madara Stack"
+  },
   "index": "Madara",
   "about": {
     "title": "About",
