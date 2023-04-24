@@ -1,17 +1,13 @@
 {
-  "name": "nextra-docs-template",
+  "name": "madara-docs",
   "version": "0.0.1",
-  "description": "Nextra docs template",
+  "description": "Madara docs",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
-  },
-  "author": "Shu Ding <g@shud.in>",
+  "author": "KeepStarknetStrange <matthias@pragmaoracle.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shuding/nextra-docs-template/issues"
