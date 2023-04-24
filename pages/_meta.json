@@ -1,17 +1,23 @@
 {
-  "--": {
-    "type": "separator",
-    "title": "Madara Stack"
-  },
-  "index": "Madara",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
-  "contact": {
-    "title": "Contact ↗",
-    "type": "page",
-    "href": "https://t.me/MadaraStarknet",
-    "newWindow": true
-  }
+	"--": {
+		"type": "separator",
+		"title": "Madara Stack"
+	},
+	"index": "Madara",
+  "architecture": "Architecture",
+	"---": {
+		"type": "separator",
+		"title": "Build upon Madara"
+	},
+  "build": "Get started",
+	"about": {
+		"title": "About",
+		"type": "page"
+	},
+	"contact": {
+		"title": "Contact ↗",
+		"type": "page",
+		"href": "https://t.me/MadaraStarknet",
+		"newWindow": true
+	}
 }
