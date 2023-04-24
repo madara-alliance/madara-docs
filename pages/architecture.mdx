@@ -1,0 +1,35 @@
+# Madara Layout
+
+**Madara is built by the Starkware Exploration Team a.k.a *[Keep Starknet Strange](https://github.com/keep-starknet-strange)* in order to support the 
+[fractal scaling vision](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f) brought up by Starkware years ago.**
+
+There are many reasons why one would want to have their own L3 rather than building directly on Starknet :
+- Hyper-scalability
+- Better Control
+- Privacy
+- Cheaper/Simpler interoperability
+
+![fractal-scaling](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*clggLFBseZKhBSf-oEWhzA.jpeg)
+
+Madara opens for a whole new field of innovation, application developers can experiment with different data availability solutions, consensus algorithms, proving schemes.
+
+You will find in the `Build On Madara` section details about these different solutions being explored and trade-offs.
+
+## The Madara Stack
+
+For now, let's focus on the high level overview and scrap the surface of each of these layers.
+
+![stack](../static/img/stack.png)
+
+### Execution
+
+The execution layer defines the way blocks are executed and state diffs are produced.
+Madara makes it easy to swtich between two different execution crates, [blockifier](https://github.com/starkware-libs/blockifier) by Starkware and [starknet_in_rust](https://github.com/lambdaclass/starknet_in_rust) by LambdaClass.
+
+**Cairo VM**
+
+Under the hood, it will always run the [Cairo VM](https://github.com/lambdaclass/cairo-rs) which is being maintained by Starkware and LambdaClass in Rust.
+Cairo (CPU Algebraic Intermediate Representation) is a programming language for writing provable programs, where one party can prove to another that a certain computation was executed correctly.
+
+- [Cairo Whitepaper](https://eprint.iacr.org/2021/1063) 🐺
+- [Cairo 1 Docs](https://www.cairo-lang.org/docs/v1.0/) 🦀
