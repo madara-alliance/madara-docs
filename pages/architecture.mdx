@@ -76,3 +76,19 @@ Many different DA schemes are being experimented as we speak for Madara :
 - Validium mode : Data is available off-chain. The Data Availability Committee (DAC) stores it, providing a trusted solution.
 - Celestia 
 - Eigen DA
+- Rollup Mode
+
+Each DA mode comes with its own set of assumptions and app developers are free to experiment and go with whatever they feel the most comfortable with.
+
+### Governance
+
+Snapshot X would be the main choice for governance in Madara as it's a fully on-chain governance system which is built upon storage proofs.
+You will see in the different Madara hacks such as the Turbo VM one why storage proofs will be the first choice of bridging mechanism within the Madara ecosystem.
+
+Other governance mechanisms are also being explored such as native substrate [governance pallet](https://github.com/keep-starknet-strange/madara/issues/82).
+Given what we witnessed in the past, one of the core value Madara comes with is on-chain governance, we truly believe that governance should always be enforcable on-chain as it is the case within the Cosmos and Polkadot ecosystems.
+
+<Callout type="default" emoji="🧩">
+  One of the best features Madara offers thanks to being built with Substrate is **forkless** upgrades. You can read more about it [here](https://docs.substrate.io/maintain/runtime-upgrades/#:~:text=To%20perform%20a%20forkless%20runtime,part%20of%20the%20consensus%20process.).
+</Callout>
+
