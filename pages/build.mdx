@@ -13,9 +13,55 @@ We will go from running your chain locally to changing the consensus algorithm a
 
 We first need to make sure you have everything needed to complete this tutorial.
 
+| Dependency  |  Version | Installation |
+|---|---|---|
+| Rust  | rustc 1.69.0-nightly  | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \| sh` <br></br>`rustup toolchain install nightly` |
+| nvm  | latest  | `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh \| bash` |
+| Cairo  | 1.0  | `curl -L https://github.com/franalgaba/cairo-installer/raw/main/bin/cairo-installer \| bash` |
+
+
 
 
 ### Build the chain
+
+We will spin up a CairoVM Rollup from the Madara Stack source code. 
+You could use docker images, but this way we keep the option to modify component behavior if you need to do so. 
+The Madara stack source code is a monorepo which can be found [here](https://github.com/keep-starknet-strange/madara)
+
+```bash
+cd ~
+git clone git@github.com:keep-starknet-strange/madara.git
+```
+
+Then let's build the chain in `release` mode
+
+```bash
+cd madara
+cargo build --release
+```
+
+**Single-Node Development Chain**
+
+This command will start the single-node development chain with non-persistent
+state:
+
+```bash
+./target/release/madara --dev
+```
+
+Purge the development chain's state:
+
+```bash
+./target/release/madara purge-chain --dev
+```
+
+Start the development chain with detailed logging:
+
+```bash
+RUST_BACKTRACE=1 ./target/release/madara -ldebug --dev
+```
+
+If everything works correctly, we can go to the next step and create our own genesis state!
 
 ### Create your chain specification
 
