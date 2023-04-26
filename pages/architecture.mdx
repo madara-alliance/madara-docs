@@ -1,6 +1,6 @@
 import { Callout } from 'nextra-theme-docs'
 
-# Madara Layout
+# 1) What
 
 **Madara is built by the Starkware Exploration Team a.k.a *[Keep Starknet Strange](https://github.com/keep-starknet-strange)* in order to support the 
 [fractal scaling vision](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f) brought up by Starkware years ago.**
@@ -16,6 +16,25 @@ There are many reasons why one would want to have their own L3 rather than build
 Madara opens for a whole new field of innovation, application developers can experiment with different data availability solutions, consensus algorithms, proving schemes.
 
 You will find in the `Build On Madara` section details about these different solutions being explored and trade-offs.
+
+## 2) H
+
+The core component of Madara is the `starknet` pallet, it provides a Starknet compatibility layer for Substrate.
+Existing Cairo code can be executed seamlessly thanks to this.
+
+That's just the beginning, this pallet in addition to the **RPC** module enables Starknet block emulation, validates starknet-encoded transactions and
+makes it possible to deploy an existing Starknet DApp on Madara without any changes.
+
+## 3) A
+
+You might be asking, how are we able to map Substrate blocks to Starknet blocks ? <br></br>
+Well we use the [wrapper block](https://corepaper.org/substrate/wrapper/) method
+first used by Parity in frontier, the EVM compatibility layer for Substrate.
+
+> Wrapper block is a strategy in Substrate to allow it processing blocks that were not originally designed with Substrate in mind.
+
+It does add a slight performance overhead but it's negligeable compared to other components of the runtime.
+
 
 ## The Madara Stack
 

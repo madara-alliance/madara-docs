@@ -7,10 +7,11 @@
   "architecture": "Architecture",
 	"---": {
 		"type": "separator",
-		"title": "Build upon Madara"
+		"title": "Build on Madara"
 	},
   "build": "Get started",
   "config": "Configure",
+  "tools": "Tooling",
 	"about": {
 		"title": "About",
 		"type": "page"
