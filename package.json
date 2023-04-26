@@ -10,9 +10,9 @@
   "author": "KeepStarknetStrange <matthias@pragmaoracle.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
+    "url": "https://github.com/EvolveArt/madara-docs"
   },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/EvolveArt/madara-docs#readme",
   "dependencies": {
     "next": "^13.0.6",
     "nextra": "latest",

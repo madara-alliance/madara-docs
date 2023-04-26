@@ -10,13 +10,15 @@ const config: DocsThemeConfig = {
 	chat: {
 		link: "https://t.me/MadaraStarknet",
 	},
-	docsRepositoryBase: "https://github.com/shuding/nextra-docs-template",
+	docsRepositoryBase: "https://github.com/EvolveArt/madara-docs",
 	footer: {
 		text: (
-			<span>
-				MIT {new Date().getFullYear()} ©{" "}
-					Madara - Starknet App Stack
-			</span>
+			<span>MIT {new Date().getFullYear()} © Madara - Starknet App Stack</span>
+		),
+	},
+	editLink: {
+		text: (
+			<span>Contribute to Madara | Edit on GitHub</span>
 		),
 	},
 	primaryHue: 10,
