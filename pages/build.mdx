@@ -88,14 +88,14 @@ This chain specification can be thought of as the main source of information tha
 Now that we are all setup, we can finally run the chain! 🥷
 
 There are a lot of ways you can run the chain depending on which role you want to take :
-- Full node
+- **Full node**<br></br>
 Synchronizes with the chain to store the most recent block state and block headers for older blocks.
-- Archive node
+- **Archive node**<br></br>
 Maintains all blocks starting from the genesis block with complete state available for every block.
-- RPC node
+- **RPC node**<br></br>
 Exposes an RPC interface over HTTP or WebSocket ports for the chain so that users can read the blockchain state and submit transactions. 
 There are often multiple RPC nodes behind a load balancer.
-- Validator node
+- **Validator node**<br></br>
 Secures the chain by staking some chosen asset and votes on consensus along with other validators.
 
 When developing your chain, you can simply run it in developer mode :

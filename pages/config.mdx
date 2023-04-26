@@ -1,0 +1,39 @@
+# Configuration
+
+In this section, we will look at the different parameters you can tweak as a runtime engineer 
+for your blockchain to be perfectly tailored to your needs.
+
+| Parameter | Location  | Interpretation | Default |
+|---|---|---|---|
+|  MILLISECS_PER_BLOCK |  `crates/runtime/src/config.rs` | Average expected block time targeted. |6000 (ms)  |
+|  BlockHashCount |  `crates/runtime/src/config.rs` | Maximum number of block number to block hash mappings to keep (oldest pruned first). |2400  |
+
+The core component of Madara is a custom substrate pallet named `starknet` which you can find under `crates/pallets/starknet`.
+
+However as mentionned in the introduction, Madara is generic by essence.
+It defines a set of types in its configuration specifically the traits that should be implemented by these types **NOT** the types themselves.
+This very powerful concept will allow you to easily change core components of your chain.
+
+Let's take a look at these types and their default values.
+
+```rust
+// `crates/runtime/src/pallets.rs`
+
+// ...
+
+/// Configure the Starknet pallet in pallets/starknet.
+impl pallet_starknet::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+    type StateRoot = pallet_starknet::state_root::IntermediateStateRoot<Self>;
+    type SystemHash = mp_starknet::crypto::hash::pedersen::PedersenHasher;
+    type TimestampProvider = Timestamp;
+    type UnsignedPriority = UnsignedPriority;
+}
+```
+
+| Type  | Interpretation | Default |
+|---|---|---|
+|  RuntimeEvent  | Event type that will be emitted on extrinsics' execution. | Substrate RuntimeEvent |
+|  StateRoot |  Defines how the state root is computed from the state. | [Starknet State Root](https://docs.starknet.io/documentation/architecture_and_concepts/State/starknet-state/#state-commitment) |
+|  SystemHash |  Hashing function used to compute commitments. | Pedersen |
+|  TimestampProvider |  Defines how the timestamp is retrieved (used for block timestamp) | [Timestamp Pallet](https://docs.rs/pallet-timestamp/latest/pallet_timestamp/) |

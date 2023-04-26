@@ -10,6 +10,7 @@
 		"title": "Build upon Madara"
 	},
   "build": "Get started",
+  "config": "Configure",
 	"about": {
 		"title": "About",
 		"type": "page"
