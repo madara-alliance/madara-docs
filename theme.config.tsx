@@ -10,7 +10,7 @@ const config: DocsThemeConfig = {
 	chat: {
 		link: "https://t.me/MadaraStarknet",
 	},
-	docsRepositoryBase: "https://github.com/EvolveArt/madara-docs",
+	docsRepositoryBase: "https://github.com/EvolveArt/madara-docs/tree/main",
 	footer: {
 		text: (
 			<span>MIT {new Date().getFullYear()} © Madara - Starknet App Stack</span>
