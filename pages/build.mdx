@@ -65,11 +65,65 @@ If everything works correctly, we can go to the next step and create our own gen
 
 ### Create your chain specification
 
+First, run this command to create a plain chain spec
+
+```bash
+./target/release/madara build-spec > ./infra/chain-sepcs/chain-spec-plain.json
+```
+
+By default, the chain will run with the following config :
+- [GRANDPA & AURA](https://docs.substrate.io/learn/consensus/#default-consensus-models)
+- An `admin` account contract at address `0x0000000000000000000000000000000000000000000000000000000000000001`
+- A test contract at address `0x0000000000000000000000000000000000000000000000000000000000001111`
+- A fee token (ETH) at address `0x040e59c2c182a58fb0a74349bfa4769cbbcba32547591dd3fb1def8623997d00`
+- The `admin` account address has a `MAX` balance of fee token
+- An ERC20 contract at address `0x040e59c2c182a58fb0a74349bfa4769cbbcba32547591dd3fb1def8623997d00`
+
+This chain specification can be thought of as the main source of information that will be used when connecting to the chain. 
+
 ### *(Not available yet) Deploy your L2 smart contracts*
 
 ### Start your chain
 
+Now that we are all setup, we can finally run the chain! 🥷
+
+There are a lot of ways you can run the chain depending on which role you want to take :
+- Full node
+Synchronizes with the chain to store the most recent block state and block headers for older blocks.
+- Archive node
+Maintains all blocks starting from the genesis block with complete state available for every block.
+- RPC node
+Exposes an RPC interface over HTTP or WebSocket ports for the chain so that users can read the blockchain state and submit transactions. 
+There are often multiple RPC nodes behind a load balancer.
+- Validator node
+Secures the chain by staking some chosen asset and votes on consensus along with other validators.
+
+When developing your chain, you can simply run it in developer mode :
+
+```bash
+./target/release/madara --dev --execution=native
+```
+
+If you only care about exposing the RPC you can run the following : 
+```bash
+./target/release/madara --unsafe-ws-external --rpc-methods Safe --rpc-cors ‘*’ --ws-max-connections 5000
+```
+
+If you want to keep the whole state of the chain in a `/tmp/ folder :
+```bash
+./target/release/madara --base-path /tmp/
+```
+
+In this case, note that you can purge the chain's state whenever you like by running : 
+```bash
+./target/release/madara purge-chain --base-path /tmp
+```
+
 ### Deploy an account on your L3
+
+Ooook, now your chain is finally running. It's time to deploy your own account!
+
+
 
 ### Make some transactions
 
