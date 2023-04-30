@@ -4,15 +4,21 @@
 		"title": "Madara Stack"
 	},
 	"index": "Madara",
-  "architecture": "Architecture",
+	"architecture": "Architecture",
 	"---": {
 		"type": "separator",
 		"title": "Build on Madara"
 	},
-  "build": "Get started",
-  "config": "Configure",
-  "tools": "Tooling",
-  "ecosystem": "Ecosystem",
+	"build": "Get started",
+	"config": "Configure",
+	"tools": "Tooling",
+	"ecosystem": "Ecosystem",
+	"contribute": "Contribute",
+	"----": {
+		"type": "separator",
+		"title": "Security"
+	},
+	"security": "FAQ",
 	"about": {
 		"title": "About",
 		"type": "page"
