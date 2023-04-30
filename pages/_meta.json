@@ -12,6 +12,7 @@
   "build": "Get started",
   "config": "Configure",
   "tools": "Tooling",
+  "ecosystem": "Ecosystem",
 	"about": {
 		"title": "About",
 		"type": "page"
