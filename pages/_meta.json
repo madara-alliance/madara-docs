@@ -5,6 +5,7 @@
 	},
 	"index": "Madara",
 	"architecture": "Architecture",
+	"why": "Why",
 	"---": {
 		"type": "separator",
 		"title": "Build on Madara"
