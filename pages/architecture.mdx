@@ -5,7 +5,7 @@ import { Callout } from 'nextra-theme-docs'
 **Madara is built by the Starkware Exploration Team a.k.a *[Keep Starknet Strange](https://github.com/keep-starknet-strange)* in order to support the 
 [fractal scaling vision](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f) brought up by Starkware years ago.**
 
-There are many reasons why one would want to have their own L3 rather than building directly on Starknet :
+There are many reasons why one would want to have their own L3 rather than building directly on Starknet:
 - Hyper-scalability
 - Better Control
 - Privacy
@@ -13,16 +13,16 @@ There are many reasons why one would want to have their own L3 rather than build
 
 ![fractal-scaling](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*clggLFBseZKhBSf-oEWhzA.jpeg)
 
-Madara opens for a whole new field of innovation, application developers can experiment with different data availability solutions, consensus algorithms, proving schemes.
+Madara opens for a whole new field of innovation; application developers can experiment with different data availability solutions, consensus algorithms, proving schemes.
 
 You will find in the `Build On Madara` section details about these different solutions being explored and trade-offs.
 
 ## 2) H
 
-The core component of Madara is the `starknet` pallet, it provides a Starknet compatibility layer for Substrate.
+The core component of Madara is the `starknet` pallet. It provides a Starknet compatibility layer for Substrate.
 Existing Cairo code can be executed seamlessly thanks to this.
 
-That's just the beginning, this pallet in addition to the **RPC** module enables Starknet block emulation, validates starknet-encoded transactions and
+This pallet, in addition to the **RPC** module, enables Starknet block emulation, validates starknet-encoded transactions and
 makes it possible to deploy an existing Starknet DApp on Madara without any changes.
 
 ## 3) A
@@ -54,6 +54,7 @@ Cairo (CPU Algebraic Intermediate Representation) is a programming language for 
 
 - [Cairo Whitepaper](https://eprint.iacr.org/2021/1063) 🐺
 - [Cairo 1 Docs](https://www.cairo-lang.org/docs/v1.0/) 🦀
+- [Cairo Book](https://cairo-book.github.io/) 📒
 
 <Callout type="info" emoji="ℹ️">
   There are on-going experiments to tweak the Cairo VM by changing for example the field size to Goldilocks which could lead to a major performance increase.
@@ -89,10 +90,10 @@ actual censorship-resistant systems.
 ### Data Availability 
 
 Currently, Starknet operates in rollup mode as described [here](https://docs.starknet.io/documentation/architecture_and_concepts/Data_Availability/on-chain-data/).
-Data availability means that the full state tree is always available, which provides users with the security of knowing that if StarkEx ever stops functioning, they can prove custody of their funds.
+Data availability (DA) means that the full state tree is always available, which provides users with the security of knowing that if StarkEx ever stops functioning, they can prove custody of their funds.
 
-Many different DA schemes are being experimented as we speak for Madara : 
-- Validium mode : Data is available off-chain. The Data Availability Committee (DAC) stores it, providing a trusted solution.
+Many different DA schemes are being experimented as we speak for Madara: 
+- Validium mode: Data is available off-chain. The Data Availability Committee (DAC) stores it, providing a trusted solution
 - Celestia 
 - Eigen DA
 - Rollup Mode
@@ -105,7 +106,7 @@ Snapshot X would be the main choice for governance in Madara as it's a fully on-
 You will see in the different Madara hacks such as the Turbo VM one why storage proofs will be the first choice of bridging mechanism within the Madara ecosystem.
 
 Other governance mechanisms are also being explored such as native substrate [governance pallet](https://github.com/keep-starknet-strange/madara/issues/82).
-Given what we witnessed in the past, one of the core value Madara comes with is on-chain governance, we truly believe that governance should always be enforcable on-chain as it is the case within the Cosmos and Polkadot ecosystems.
+Given what we witnessed in the past, one of the core value Madara comes with is on-chain governance. We truly believe that governance should always be enforcable on-chain as it is the case within the Cosmos and Polkadot ecosystems.
 
 <Callout type="default" emoji="🧩">
   One of the best features Madara offers thanks to being built with Substrate is **forkless** upgrades. You can read more about it [here](https://docs.substrate.io/maintain/runtime-upgrades/#:~:text=To%20perform%20a%20forkless%20runtime,part%20of%20the%20consensus%20process.).
