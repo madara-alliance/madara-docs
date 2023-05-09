@@ -17,19 +17,18 @@ Madara is designed to empower a multitude of projects, fueling growth within the
 
 ## Madara enhances the Cairo VM
 
-Madara is based on substrate and uses the [Cairo VM](https://github.com/lambdaclass/cairo-rs) more precisely the [blockifier](https://github.com/starkware-libs/blockifier) to execute Cairo programs and Starknet smart contracts.
+Madara is based on substrate and uses the [Cairo VM](https://github.com/lambdaclass/cairo-rs) and the [blockifier](https://github.com/starkware-libs/blockifier) to execute Cairo programs and Starknet smart contracts.
 It leverages the power of Cairo to make any program execution actually provable. A prover or a prover market can ultimately listen to the blocks
 produced by the chain and generate proofs. Thus, a madara-chain can technically settle on any L1/L2.
 
 Because substrate is generic in its essence, your madara-chain is also generic. You can customize it to your own needs very easily, 
-and still take advantage of the beauty that is Cairo. No assumptions are being made on anything, you can use your own consensus protocol, your ownn hashing function, your own signature scheme, your own storage layout...
+and still take advantage of the beauty that is Cairo. No assumptions are being made on anything, you can use your own consensus protocol, your own hashing function, your own signature scheme, your own storage layout...
 There are basically no limits to what you can do and still it will be provable, thus inheriting the security of the chain you're settling upon whether it is Starknet or Ethereum directly.
 
 <Callout type="info" emoji="ℹ️">
   The proving system is not part of Madara itself. Most of the current effort is towards building one to settle on Starknet which would be an order of magnitude cheaper than settling on L1.
 </Callout>
 
-If you pack it all up with the battle-tested software that is Substrate powering dozens of parachains and securing billions for years.
-You end up with a really powerful piece of software that aims to be at the core of the rollup-centric roadmap that Ethereum is taking.
+If you pack it all up with the battle-tested software that is Substrate powering dozens of parachains and securing billions for years, you end up with a really powerful piece of software that aims to be at the core of the rollup-centric roadmap that Ethereum is taking.
 
 
