@@ -1,0 +1,39 @@
+
+# Configuración
+
+En esta sección, veremos los diferentes parámetros que puede ajustar como ingeniero de ejecución para que su blockchain 
+se adapte perfectamente a sus necesidades.
+
+| Parametro | Ubicación  | Interpretación | Predeterminado |
+|---|---|---|---|
+|  MILLISECS_PER_BLOCK |  `crates/runtime/src/config.rs` | Average expected block time targeted. |6000 (ms)  |
+|  BlockHashCount |  `crates/runtime/src/config.rs` | Maximum number of block number to block hash mappings to keep (oldest pruned first). |2400  |
+
+El componente principal de Madara es una paleta de sustrato personalizada llamada `starknet` que puedes encontrar en `crates/pallets/starknet`.
+
+Sin embargo, como se menciona en la introducción, Madara es genérico por esencia. Define un conjunto de tipos en su configuración específicamente 
+los rasgos que deben ser implementados por estos tipos **NO** los tipos en sí mismos. Este concepto tan poderoso le permitirá cambiar fácilmente los componentes centrales de su cadena.
+
+Echemos un vistazo a estos tipos y sus valores por defecto.
+
+```rust
+// `crates/runtime/src/pallets.rs`
+
+// ...
+
+/// Configure the Starknet pallet in pallets/starknet.
+impl pallet_starknet::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+    type StateRoot = pallet_starknet::state_root::IntermediateStateRoot<Self>;
+    type SystemHash = mp_starknet::crypto::hash::pedersen::PedersenHasher;
+    type TimestampProvider = Timestamp;
+    type UnsignedPriority = UnsignedPriority;
+}
+```
+
+| Tipo  | Interpretación | Predeterminado |
+|---|---|---|
+|  RuntimeEvent  | Event type that will be emitted on extrinsics' execution. | Substrate RuntimeEvent |
+|  StateRoot |  Defines how the state root is computed from the state. | [Starknet State Root](https://docs.starknet.io/documentation/architecture_and_concepts/State/starknet-state/#state-commitment) |
+|  SystemHash |  Hashing function used to compute commitments. | Pedersen |
+|  TimestampProvider |  Defines how the timestamp is retrieved (used for block timestamp) | [Timestamp Pallet](https://docs.rs/pallet-timestamp/latest/pallet_timestamp/) |
