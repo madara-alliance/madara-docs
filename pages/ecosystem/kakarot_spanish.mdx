@@ -1,0 +1,40 @@
+# Introducción
+
+[Kakakrot zkEVM](https://kakarot.org) es una implementación de la [Máquina Virtual Ethereum](https://ethereum.org/en/developers/docs/evm/) (EVM) escrita en Cairo. Cairo es un lenguaje Turing-completo asociado a la CairoVM. La CairoVM permite la computación demostrable aprovechando los polinomios y el [sistema de pruebas ZK-STARK](https://starkware.co/stark/). Una zkEVM se caracteriza por su capacidad de generar transacciones demostrables y, por tanto, bloques demostrables. Al estar Kakarot construido sobre CairoVM, cada transacción ejecutada en Kakarot es demostrable.
+
+Kakarot zkEVM permite a los equipos construir y desplegar aplicaciones EVM. Los desarrolladores pueden desplegar cualquier código Solidity (o EVM) en Kakarot, como lo harían en Ethereum o Polygon. Sus usuarios finales pueden entonces interactuar con las dApps con su cadena de herramientas habitual (Metamask, Wallet connect, etc.).
+
+En última instancia, Kakarot proporcionará interoperabilidad con los protocolos nativos de Starknet y composibilidad entre protocolos, por ejemplo, combinando TVL en DeFi y la base de usuarios en GameFi.
+
+# Escalado fractal
+
+Kakarot zkEVM puede existir en diferentes formas. En primer lugar, puede desplegarse como un smart-contract sobre Starknet L2 y exponer así un EVM (Ethereum RPC, transacciones Ethereum, etc.) en Starknet.
+
+Alternativamente, Kakarot puede integrarse en una pila para desplegar zkEVMs L3. Aquí es donde entra Madara.
+
+Combinando Madara (un nodo completo de Starknet) y Kakarot (un tiempo de ejecución EVM), se puede crear una L3 zkEVM. La pila es la siguiente: un nodo completo sustrato, que utiliza el CairoVM como su motor de ejecución, y Kakarot como un tiempo de ejecución para los contratos inteligentes. Las transacciones en Kakarot pueden ser probadas y verificadas en una capa de liquidación, lo que resulta en un escalado fractal compatible con EVM.
+
+# Hoja de ruta
+
+## Fase 1: Kakarot zkEVM en Starknet - Llevar el EVM a Starknet
+
+Kakarot comenzará existiendo como un EVM consagrado dentro de Starknet L2. Esto permitirá a los desarrolladores desplegar sus contratos inteligentes Solidity (o cualquier lenguaje compatible con EVM) sobre Starknet.
+
+## Fase 2: Kakarot x Madara - L3 zkEVMs
+
+Kakarot y Madara se combinarán en una pila unificada para permitir zkEVMs L3 - y L4, L5, etc. Los equipos podrán desplegar sus cadenas de aplicaciones zkEVM y aprovechar las pruebas de validez para liquidar transacciones en Starknet. Los costes de gas serán exponencialmente menores que en L2, y el rendimiento (TPS) será mayor. Esto se suma a las ventajas de escalabilidad de Starknet y zkRollups en general.
+
+## Fase 3: Kakarot x Madara - tipo 1 zkEVM
+
+Kakarot y Madara también pueden combinarse para habilitar zkEVMs de tipo 1. Si uno es capaz de:
+
+1. Escribir las reglas de consenso de Ethereum en Cairo dentro del nodo completo Madara x Kakarot, probando así el consenso L1.
+2. Cambiar de Pedersen Merkle Patricia Trie (MPT) a Keccak MPT.
+
+	Entonces, Kakarot se convertiría en un cliente zkEVM de tipo 1, capaz de probar bloques L1. Se trata de un caso de uso más avanzado que depende de la hoja de ruta de Ethereum, sobre todo de Verge. Después [de Verge](https://ethereum.org/fr/roadmap/), keccak podría ser sustituida por poseidon como la función hash preferida para Ethereum.
+
+# Otros temas de investigación
+
+- Madara permite que las cadenas Kakarot aprovechen el protocolo de mensajería Substrate para la comunicación entre rollos.
+- La modularidad de Substrate permite a las cadenas Kakarot innovar con su protocolo de consenso.
+- Las actualizaciones de tiempo de ejecución sin horquillas de Substrate permiten a las cadenas Kakarot actualizar la versión de su EVM sin horquillas duras.
