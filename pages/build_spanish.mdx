@@ -1,0 +1,130 @@
+import { Steps } from 'nextra-theme-docs'
+
+# Construir sobre Madara
+
+*Uchiwa Madara*<br></br>
+En esta sección, te guiaremos a través del proceso de construcción para que puedas empezar a hackear sobre la pila Madara. 
+Pasaremos de ejecutar tu cadena localmente a cambiar el algoritmo de consenso e interactuar con contratos inteligentes en tu propia cadena.
+
+## 1.- Empecemos:
+
+<Steps>
+
+### Instalar dependencias
+
+Primero necesitamos asegurarnos de que tienes todo lo necesario para completar este tutorial.
+  
+| Dependencia  |  Version | Instalación |
+|---|---|---|
+| Rust  | rustc 1.69.0-nightly  | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \| sh` <br></br>`rustup toolchain install nightly` |
+| nvm  | latest  | `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh \| bash` |
+| Cairo  | 1.0  | `curl -L https://github.com/franalgaba/cairo-installer/raw/main/bin/cairo-installer \| bash` |  
+  
+### 2.- Construir la cadena:
+
+Crearemos un CairoVM Rollup a partir del código fuente de Madara Stack. Podrías usar imágenes docker, pero de esta forma mantenemos la opción de modificar el comportamiento de los componentes si lo necesitas. 
+El código fuente de Madara stack es un monorepo que puedes encontrar [aquí](https://github.com/keep-starknet-strange/madara).
+
+```bash
+cd ~
+git clone git@github.com:keep-starknet-strange/madara.git
+```
+
+A continuación vamos a construir la cadena en modo `release`:
+
+```bash
+cd madara
+cargo build --release
+```
+
+**Cadena de desarrollo de nodo único**
+
+Este comando iniciará la cadena de desarrollo de nodo único con estado no persistente:
+
+```bash
+./target/release/madara --dev
+```
+
+Purgar el estado de la cadena de desarrollo:
+
+```bash
+./target/release/madara purge-chain --dev
+```
+
+Iniciar la cadena de desarrollo con registro detallado:
+
+```bash
+RUST_BACKTRACE=1 ./target/release/madara -ldebug --dev
+```
+
+Si todo funciona correctamente, ¡podemos pasar al siguiente paso y crear nuestro propio estado de génesis!
+
+
+### 3.- Cree su especificación de cadena:
+
+En primer lugar, ejecute este comando para crear una especificación de cadena simple
+
+```bash
+./target/release/madara build-spec > ./infra/chain-sepcs/chain-spec-plain.json
+```
+
+Por defecto, la cadena se ejecutará con la siguiente configuración :
+
+- [GRANDPA & AURA](https://docs.substrate.io/learn/consensus/#default-consensus-models)
+- Un contrato de cuenta de `administrador` en la dirección  `0x0000000000000000000000000000000000000000000000000000000000000001`
+- Un contrato de prueba en la dirección `0x0000000000000000000000000000000000000000000000000000000000001111`
+- Un token de pago (ETH) en la dirección `0x040e59c2c182a58fb0a74349bfa4769cbbcba32547591dd3fb1def8623997d00`
+- La dirección de la cuenta `admin` tiene un saldo `MAX` de fee token
+- Un contrato ERC20 en la dirección `0x040e59c2c182a58fb0a74349bfa4769cbbcba32547591dd3fb1def8623997d00`
+
+Esta especificación de la cadena puede considerarse como la principal fuente de información que se utilizará al conectarse a la cadena.
+
+### 4.- *(No disponible aún) Despliegue sus contratos inteligentes de liquidación*
+
+### 5.- Inicie su cadena
+
+Ahora que ya tenemos todo configurado, ¡por fin podemos poner en marcha la cadena! 🥷
+
+Hay un montón de maneras que usted puede ejecutar la cadena en función del papel que desea tomar :
+- **Nodo completo**<br></br>
+Se sincroniza con la cadena para almacenar el estado más reciente de los bloques y las cabeceras de los bloques más antiguos.
+- **Nodo de archivo**<br></br>
+Mantiene todos los bloques empezando por el bloque génesis con el estado completo disponible para cada bloque.
+- **Nodo RPC**<br></br>
+Expone una interfaz RPC a través de puertos HTTP o WebSocket para que los usuarios puedan leer el estado de la cadena de bloques y enviar transacciones. 
+A menudo hay varios nodos RPC detrás de un equilibrador de carga.
+- **Nodo validador**<br></br>
+Asegura la cadena apostando algún activo elegido y vota en consenso junto con otros validadores.
+
+Cuando desarrolle su cadena, puede simplemente ejecutarla en modo desarrollador:
+
+```bash
+./target/release/madara --dev --execution=native
+```
+	Si sólo te importa exponer el RPC puedes ejecutar lo siguiente :
+
+```bash
+./target/release/madara --unsafe-ws-external --rpc-methods Safe --rpc-cors '*' --ws-max-connections 5000
+```
+
+Si desea guardar todo el estado de la cadena en una carpeta `/tmp/ :
+
+```bash
+./target/release/madara --base-path /tmp/
+```
+
+En este caso, tenga en cuenta que puede purgar el estado de la cadena cuando lo desee ejecutando :
+
+```bash
+./target/release/madara purge-chain --base-path /tmp
+```
+
+### 6.- Despliega una cuenta en tu cadena
+
+Por fin tu cadena está en marcha. ¡Es hora de desplegar tu propia cuenta!
+
+### 7.- Haz algunas transacciones
+
+### 8.- 🥷
+
+</Steps>
