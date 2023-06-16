@@ -1,0 +1,33 @@
+{
+	"--": {
+		"type": "separator",
+		"title": "Madara Stack"
+	},
+	"index": "Madara",
+	"architecture": "Arquitectura",
+	"why": "Por Que",
+	"---": {
+		"type": "separator",
+		"title": "Construir en Madara"
+	},
+	"build": "Como Empezar",
+	"config": "Configuración",
+	"tools": "Herramientas",
+	"ecosystem": "Ecosistema",
+	"contribute": "Contribuir",
+	"----": {
+		"type": "separator",
+		"title": "Seguridad"
+	},
+	"security": "FAQ",
+	"about": {
+		"title": "Acerca De",
+		"type": "page"
+	},
+	"contact": {
+		"title": "Contacto ↗",
+		"type": "page",
+		"href": "https://t.me/MadaraStarknet",
+		"newWindow": true
+	}
+}
