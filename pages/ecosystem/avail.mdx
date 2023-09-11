@@ -9,13 +9,14 @@ Avail is a blockchain-based platform focused on creating a general-purpose data 
 - Erasure Encoding: Adds redundancy to the data, making it harder for nodes to suppress information.
 - KZG Polynomial Commitments: Ensures that the data has a footprint in the Avail block header.
 - Decentralized Network of Validators: Avail aims to support up to 1,000 external validators to reduce centralization risks.
-- Validity Proofs: Allows light clients to guarantee state correctness and data availability immediately after finalizing.
+- Validity Proofs: Allows light clients to guarantee data availability and verify state execution proofs immediately after finalizing.
 
 ## Use Avail in Madara
 When launching a Madara node, you can specify : `--da-layer avail`.
 This will use Avail to publish the state_diff instead of Ethereum.
 
 When launching the node da config file is expected at `<madara-path>/da-config.json` (Madara path being defaulted to `$HOME/.madara` or can be specified with `--madata-path <madara-path>`)
+Also for your specific use-case, you can create your own app_id, check this [example](https://github.com/availproject/avail/blob/develop/examples/ts/src/app_id.ts) using TS
 
 ### Launch with local node
 You can chose to launch with a local full node by following this [documentation](https://availproject.github.io/node/full-node/full-node-binaries/).
