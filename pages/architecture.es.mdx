@@ -2,7 +2,7 @@ import { Callout } from 'nextra-theme-docs'
 
 # 1) ¿Qué es Madara?
 
-**Madara ha sido construido por el Equipo de Exploración de Starkware, también conocido como *[Keep Starknet Strange](https://github.com/keep-starkne)*, para apoyar 
+**Madara ha sido construido por el Equipo de Exploración de Starkware, también conocido como *[Keep Starknet Strange](https://github.com/keep-starknet-strange)*, para apoyar 
 la [visión de escalado fractal](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f) que Starkware planteó hace años.**
 
 Hay muchas razones por las que uno querría tener su propio L3 en lugar de construir directamente sobre Starknet:
@@ -20,24 +20,24 @@ En la sección `Construir en Madara` encontrará información detallada sobre la
 
 ## 2) H
 
-El componente central de Madara es la paleta `Starknet`. Proporciona una capa de compatibilidad Starknet para Substrate. 
-Gracias a ella, el código Cairo existente puede ejecutarse sin problemas.
+El componente central de Madara es el `Starknet` _pallet_. Proporciona una capa de compatibilidad Starknet para Substrate. 
+Gracias a ello, el código Cairo existente puede ejecutarse sin problemas.
 
-Esta paleta, además del módulo RPC, permite la emulación de bloques Starknet, valida las transacciones codificadas en 
-Starknet y hace posible desplegar una DApp Starknet existente en Madara sin ningún cambio.
+Este _pallet_, además del módulo RPC, permite la emulación de bloques Starknet, valida las transacciones codificadas en 
+Starknet y hace posible desplegar una DApp de Starknet existente en Madara sin ningún cambio.
 
 ## 3) A
 
-Quizás te preguntes cómo podemos asignar bloques de Substrate a bloques de Starknet.
+Quizás te preguntes cómo podemos asignar bloques de Substrate a bloques de Starknet?
 
-Bueno, utilizamos el método del [bloque envoltorio](https://corepaper.org/substrate/wrapper/) utilizado por primera vez por Parity en frontier,
+Bueno, utilizamos el método del [_wrapper block_](https://corepaper.org/substrate/wrapper/) utilizado por primera vez por Parity en frontier,
 la capa de compatibilidad EVM para Substrate.
 
-Wrapper block es una estrategia de Substrate que permite procesar bloques que no se diseñaron originalmente con Substrate en mente.
+_Wrapper block_ es una estrategia de Substrate que permite procesar bloques que no se diseñaron originalmente con Substrate en mente.
 
 Añade una ligera sobrecarga de rendimiento, pero es insignificante en comparación con otros componentes del tiempo de ejecución.
 
-## La pila Madara
+## El stack Madara
 
 Por ahora, centrémonos en la visión general de alto nivel y raspemos la superficie de cada una de estas capas.
 
@@ -45,7 +45,7 @@ Por ahora, centrémonos en la visión general de alto nivel y raspemos la superf
 
 ### Ejecución
 
-La capa de ejecución define la forma en que se ejecutan los bloques y se producen las diferencias de estado. Madara facilita el cambio entre dos cajas de ejecución diferentes, 
+La capa de ejecución define la forma en que se ejecutan los bloques y se producen las diferencias de estado. Madara facilita el cambio entre dos _crates_ de ejecución diferentes, 
 [blockifier](https://github.com/starkware-libs/blockifier) de Starkware y [starknet_in_rust](https://github.com/lambdaclass/starknet_in_rust) de LambdaClass.
 
 
@@ -59,7 +59,7 @@ Cairo (CPU Algebraic Intermediate Representation) es un lenguaje de programació
 - [Cairo Book](https://cairo-book.github.io/) 📒
 
 <Callout type="info" emoji="ℹ️">
-  ! Se están realizando experimentos para modificar la máquina virtual de El Cairo cambiando, por ejemplo, el tamaño de los campos a Ricitos de Oro, lo que podría suponer un importante aumento del rendimiento.
+  Se están realizando experimentos para modificar la máquina virtual de El Cairo cambiando, por ejemplo, el tamaño de los campos a Goldilocks, lo que podría suponer un importante aumento del rendimiento.
 </Callout>
 
 ### Liquidación
