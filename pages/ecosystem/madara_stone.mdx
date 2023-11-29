@@ -1,0 +1,20 @@
+# Madara Prover API Overview
+
+[Madara Prover API](https://github.com/Moonsong-Labs/madara-prover-api) is a comprehensive RPC server and client designed to facilitate the execution of the Stone Prover on the Madara sequencer. This project plays a crucial role in proving transactions within each Madara block, relying on the powerful [Stone Prover](https://github.com/starkware-libs/stone-prover).
+
+## Description
+
+The Madara Prover API project consists of three main crates:
+
+1. **stone-prover**: This crate provides a Rust wrapper for the Stone Prover. It utilizes a `build.rs` script to build the prover and offers a Rust library that seamlessly invokes the prover as a child process in the background.
+
+2. **madara-prover-rpc-server**: This crate contains the server code, providing both a binary and library to spawn the server. The server is responsible for running any set of Cairo programs on the Starknet OS, generating the state diff and proof of execution for the programs.
+
+3. **madara-prover-rpc-client**: This crate furnishes a client to interact with the server, facilitating communication through [gRPC](https://grpc.io/). The protocol description can be found in `protocols/prover.proto`.
+
+# Roadmap
+
+1. Implement the client-server model to run and prove cairo programs. :white_check_mark:
+2. Implement Bootloader hints
+3. Optimize:
+    - Use FFI bindings to call the Stone prover
