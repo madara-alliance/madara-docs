@@ -33,7 +33,7 @@ first used by Parity in frontier, the EVM compatibility layer for Substrate.
 
 > Wrapper block is a strategy in Substrate to allow it processing blocks that were not originally designed with Substrate in mind.
 
-It does add a slight performance overhead but it's negligeable compared to other components of the runtime.
+It does add a slight performance overhead but it's negligible compared to other components of the runtime.
 
 
 ## The Madara Stack
@@ -45,7 +45,7 @@ For now, let's focus on the high level overview and scrap the surface of each of
 ### Execution
 
 The execution layer defines the way blocks are executed and state diffs are produced.
-Madara makes it easy to swtich between two different execution crates, [blockifier](https://github.com/starkware-libs/blockifier) by Starkware and [starknet_in_rust](https://github.com/lambdaclass/starknet_in_rust) by LambdaClass.
+Madara makes it easy to switch between two different execution crates, [blockifier](https://github.com/starkware-libs/blockifier) by Starkware and [starknet_in_rust](https://github.com/lambdaclass/starknet_in_rust) by LambdaClass.
 
 **Cairo VM**
 
@@ -81,7 +81,7 @@ The sequencing is done by Madara and can be tweaked in different ways to fit you
 For instance it could be a simple FCFS, PGA or more complex schemes such as Narwhall & Bullshark or [HotStuff](https://github.com/keep-starknet-strange/madara/issues/180).
 
 The ordering of transactions is fairly important to ensure a good MEV protection and ensure a fair ordering of transactions.
-Although, in some cases such as app-specific chains, encrypted mempools can be implemented ensuring a fair order.
+Although, in some cases such as app-specific chains, encrypted mempools can be implemented to ensure a fair order.
 
 Madara is by default a **decentralized** sequencer, multiple nodes can join the network and the default consensus is [GRANDPA & BABE](https://docs.substrate.io/learn/consensus/), the one used by most of polkadot parachains.
 We believe that while centralized sequencers is the industry standard for now, decentralizing the sequencing layer is of the upmost importance to have 
@@ -107,7 +107,7 @@ Snapshot X would be the main choice for governance in Madara as it's a fully on-
 You will see in the different Madara hacks such as the Turbo VM one why storage proofs will be the first choice of bridging mechanism within the Madara ecosystem.
 
 Other governance mechanisms are also being explored such as native substrate [governance pallet](https://github.com/keep-starknet-strange/madara/issues/82).
-Given what we witnessed in the past, one of the core value Madara comes with is on-chain governance. We truly believe that governance should always be enforcable on-chain as it is the case within the Cosmos and Polkadot ecosystems.
+Given what we witnessed in the past, one of the core value Madara comes with is on-chain governance. We truly believe that governance should always be enforceable on-chain as it is the case within the Cosmos and Polkadot ecosystems.
 
 <Callout type="default" emoji="🧩">
   One of the best features Madara offers thanks to being built with Substrate is **forkless** upgrades. You can read more about it [here](https://docs.substrate.io/maintain/runtime-upgrades/#:~:text=To%20perform%20a%20forkless%20runtime,part%20of%20the%20consensus%20process.).
