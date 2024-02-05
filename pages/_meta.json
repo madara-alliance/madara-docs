@@ -1,33 +1,35 @@
 {
-	"--": {
-		"type": "separator",
-		"title": "Madara Stack"
-	},
-	"index": "Madara",
-	"architecture": "Architecture",
-	"why": "Why",
-	"---": {
-		"type": "separator",
-		"title": "Build on Madara"
-	},
-	"build": "Get started",
-	"config": "Configure",
-	"tools": "Tooling",
-	"ecosystem": "Ecosystem",
-	"contribute": "Contribute",
-	"----": {
-		"type": "separator",
-		"title": "Security"
-	},
-	"security": "FAQ",
-	"about": {
-		"title": "About",
-		"type": "page"
-	},
-	"contact": {
-		"title": "Contact ↗",
-		"type": "page",
-		"href": "https://t.me/MadaraStarknet",
-		"newWindow": true
-	}
+  "--": {
+    "type": "separator",
+    "title": "Madara Stack"
+  },
+  "index": "Madara and App chains",
+  "cairo": "Why Cairo",
+  "starknet": "Madara and Starknet",
+  "architecture": "Architecture",
+  "why": "Why",
+  "---": {
+    "type": "separator",
+    "title": "Build on Madara"
+  },
+  "build": "Get started",
+  "config": "Configure",
+  "tools": "Tooling",
+  "ecosystem": "Ecosystem",
+  "contribute": "Contribute",
+  "----": {
+    "type": "separator",
+    "title": "Security"
+  },
+  "security": "FAQ",
+  "about": {
+    "title": "About",
+    "type": "page"
+  },
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "https://t.me/MadaraStarknet",
+    "newWindow": true
+  }
 }
