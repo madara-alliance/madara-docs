@@ -7,7 +7,7 @@
   "cairo": "Why Cairo",
   "starknet": "Madara and Starknet",
   "architecture": "Architecture",
-  "why": "Why",
+  "contributing": "Contributing to Madara",
   "---": {
     "type": "separator",
     "title": "Build on Madara"
