@@ -5,9 +5,16 @@
   },
   "index": "Madara and App chains",
   "cairo": "Why Cairo",
+  "evm": "EVM on Madara",
   "starknet": "Madara and Starknet",
   "architecture": "Architecture",
+  "interoperability": "Interoperating between chains",
   "contributing": "Contributing to Madara",
+  "-----": {
+    "type": "separator",
+    "title": "Testnet"
+  },
+  "sharingan": "Sharingan",
   "---": {
     "type": "separator",
     "title": "Build on Madara"
