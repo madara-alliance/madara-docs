@@ -10,6 +10,7 @@
   "architecture": "Architecture",
   "interoperability": "Interoperating between chains",
   "contributing": "Contributing to Madara",
+  "ecosystem": "Ecosystem",
   "-----": {
     "type": "separator",
     "title": "Testnet"
@@ -22,7 +23,6 @@
   "build": "Get started",
   "config": "Configure",
   "tools": "Tooling",
-  "ecosystem": "Ecosystem",
   "contribute": "Contribute",
   "----": {
     "type": "separator",
