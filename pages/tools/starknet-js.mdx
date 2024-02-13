@@ -1,0 +1,25 @@
+import { Steps } from 'nextra-theme-docs'
+
+# Starknet.js Overview
+[Starknet.js](https://www.starknetjs.com/) is a lightweight JavaScript/TypeScript library enabling interaction between your DApp and Starknet Inspired by ethers.js, it offers a familiar API and allows you to interact with Starknet accounts, providers, and contracts. Key functionalities include account management, network interaction, contract interfacing, and deployment automation.
+
+## Installing Starknet.js
+Follow the official Starknet.js installation instructions: https://www.starknetjs.com/docs/guides/intro
+
+## Use Starknet.js in Madara
+Starknet.js provides a high-level abstraction, streamlining common tasks like contract management, account interactions, and transaction processing.
+
+### Configuring Starknet.js for Madara
+Starknet.js functions as a layer between your dApp and the Madara network. It creates providers that abstract contract deployments, account management, and transaction execution. 
+
+![stack](../../static/img/starknet-js.png)
+
+Madara offers predeployed accounts loaded with test tokens for development and testing. Use them directly with contracts or fund your Argent X/Braavos wallet. 
+The provided script can be run with your wallet address as a command line parameter to fund your wallet: <br></br>
+`https://github.com/karnotxyz/madara-get-started/blob/main/scripts/faucet.js`
+
+Follow this readme to declare, deploy contracts, and retrieve transaction receipts using Starknet.js.<br></br>
+`https://github.com/karnotxyz/madara-get-started`
+## Resources
+- [Website](hhttps://www.starknetjs.com)
+- [Docs](https://www.starknetjs.com/docs/API/)
