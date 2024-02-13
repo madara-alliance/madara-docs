@@ -7,6 +7,83 @@ We will go from running your chain locally to changing the consensus algorithm a
 
 ## Let's start
 
+### Using Madara CLI
+Creating a node with Madara CLI is extremely easy.
+<Steps>
+### Install dependencies
+
+There are a few dependencies that need to be installed to smoothly use madara-cli.
+
+| Dependency  |  Version | Installation |
+|---|---|---|
+| git  | latest   | https://git-scm.com/book/en/v2/Getting-Started-Installing-Git |
+| rust  | latest  | https://www.rust-lang.org/tools/install |
+| Docker  | latest  | https://docs.docker.com/get-docker |
+
+#### Linux-Specific Setup (if `docker-compose up` fails):
+On facing ``ERROR: Couldn't connect to Docker daemon - you might need to run `docker-machine start default`.``<br></br>
+
+- Verify user belongs to `docker` group:
+```bash
+docker-compose up # Should fail
+sudo docker-compose up # Should succeed
+```
+If the second command works, add your user to the group:
+```bash 
+sudo usermod -a -G docker your_user_name`
+Logout and log back in.
+```
+
+#### Platform-Specific Installations:
+**Ubuntu**
+```bash
+sudo apt update
+sudo apt upgrade 
+sudo apt install build-essential pkg-config libssl-dev clang protobuf-compiler
+```
+
+**MacOS**:
+
+Ensure brew is installed (https://brew.sh/):<br></br>
+```bash brew --version```
+
+If not, install it:
+```bash 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Install dependencies:<br></br>
+```bash brew install pkg-config openssl protobuf```
+
+<Steps>
+### Clone the Madara CLI repository:
+```bash 
+git clone https://github.com/karnotxyz/madara-cli
+```
+
+### Build the CLI:
+```bash
+cd madara-cli
+cargo build --release
+```
+### Initialize a new app chain:
+```bash 
+./target/release/madara init
+```
+Fund the DA account (if applicable)
+
+### Run the app chain:
+```bash 
+./target/release/madara run 
+```
+
+### Explore StarkCompass:
+- Access the web interface at: `http://localhost:4000`
+- Use `./target/release/madara explorer` for advanced insights.
+</Steps>
+</Steps>
+
+### Cloning the Madara repository
 <Steps>
 
 ### Install dependencies
@@ -42,33 +119,17 @@ cargo build --release
 
 **Single-Node Development Chain**
 
-This command will start the single-node development chain with non-persistent
-state:
+You first need to setup up the node, which means you need to load the genesis state into your file system.
+
+> A little more info on what this is would be nice
 
 ```bash
-./target/release/madara --dev
+cargo run --release -- setup --chain=dev --from-remote
 ```
 
-Purge the development chain's state:
-
+Now, you can start the node in development mode
 ```bash
-./target/release/madara purge-chain --dev
-```
-
-Start the development chain with detailed logging:
-
-```bash
-RUST_BACKTRACE=1 ./target/release/madara -ldebug --dev
-```
-
-If everything works correctly, we can go to the next step and create our own genesis state!
-
-### Create your chain specification
-
-First, run this command to create a plain chain spec
-
-```bash
-./target/release/madara build-spec > ./infra/chain-sepcs/chain-spec-plain.json
+cargo run --release -- --dev
 ```
 
 By default, the chain will run with the following config :
@@ -130,4 +191,3 @@ Ooook, now your chain is finally running. It's time to deploy your own account!
 ### 🥷
 
 </Steps>
-
