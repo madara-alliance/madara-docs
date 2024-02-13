@@ -1,0 +1,49 @@
+import { Steps } from 'nextra-theme-docs'
+
+# Braavos Overview
+[Braavos](https://www.braavos.app) is a StarkNet-powered self-custodial wallet prioritizing security and affordability, it incorporates account abstraction, multi-factor authentication, and hardware signing. Moreover, Braavos allows you to managee tokens, NFTs, and dApp interactions across chains.
+
+## Installing Braavos 
+<Steps>
+### Download Braavos
+Braavos can be downloaded on most browsers
+![stack](../../static/braavos/step1.png)
+### Select "Create a New Wallet" on the welcome screen.
+![stack](../../static/braavos/step2.png)
+### Create a unique and memorable password for added security.
+![stack](../../static/braavos/step3.png)
+### Record your recovery phrase
+![stack](../../static/braavos/step4.png)
+Crucially: The 12-word recovery phrase grants full access to your wallet funds.
+Write down the phrase on a piece of paper and store it securely, offline and separate from any digital records.
+</Steps>
+
+## Use Braavos in Madara
+Braavos includes the Mainnet, Sepolia, and Goerli networks by default, but establishing interaction with your local Madara chain requires manual configuration. This involves adding a custom network within Braavos's settings.
+
+### Configuring Argent X for Madara
+1. Open the Argent X wallet and navigate to the network tab.
+![stack](../../static/braavos/step5.png)
+2. Select "Developer" and select "Add Account" if prompted.
+![stack](../../static/braavos/step6.png)
+3. Navigate to the "Developer" tab.
+![stack](../../static/braavos/step7.png)
+4. Populate the fields as such:
+    - Enable "Use RPC provider"
+    - Set "Node host" to `localhost`
+    - Set "Node port" to `9944` (Default Madara port)
+
+![stack](../../static/braavos/step8.png)
+
+Once you have added Madara as a network, you can now connect to it however your Starknet wallet still needs to be deployed before its ready to be used.
+
+
+### Deploying your Starknet wallet
+While creating an Argent X wallet generates a Starknet address, it remains undeployed until an initial transaction triggers its activation. This means the address can passively receive funds even prior to activation, but outgoing transactions and full functionality remain unavailable.
+
+The activation process occurs upon your first transaction from the Argent X wallet. This transaction creates and deploys your personal smart contract on the network and requires a one time fee.
+
+## Resources
+- [Website](https://braavos.app/)
+- [FAQ](https://www.Braavosyz/faq/)
+- [Twitter](https://twitter.com/Braavos)
