@@ -1,0 +1,61 @@
+import { Steps } from 'nextra-theme-docs'
+
+# Starkli Overview
+[Starkli](https://www.starknetjs.com/) is a lightweight JavaScript/TypeScript library enabling interaction between your DApp and Starknet Inspired by ethers.js, it offers a familiar API and allows you to interact with Starknet accounts, providers, and contracts. Key functionalities include account management, network interaction, contract interfacing, and deployment automation.
+
+## Installing Starkli
+<Steps>
+### Installing starkliup
+Install Starkliup, the installer for the Starkli environment
+```bash
+curl https://get.starkli.sh | sh
+```
+Starkliup should now be installed.
+Restart the terminal
+
+### Install starkli v0.1.20
+Run starkliup to install starkli v0.1.20
+```bash
+starkliup -v 0.1.20
+```
+Starkli should now be installed.
+Restart the terminal
+
+### Verify Starkli installation
+```bash
+starkli --version
+```
+The output should display
+```bash
+0.1.20 (e4d2307)
+```
+</Steps>
+
+Starkli allows you to perform all operations on your chain without leaving the command line.
+## Use Starkli in Madara
+Before starting with configuring Starkli, add your Madara RPC url to the env. By default, this would be `http://localhost:9944`
+```bash
+export STARKNET_RPC="http://localhost:9944/"
+```
+
+### Configuring Starkli for Madara
+Follow the steps in the tutorial and complete the below steps:<br></br>
+`https://book.starkli.rs/tutorials/starkli-101`
+1. Prepare a signer and an account
+2. Compile your Cairo contract
+3. Deploy your contract
+
+To compile your Cairo contract, you need to install Scarb `0.6.1`. You can use asdf for the same.
+`https://docs.swmansion.com/scarb/download.html#install-via-asdf`
+
+On running `scarb init`, a `Scarb.toml` file is generated. Add these dependencies to your `Scarb.toml` file.
+```bash
+[dependencies]
+starknet = ">=2.1.0"
+
+[[target.starknet-contract]]
+```
+After this you can follow the tutorial to compile and deploy your contract.
+
+## Resources
+- [Docs](https://book.starkli.rs/)
