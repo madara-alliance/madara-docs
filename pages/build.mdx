@@ -2,86 +2,21 @@ import { Steps } from 'nextra-theme-docs'
 
 # Build upon Madara
 
-*Uchiwa Madara* <br></br>In this section, we will guide you through the building process so you can start hacking on the Madara stack.
-We will go from running your chain locally to changing the consensus algorithm and interacting with smart contracts on your own chain!
+In this section, we will guide you through the building process so you can start hacking on the Madara stack.
+We will go from running your chain locally to changing the DA providers and interacting with smart contracts on your own chain!
 
 ## Let's start
+Madara offers two installation methods tailored to your preferences:
+- **Karnot CLI**: CLI tool that automates and simplifies Madara's setup and installation, suitable for users who prefer a user-friendly approach.
+- **Building from Source**: Build Madara from it's source code, allowing finer control over Madara's settings and behavior, suited for more advanced users or those with specific customization needs.
 
-### Using Madara CLI
-Creating a node with Madara CLI is extremely easy.
-<Steps>
-### Install dependencies
 
-There are a few dependencies that need to be installed to smoothly use madara-cli.
+### Using Karnot CLI
+Developed by the Karnot team, the Karnot CLI streamlines app chain deployment by automating configuration and setup.
 
-| Dependency  |  Version | Installation |
-|---|---|---|
-| git  | latest   | https://git-scm.com/book/en/v2/Getting-Started-Installing-Git |
-| rust  | latest  | https://www.rust-lang.org/tools/install |
-| Docker  | latest  | https://docs.docker.com/get-docker |
 
-#### Linux-Specific Setup (if `docker-compose up` fails):
-On facing ``ERROR: Couldn't connect to Docker daemon - you might need to run `docker-machine start default`.``<br></br>
-
-- Verify user belongs to `docker` group:
-```bash
-docker-compose up # Should fail
-sudo docker-compose up # Should succeed
-```
-If the second command works, add your user to the group:
-```bash 
-sudo usermod -a -G docker your_user_name`
-Logout and log back in.
-```
-
-#### Platform-Specific Installations:
-**Ubuntu**
-```bash
-sudo apt update
-sudo apt upgrade 
-sudo apt install build-essential pkg-config libssl-dev clang protobuf-compiler
-```
-
-**MacOS**:
-
-Ensure brew is installed (https://brew.sh/):<br></br>
-```bash brew --version```
-
-If not, install it:
-```bash 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Install dependencies:<br></br>
-```bash brew install pkg-config openssl protobuf```
-
-<Steps>
-### Clone the Madara CLI repository:
-```bash 
-git clone https://github.com/karnotxyz/madara-cli
-```
-
-### Build the CLI:
-```bash
-cd madara-cli
-cargo build --release
-```
-### Initialize a new app chain:
-```bash 
-./target/release/madara init
-```
-Fund the DA account (if applicable)
-
-### Run the app chain:
-```bash 
-./target/release/madara run 
-```
-
-### Explore StarkCompass:
-- Access the web interface at: `http://localhost:4000`
-- Use `./target/release/madara explorer` for advanced insights.
-</Steps>
-</Steps>
+The following repository outlines how to initialise and deploy your Madara node using Karnot CLI.<br></br>
+`https://github.com/karnotxyz/karnot-cli`
 
 ### Cloning the Madara repository
 <Steps>
@@ -94,9 +29,6 @@ We first need to make sure you have everything needed to complete this tutorial.
 |---|---|---|
 | Rust  | rustc 1.69.0-nightly  | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \| sh` <br></br>`rustup toolchain install nightly` |
 | nvm  | latest  | `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh \| bash` |
-| Cairo  | 1.0  | `curl -L https://github.com/franalgaba/cairo-installer/raw/main/bin/cairo-installer \| bash` |
-
-
 
 
 ### Build the chain
@@ -121,7 +53,8 @@ cargo build --release
 
 You first need to setup up the node, which means you need to load the genesis state into your file system.
 
-> A little more info on what this is would be nice
+For a detailed review of values in the genesis state, refer to the following documentation <br></br>
+`https://github.com/keep-starknet-strange/madara/blob/8c498ea363bfa995ac28154c449266f61a4679cc/docs/genesis.md#L4A%20little`
 
 ```bash
 cargo run --release -- setup --chain=dev --from-remote
@@ -131,14 +64,6 @@ Now, you can start the node in development mode
 ```bash
 cargo run --release -- --dev
 ```
-
-By default, the chain will run with the following config :
-- [GRANDPA & AURA](https://docs.substrate.io/learn/consensus/#default-consensus-models)
-- An `admin` account contract at address `0x0000000000000000000000000000000000000000000000000000000000000001`
-- A test contract at address `0x0000000000000000000000000000000000000000000000000000000000001111`
-- A fee token (ETH) at address `0x040e59c2c182a58fb0a74349bfa4769cbbcba32547591dd3fb1def8623997d00`
-- The `admin` account address has a `MAX` balance of fee token
-- An ERC20 contract at address `0x040e59c2c182a58fb0a74349bfa4769cbbcba32547591dd3fb1def8623997d00`
 
 This chain specification can be thought of as the main source of information that will be used when connecting to the chain. 
 
