@@ -1,30 +1,34 @@
 # Starknet.js Overview
+
 [Starknet.js](https://www.starknetjs.com/) is a lightweight JavaScript/TypeScript library enabling interaction between your DApp and Starknet. Starknet.js allows you to interact with Starknet accounts, providers, and contracts.
 
 ## Installing Starknet.js
+
 Follow the official Starknet.js installation instructions: https://www.starknetjs.com/docs/guides/intro
 
-## Use Starknet.js in Madara
-Starknet.js provides a high-level abstraction, streamlining common tasks like contract management, account interactions, and transaction processing.
+## Configuring Starknet.js for Madara
 
-### Configuring Starknet.js for Madara
-Starknet.js functions as a layer between your dApp and the Madara network. It creates providers that abstract contract deployments, account management, and transaction execution. 
+Connecting to your running Madara node requires you to point your provider to the Madara RPC url.
 
-When run using the --dev flag, Madara provides predeployed accounts, loaded with test token for development and testing. Use them directly with contracts or fund your Argent X/Braavos wallet. 
-
-Connecting to your running Madara node requires just the RPC URL
 ```javascript
 const provider = new starknet.RpcProvider({
   nodeUrl: "http://localhost:9944",
 });
 ```
+
+You can now use this provider to interact with the chain as explained in the Starknet.js [docs](https://www.starknetjs.com/docs/guides/intro).
+
+When run using the `--dev` flag, Madara provides predeployed accounts, loaded with the fee token for development and testing. These should be printed on the console
+during node start. Use them directly with contracts or fund your Argent X/Braavos wallet.
+
 Initialising your Madara account within your application is straightforward as well, allowing interaction with smart contracts and transactions on the Madara network.
+
 ```javascript
 const account = new starknet.Account(
   provider,
-  "0x4",    // 0x4 is one of the predeployed account 
+  "0x4", // 0x4 is one of the predeployed account
   "0x1234", // Any valid string can be passed as the private key for the 0x4 address
-  "1",  // "1" is an identifier for Cairo 1.0 accounts
+  "1", // "1" is an identifier for Cairo 1.0 accounts
 );
 
 async function transfer(to) {
@@ -41,13 +45,10 @@ async function transfer(to) {
 }
 ```
 
-![stack](../../static/img/starknet-js.png)
+[Karnot](https://karnot.xyz) has also developed ready to use scripts using Starknet.js to fund wallets, declare and deploy contracts and some other
+useful tasks. You can refer to them [here](https://github.com/karnotxyz/madara-get-started).
 
-The provided script can be run with your wallet address as a command line parameter to fund your wallet: <br></br>
-https://github.com/karnotxyz/madara-get-started/blob/main/scripts/faucet.js
-
-Follow this readme to declare, deploy contracts, and retrieve transaction receipts using Starknet.js.<br></br>
-https://github.com/karnotxyz/madara-get-started
 ## Resources
+
 - [Website](hhttps://www.starknetjs.com)
 - [Docs](https://www.starknetjs.com/docs/API/)
