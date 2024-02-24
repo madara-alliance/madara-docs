@@ -6,8 +6,7 @@ import { Steps } from "nextra-theme-docs";
 
 ## Installing Argent X
 
-Follow the official Argent X installation instructions:<br></br>
-`https://www.argent.xyz/learn/how-to-create-an-argent-x-wallet/`
+Follow the official Argent X installation [instructions](https://www.argent.xyz/learn/how-to-create-an-argent-x-wallet/`).
 
 ## Use Argent X with Madara
 
@@ -24,29 +23,7 @@ Argent X includes the Mainnet, Sepolia, and Goerli networks by default, but conn
 ![stack](../../static/argentX/step3.png)
 ### Fill in the following fields:
     1. **Network Name**: A friendly name for the Madara network.
-    2. **Chain ID**: The default chain ID on Madara is `SN_GOERLI`, to add a custom chain ID, refer to the Configure section of Madara documentation<br></br><br></br>
-            If you want to verify the chain ID, follow these steps:<br></br>
-            1.  Execute the following POST request using a tool like curl to retrieve the chain ID from your remote Madara node (replace http://localhost:9944 with the appropriate remote endpoint URL).           
-                ``` bash
-                    curl --location 'http://localhost:9944' \
-                    --header 'Content-Type: application/json' \
-                    --data '{
-                        "id": 0,
-                        "jsonrpc": "2.0",
-                        "method": "starknet_chainId",
-                        "params": {}
-                    }'
-                ```
-            2.  The response will be a JSON object containing the chain ID in the "result" field. For example: 
-                ``` bash
-                    {
-                        "jsonrpc": "2.0",
-                        "result": "0x534e5f474f45524c49",
-                        "id": 0
-                    }
-                ```
-            3.  Use an online hex converter tool (e.g., `https://stark-utils.vercel.app/converter`) to convert the provided hexadecimal value (0x534e5f474f45524c49 in this example) to a readable string representation.
-            4.  Enter the converted string value in the "Chain ID" field within the Argent X network configuration.
+    2. **Chain ID**: The default chain ID on Madara is `SN_GOERLI`, to retrieve your chain ID or to set a custom chain ID, refer to the [Chain ID](../chain-id) section of Madara documentation.
     3. RPC URL: `http://localhost:9944`
     4. Sequencer URL: `http://localhost:9944`
 ![stack](../../static/argentX/step4.png)
@@ -60,7 +37,7 @@ Once you have added Madara as a network, you can now connect to it.
 Upon creation, an Argent X wallet generates a Starknet address. However, this address exists in an "undeployed" state until you initiate your first transaction.
 
 Argent X manages the activation process under the hood; your first outgoing transaction acts as the trigger.
-This transaction initiates the deployment of your personal smart contract on the Madara chain. This deployment incurs a one-time fee.
+This transaction initiates the deployment of your smart contract on the Madara chain. This deployment incurs a one-time fee.
 
 ## Resources
 
