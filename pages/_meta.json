@@ -21,9 +21,11 @@
     "title": "Build on Madara"
   },
   "build": "Get started",
-  "config": "Configure",
-  "tools": "Tooling",
-  "contribute": "Contribute",
+	"config": "Configure",
+	"protocol-config": "Protocol Configuration",
+	"chain-id": "Chain ID",
+	"dev": "Dev",
+	"tools": "Tooling",  
   "----": {
     "type": "separator",
     "title": "Security"
