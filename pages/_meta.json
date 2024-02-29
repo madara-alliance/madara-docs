@@ -21,12 +21,13 @@
     "title": "Build on Madara"
   },
   "build": "Get started",
-	"config": "Configure",
-	"protocol-config": "Protocol Configuration",
-	"chain-id": "Chain ID",
-	"dev": "Dev",
-  "da-layer": "Data Availability",  
-	"tools": "Tooling",  
+  "config": "Configure",
+  "protocol-config": "Protocol Configuration",
+  "chain-id": "Chain ID",
+  "dev": "Madara with the --dev flag",
+  "tutorial": "Dapp Tutorial",
+  "da-layer": "Data Availability",
+  "tools": "Tooling",
   "------": {
     "type": "separator",
     "title": "Security"
