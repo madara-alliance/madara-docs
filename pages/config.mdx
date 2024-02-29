@@ -1,14 +1,14 @@
-import { Steps } from 'nextra-theme-docs'
+import { Steps } from "nextra-theme-docs";
 
 # Configuration
 
-In this section, we will look at the different parameters you can tweak as a runtime engineer 
+In this section, we will look at the different parameters you can tweak as a runtime engineer
 for your blockchain to be perfectly tailored to your needs.
 
-| Parameter | Location  | Interpretation | Default |
-|---|---|---|---|
-|  MILLISECS_PER_BLOCK |  `crates/runtime/src/config.rs` | Average expected block time targeted. |6000 (ms)  |
-|  BlockHashCount |  `crates/runtime/src/config.rs` | Maximum number of block number to block hash mappings to keep (oldest pruned first). |2400  |
+| Parameter           | Location                       | Interpretation                                                                       | Default   |
+| ------------------- | ------------------------------ | ------------------------------------------------------------------------------------ | --------- |
+| MILLISECS_PER_BLOCK | `crates/runtime/src/config.rs` | Average expected block time targeted.                                                | 6000 (ms) |
+| BlockHashCount      | `crates/runtime/src/config.rs` | Maximum number of block number to block hash mappings to keep (oldest pruned first). | 2400      |
 
 The core component of Madara is a custom substrate pallet named `starknet` which you can find under `crates/pallets/starknet`.
 
@@ -33,9 +33,9 @@ impl pallet_starknet::Config for Runtime {
 }
 ```
 
-| Type  | Interpretation | Default |
-|---|---|---|
-|  RuntimeEvent  | Event type that will be emitted on extrinsics' execution. | Substrate RuntimeEvent |
-|  StateRoot |  Defines how the state root is computed from the state. | [Starknet State Root](https://docs.starknet.io/documentation/architecture_and_concepts/State/starknet-state/#state-commitment) |
-|  SystemHash |  Hashing function used to compute commitments. | Pedersen |
-|  TimestampProvider |  Defines how the timestamp is retrieved (used for block timestamp) | [Timestamp Pallet](https://docs.rs/pallet-timestamp/latest/pallet_timestamp/) |
+| Type              | Interpretation                                                    | Default                                                                                                                        |
+| ----------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| RuntimeEvent      | Event type that will be emitted on extrinsics' execution.         | Substrate RuntimeEvent                                                                                                         |
+| StateRoot         | Defines how the state root is computed from the state.            | [Starknet State Root](https://docs.starknet.io/documentation/architecture_and_concepts/State/starknet-state/#state-commitment) |
+| SystemHash        | Hashing function used to compute commitments.                     | Pedersen                                                                                                                       |
+| TimestampProvider | Defines how the timestamp is retrieved (used for block timestamp) | [Timestamp Pallet](https://docs.rs/pallet-timestamp/latest/pallet_timestamp/)                                                  |
