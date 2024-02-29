@@ -24,7 +24,7 @@
   "config": "Configure",
   "protocol-config": "Protocol Configuration",
   "chain-id": "Chain ID",
-  "dev": "Madara with the --dev flag",
+  "dev-mode": "Madara with the --dev flag",
   "tutorial": "Dapp Tutorial",
   "da-layer": "Data Availability",
   "tools": "Tooling",
