@@ -1,0 +1,27 @@
+# Starknet.js Overview
+
+[Starknet.js](https://www.starknetjs.com/) is a lightweight JavaScript/TypeScript library enabling interaction between your DApp and Starknet. Starknet.js allows you to interact with Starknet accounts, providers, and contracts.
+
+## Installing Starknet.js
+
+Follow the official Starknet.js installation instructions: https://www.starknetjs.com/docs/guides/intro
+
+## Configuring Starknet.js for Madara
+
+Connecting to your running Madara node requires you to point your provider to the Madara RPC URL.
+
+```javascript
+const provider = new starknet.RpcProvider({
+  nodeUrl: "http://localhost:9944",
+});
+```
+
+You can now use this provider to interact with the chain as explained in the Starknet.js [docs](https://www.starknetjs.com/docs/guides/intro).
+
+[Karnot](https://karnot.xyz) has also developed ready-to-use scripts using Starknet.js to fund wallets, declare and deploy contracts and some other
+useful tasks. You can refer to them [here](https://github.com/karnotxyz/madara-get-started).
+
+## Resources
+
+- [Website](hhttps://www.starknetjs.com)
+- [Docs](https://www.starknetjs.com/docs/API/)

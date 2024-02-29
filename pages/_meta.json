@@ -1,33 +1,45 @@
 {
-	"--": {
-		"type": "separator",
-		"title": "Madara Stack"
-	},
-	"index": "Madara",
-	"architecture": "Architecture",
-	"why": "Why",
-	"---": {
-		"type": "separator",
-		"title": "Build on Madara"
-	},
-	"build": "Get started",
+  "--": {
+    "type": "separator",
+    "title": "Madara Stack"
+  },
+  "index": "Madara and App chains",
+  "cairo": "Why Cairo",
+  "evm": "EVM on Madara",
+  "starknet": "Madara and Starknet",
+  "architecture": "Architecture",
+  "interoperability": "Interoperating between chains",
+  "contributing": "Contributing to Madara",
+  "ecosystem": "Ecosystem",
+  "---": {
+    "type": "separator",
+    "title": "Testnet"
+  },
+  "sharingan": "Sharingan",
+  "----": {
+    "type": "separator",
+    "title": "Build on Madara"
+  },
+  "build": "Get started",
 	"config": "Configure",
-	"tools": "Tooling",
-	"ecosystem": "Ecosystem",
-	"contribute": "Contribute",
-	"----": {
-		"type": "separator",
-		"title": "Security"
-	},
-	"security": "FAQ",
-	"about": {
-		"title": "About",
-		"type": "page"
-	},
-	"contact": {
-		"title": "Contact ↗",
-		"type": "page",
-		"href": "https://t.me/MadaraStarknet",
-		"newWindow": true
-	}
+	"protocol-config": "Protocol Configuration",
+	"chain-id": "Chain ID",
+	"dev": "Dev",
+  "da-layer": "Data Availability",  
+	"tools": "Tooling",  
+  "------": {
+    "type": "separator",
+    "title": "Security"
+  },
+  "security": "FAQ",
+  "about": {
+    "title": "About",
+    "type": "page"
+  },
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "https://t.me/MadaraStarknet",
+    "newWindow": true
+  }
 }

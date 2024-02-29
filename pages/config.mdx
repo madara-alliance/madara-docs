@@ -1,3 +1,5 @@
+import { Steps } from 'nextra-theme-docs'
+
 # Configuration
 
 In this section, we will look at the different parameters you can tweak as a runtime engineer 
@@ -10,7 +12,7 @@ for your blockchain to be perfectly tailored to your needs.
 
 The core component of Madara is a custom substrate pallet named `starknet` which you can find under `crates/pallets/starknet`.
 
-However as mentionned in the introduction, Madara is generic by essence.
+However as mentioned in the introduction, Madara is generic by essence.
 It defines a set of types in its configuration specifically the traits that should be implemented by these types **NOT** the types themselves.
 This very powerful concept will allow you to easily change core components of your chain.
 
