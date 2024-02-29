@@ -23,28 +23,35 @@ The following repository outlines how to initialize and deploy your Madara node 
 ### Clone the Madara CLI repository:    `https://github.com/karnotxyz/karnot-cli`
 ```bash 	
 git clone https://github.com/karnotxyz/madara-cli	
-```	
+```
 
 ### Build the CLI
-```bash	
-cd madara-cli	
-cargo build --release	
-```	
+
+```bash
+cd madara-cli
+cargo build --release
+```
+
 ### Initialize a new app chain
-```bash 	
-./target/release/madara init	
-```	
-Fund the DA account (if applicable)	
+
+```bash
+./target/release/madara init
+```
+
+Fund the DA account (if applicable)
 
 ### Run the app chain
-```bash 	
-./target/release/madara run 	
-```	
+
+```bash
+./target/release/madara run
+```
 
 ### Explore StarkCompass
-- Access the web interface at: `http://localhost:4000`	
-- Use `./target/release/madara explorer` for advanced insights.	
-</Steps>	
+
+- Access the web interface at: `http://localhost:4000`
+- Use `./target/release/madara explorer` for advanced insights.
+
+</Steps>
 
 ### Cloning the Madara repository
 
@@ -100,13 +107,13 @@ cargo run --release -- setup --chain=dev --from-local ./configs --base-path=/pat
 
 Now, you can start the node. You can use the `--dev` flag to automatically include all these flags
 
-| Flag                 | Purpose                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| --force-authoring    | Enables block authoring even if the node is offline.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| --alice              | Uses pre-defined `Alice` session keys (this is more relevant in a decentralized setup) and starts in the validator mode i.e. the node can create new blocks                                                                                                                                                                                                                                                                                          |
-| --tmp                | Runs a temporary node. This option creates a temporary directory to store the blockchain configuration, including the node database, node key, and the keystore.                                                                                                                                                                                                                                                                                     |
+| Flag                 | Purpose                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --force-authoring    | Enables block authoring even if the node is offline.                                                                                                                                                                                                                                                                                                                                                                                            |
+| --alice              | Uses pre-defined `Alice` session keys (this is more relevant in a decentralized setup) and starts in the validator mode i.e. the node can create new blocks                                                                                                                                                                                                                                                                                     |
+| --tmp                | Runs a temporary node. This option creates a temporary directory to store the blockchain configuration, including the node database, node key, and the keystore.                                                                                                                                                                                                                                                                                |
 | --rpc-external       | Listens to all RPC interfaces. By default, the node only listens to local RPC calls. If you set this command-line option, keep in mind that not all RPC methods are safe to be exposed publicly. Use an RPC proxy server to filter out dangerous methods. For more information about RPC methods that shouldn't be publicly exposed, see Remote Procedure Calls. Use --unsafe-rpc-external to suppress the warning if you understand the risks. |
-| --rpc-methods=Unsafe | Expose all RPC methods                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --rpc-methods=Unsafe | Expose all RPC methods                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ```bash
 cargo run --release -- --dev

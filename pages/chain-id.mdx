@@ -1,8 +1,11 @@
 import { Steps } from "nextra-theme-docs";
 
 # Configuring Chain ID
+
 ## Fetching your Chain ID:
+
 The default chain ID on Madara is `SN_GOERLI`, to verify your chain ID, a POST call can be made to the RPC endpoint.<br></br>
+
 <Steps>
 ### Initiate RPC Request:
 - Execute the following POST request via curl to query the chain ID from your Madara node.
@@ -31,9 +34,11 @@ Use a hex converter tool (e.g., https://stark-utils.vercel.app/converter) to obt
 </Steps>
 
 ## Setting a custom Chain ID:
+
 The Chain ID for your Madara app chain is configured in `crates/runtime/src/pallets.rs`.
 In Madara your chain ID is represented as the montgomery representation for a string.
 To update this follow the below steps;
+
 <Steps>
 ### Define your Chain ID:
 Choose a string to represent your app chain.
@@ -53,7 +58,9 @@ starkli mont 85046245544016
 ```
 
 ### Update the Chain ID:
+
 Open crates/primitives/chain-id/src/lib.rs and add your Chain ID alongside existing definitions:
+
 ```rust
 pub const MY_APP_CHAIN_ID: Felt252Wrapper = Felt252Wrapper(starknet_ff::FieldElement::from_mont([
     18444025906882525153,
@@ -64,8 +71,10 @@ pub const MY_APP_CHAIN_ID: Felt252Wrapper = Felt252Wrapper(starknet_ff::FieldEle
 ```
 
 ### Update `pallets.rs`:
+
 - Modify the import statement in `crates/runtime/src/pallets.rs` to include your new Chain ID definition (refer to https://github.com/keep-starknet-strange/madara/blob/main/crates/runtime/src/pallets.rs#L13 for reference).
 - Update the usage of the Chain ID within the code itself (refer to https://github.com/keep-starknet-strange/madara/blob/main/crates/runtime/src/pallets.rs#L164 for reference).
 
 Rebuild your Madara app chain with the updated pallets.rs file. Your app chain will now operate with your custom Chain ID.
+
 </Steps>
