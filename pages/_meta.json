@@ -11,12 +11,12 @@
   "interoperability": "Interoperating between chains",
   "contributing": "Contributing to Madara",
   "ecosystem": "Ecosystem",
-  "-----": {
+  "---": {
     "type": "separator",
     "title": "Testnet"
   },
   "sharingan": "Sharingan",
-  "---": {
+  "----": {
     "type": "separator",
     "title": "Build on Madara"
   },
@@ -25,8 +25,9 @@
 	"protocol-config": "Protocol Configuration",
 	"chain-id": "Chain ID",
 	"dev": "Dev",
+  "da-layer": "Data Availability",  
 	"tools": "Tooling",  
-  "----": {
+  "------": {
     "type": "separator",
     "title": "Security"
   },
