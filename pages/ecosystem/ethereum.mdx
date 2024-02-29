@@ -1,6 +1,8 @@
 # Posting data to Ethereum
-On default behavior, app chains post transaction data to the Ethereum layer 1. This allows leveraging its security features, ensuring data immutability and tamper-proof records.
-However direct interaction with the L1 layer incurs a significant drawback: high fees. This stems from the inherent limitations of layer 1 scalability.
+
+App chains by default post data directly to Ethereum's L1 for its robust security features, ensuring data immutability and enhanced security through inheritance.
+However, this incurs higher transaction fees compared to alternate DA layers. <br></br>
+With EIP-4844 promising future improvements, the issue of posting data to Ethereum is actively being worked upon.
 
 The following steps outline the process of posting data to the Ethereum blockchain.
 
@@ -11,6 +13,7 @@ When launching a Madara node, you can specify: `--da-layer ethereum`.<br></br>
 When launching the node, the da-config.json file path can be provided along the `--da-conf` flag.
 
 _**da-config.json**_
+
 ```json
 {
   "http_provider": "http://127.0.0.1:8545",
@@ -21,11 +24,15 @@ _**da-config.json**_
 ```
 
 ### Start Anvil and Deploy Core Contracts:
+
 - Clone the Zaun repository:
+
 ```bash
 git clone --recurse-submodules [https://github.com/keep-starknet-strange/zaun.git](https://github.com/keep-starknet-strange/zaun.git) target/zaun 2> /dev/null
 ```
+
 - Deploy the Core Contracts using the Zaun scripts:
-``` bash
+
+```bash
 ./target/zaun/scripts/sn-base-dev.sh target target/zaun 2> /dev/null
 ```
