@@ -12,7 +12,7 @@ was always designed to be flexible so that you could build any chain using it. Y
 
 ## Forking Substrate
 
-While Substrate is definitely powerful, there are some parts that can modified to make the stack work better for L2s/L3s. Particularly, we have [forked Substrate](https://github.com/massalabs/polkadot-sdk/tree/release-polkadot-v1.3.0-std)
+While Substrate is definitely powerful, there are some parts that can be modified to make the stack work better for L2s/L3s. Particularly, we have [forked Substrate](https://github.com/massalabs/polkadot-sdk/tree/release-polkadot-v1.3.0-std)
 to achieve the following
 
 1. Making the runtime `std` compatible: We currently rely on multiple Starknet libraries ([blockifier](https://github.com/starkware-libs/blockifier),
@@ -20,7 +20,7 @@ to achieve the following
    don't support `no-std` compatibility as of today which is needed in Substrate runtimes for [forkless upgrades](https://docs.substrate.io/maintain/runtime-upgrades/). Moreover, the Substrate runtime
    is also compiled to `WASM` (which is why it needs to be `no-std` compatible) which also slows down the performance by ~2x. As a result, after analyzing the tradeoff, we decided to fork away Substrate
    to enable `std` in the runtime.
-2. Using the Bonzai trie: The bonzai tree isn't compatible with the existing traits exposed by Substrate. By forking it, we are also able to use the Bonzai tree for Madara which will be much more efficient.
+2. Using the [Bonsai trie](https://github.com/keep-starknet-strange/bonsai-trie): The bonsai trie isn't compatible with the existing traits exposed by Substrate. By forking it, we are also able to use the Bonzai tree for Madara which will be much more efficient.
 
 ## Transaction Lifecycle
 
