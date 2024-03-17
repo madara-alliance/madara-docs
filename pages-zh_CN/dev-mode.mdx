@@ -1,0 +1,46 @@
+# Running Madara with the `--dev` flag
+
+The --dev flag runs a development mode within Madara, offering several advantages for streamlining the app chain development process.
+Some of these features include the provision of pre-funded, pre-deployed accounts available when launching the chain.
+
+These are enumerated when starting an app chain:
+
+- Address: `0x1` with no PK
+- Address: `0x2` with PK as `0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d`
+- Address: `0x2` with PK as `0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d`
+- Address: `0x4` with no PK (any string can be used as the PK)
+
+![stack](../static/madara-dev.png)
+
+These accounts can be directly plugged into your dev use cases. Since they're pre-deployed you can sign any transaction with them as well.
+
+These accounts can also be used to fund your personal Madara wallet, an example of this is faucet.js
+
+```javascript
+const provider = new starknet.RpcProvider({
+  nodeUrl: "http://localhost:9944", // initialises the provider with the Madara RPC node URL
+});
+
+const account = new starknet.Account(
+  provider,
+  "0x4", // 0x4 is one of the predeployed accounts
+  "0x1234", // Any valid string can be passed as the private key for the 0x4 address
+  "1", // "1" is an identifier for Cairo 1.0 accounts
+);
+
+async function transfer(to) {
+  const contract = new starknet.Contract(ERC20.abi, eth_address, provider);
+  let result = contract.populate("transfer", {
+    recipient: to,
+    amount: {
+      low: 1e20,
+      high: 0,
+    },
+  });
+
+  let hash = await account.execute(result, undefined);
+}
+```
+
+[Karnot](https://karnot.xyz) has also developed ready-to-use scripts using Starknet.js to fund wallets, declare and deploy contracts and some other
+useful tasks. You can refer to them [here](https://github.com/karnotxyz/madara-get-started).
