@@ -1,0 +1,114 @@
+# Madara 技术架构
+
+## 在 Substrate 上构建
+
+很多现有的区块链技术栈实际上只是 L2 链的开源版本。虽然这确保了你使用的是在生产中经过测试的东西，但这对模块化造成了很大的影响。这是因为大多数 L2 链的设计都是为了以一种安全的方式更快地进入市场。自然地，这导致损失实验性和实现更多模块化。
+
+我们不希望 Madara 也是这样。我们想要为应用链开发者构建一个既安全又灵活的技术栈。因此，对于 Madara 技术栈，我们决定利用 Substrate 框架。Substrate 已经投入生产超过 5 年，并且在生产中保护着超过十亿美元的资产。与此同时，Substrate 设计之初就是为了灵活性，以便可以使用其构建任何链。你可以在[这里](https://parachains.info/)看到基于 Substrate 构建的 150 多条链。
+
+## 分叉 Substrate
+
+虽然 Substrate 非常强大，但有些技术栈需要改进，方可更适合 L2/L3。特别是，我们 fork 了 Substrate 来实现以下目标：
+
+1. 使运行时 `std` 兼容：我们目前在 Madara 中依赖多个 Starknet 库（[blockifier](https://github.com/starkware-libs/blockifier)、[cairo-vm](https://github.com/lambdaclass/cairo-vm)、[cairo](https://github.com/starkware-libs/cairo)、[starknet-api](https://github.com/starkware-libs/starknet-api)）。这些库目前不支持 `no-std` 兼容性，而这是 Substrate 运行时进行[无分叉升级](https://docs.substrate.io/maintain/runtime-upgrades/)所需的。此外，Substrate 运行时也编译为 `WASM`（这就是为什么需要是 `no-std` 兼容），这也将性能降低了约两倍。因此，在分析了权衡之后，我们决定 fork 掉 Substrate 以在运行时启用 `std`。
+2. 使用 Bonzai 试验：Bonzai 树与 Substrate 暴露的现有特性不兼容。通过 fork，我们还能够在 Madara 中使用 Bonzai 树，这将更加高效。
+
+## 交易声明周期
+
+![madara_architecture](../static/img/madara_architecture.png)
+
+上述架构图展示了 Madara 的所有主要组件。下面，我们将描述每个组件的功能，并且还将演示一笔交易的生命周期。
+
+##### JSON RPC 客户端
+
+一笔交易首次创建时，会到达位于 [mc-rpc](https://github.com/keep-starknet-strange/madara/blob/main/crates/client/rpc/src/lib.rs) (mc = madara-client) 包内的 JSON RPC 客户端。
+所有的 RPC 方法都定义在 [mc-rpc-core](https://github.com/keep-starknet-strange/madara/blob/main/crates/client/rpc-core/src/lib.rs) 中。`mc-rpc` 包包含了如何读取用户输入、将它们转换成所需格式、执行必要的验证逻辑并向用户返回响应的逻辑。验证逻辑本身位于运行时（pallet-starknet）中，但是从这里调用。
+
+##### Pallet Starknet
+
+[Pallets](https://docs.substrate.io/reference/frame-pallets/) 是 Substrate 的术语，指的是可以用来为你的运行时添加业务逻辑的模块。用户交易通常会触发某个 pallet 中的某个功能。[Starknet pallet](https://github.com/keep-starknet-strange/madara/blob/main/crates/pallets/starknet/src/lib.rs) 是 Madara 的核心组件，大部分执行和存储操作都在这里发生。如上图所示，验证和执行逻辑都定义在 Starknet pallet 内部。
+
+##### Blockifier
+
+[blockifier](https://github.com/starkware-libs/blockifier) 是 StarkNet 排序器在生产中用于执行交易和创建区块的组件。对于 Madara 来说，构建区块的逻辑是框架的固有部分。然而，我们仍然会导入 blockifier 来执行 Cairo 合约。
+
+##### Cairo VM
+
+[Cairo VM](https://github.com/lambdaclass/cairo-vm) 是 Cairo 语言的虚拟机。可以接收任何 Cairo 程序和输入，然后返回预期的输出。
+
+##### 验证逻辑
+
+RPC 客户端接收到用户交易时，会转发到运行时内部的验证逻辑。在[这里](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/pallets/starknet/src/lib.rs#L732)定义的验证逻辑会检查交易是否正确以及是否可以添加到内存池（mempool）。这涉及到 nonce 和签名的检查。由于 Madara 支持帐户抽象化，Madara 中的帐户可以有自定义的验证逻辑 - 不同的椭圆曲线、一次性密码（OTP）、会话密钥以及任何可以用代码编写的内容。然而，这也意味着为了验证交易，我们需要触发虚拟机（VM）并调用合约的验证逻辑。这就需要通过调用 blockifier 来完成。
+
+虽然这个方法被称为 `validate_unsigned`，交易实际上包含了签名。由于我们支持帐户抽象化，我们不使用基于公钥和私钥的 Substrate 默认验证逻辑。相反，我们将 Starknet 交易保留为 [未签名的外部交易（unsigned extrinsics）](https://docs.substrate.io/learn/transaction-types/#unsigned-transactions)，并在 `validate_unsigned` 中调用帐户合约内的 `validate` 逻辑。
+
+如果交易通过验证，将被发送到内存池，交易哈希发送回用户。如果验证失败，错误将传递回用户。
+
+##### 内存池
+
+目前，我们在 Madara 中使用 Substrate 的默认内存池（mempool）。正如[此处](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/pallets/starknet/src/lib.rs#L755)所示，一个帐户的所有交易都是根据 nonce 进行排序的。
+
+##### 执行逻辑
+
+Starknet 在其 Starknet pallet 中定义了四种写入交易及其执行逻辑：
+
+1. **调用交易（Invoke transactions）**：这些是最常见的交易，用于与现有智能合约互动或部署新合约。[代码](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/pallets/starknet/src/lib.rs#L487)。
+2. **部署帐户交易（Deploy account transactions）**：这些特殊的交易用于在链上部署帐户。如前所述，Madara 支持帐户抽象，这意味着你的帐户需要部署后才能使用。然而，大多数钱包会从用户那里抽象出这部分内容，你甚至都没有意识到你的钱包何时被部署了！[代码](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/pallets/starknet/src/lib.rs#L598)。
+3. **声明交易（Declare transactions）**：这些交易用于声明新合约，随后可以使用 `INVOKE`（对于普通智能合约）和 `DEPLOY_ACCOUNT`（对于帐户合约）交易部署。[代码](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/pallets/starknet/src/lib.rs#L539)。
+4. **L1 处理器交易（L1 Handler transactions）**：这些交易的独特之处在于，它们不是由 Madara 链上的帐户发起。相反，顾名思义，这些交易是由基础层（对于 L2 是以太坊，对于 L3 是 Starknet）上的某些行为发起的，并用于触发链上的一些代码。例如，通过 L1 桥发送资金，在 L2 上铸造新代币。如下所述，我们有离线工作程序负责执行这些消息。[代码](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/pallets/starknet/src/lib.rs#L654)。
+
+要了解前三种交易类型的更多信息，请参阅 [Starknet 文档](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/transactions/)。要了解有关 L1-L2 消息传递的更多信息，请[阅读文档](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/messaging-mechanism/)。
+
+通常，该 pallet：
+
+1. 从内存池接收交易
+2. 再次进行 nonce 和签名验证
+3. 对帐户进行最低余额检查（以便可以支付交易费用）
+4. 执行交易并进行必要的存储更改。
+   1. 对于交易执行，我们将详细信息传递给 blockifier，内部调用 VM
+   2. 对于存储更改，我们调用 [blockifier 状态适配器](https://github.com/keep-starknet-strange/madara/blob/main/crates/pallets/starknet/src/blockifier_state_adapter.rs)。这是一个实现了 blockifier 的 `StateChanges` trait 的 `struct`。在执行交易时，blockifier 会将此作为输入，并在需要读写存储时调用它。我们对状态适配器的实现与 Substrate 的 pallet 存储互动，以向 blockifier 提供所需的数据。
+5. 收取交易执行费用
+
+## 离线工作程序
+
+离线工作程序是 [Substrate 术语](https://docs.substrate.io/learn/offchain-operations/#off-chain-workers)，可以描述为与运行时异步运行的任务。它们可以与运行时交互，了解区块、交易和其他细节，但由于不在运行时内部，因此不会减慢区块生产。Madara 运行了多个离线工作程序，如下所述。
+
+##### 结算
+
+[结算工作程序](https://github.com/keep-starknet-strange/madara/blob/main/crates/client/settlement/src/lib.rs) 负责收集新的区块和交易数据，并将其转换为 `StarknetOsOutput`。
+`StarknetOsOutput` 是发送到基础层 Starknet 核心合约的内容。在以太坊的情况下，这意味着调用核心合约上的 [updateState](https://etherscan.io/address/0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4#writeProxyContract#F16) 函数。
+
+![settlement_worker](../static/img/settlement_worker.png)
+
+当您从 L2 发送消息到 L1（或从 L3 发送消息到 L2）时，结算工作程序也负责推送该消息。
+
+##### L1->L2 消息传递
+
+![l1_messages_worker](../static/img/l1_messages_worker.png)
+
+Madara 支持 [L1-L2 消息传递](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/messaging-mechanism/)，就像 Starknet 一样。L2->L1 的消息是通过结算工作程序发送。然而，对于 L1->L2 消息
+（或者取决于你如何运行你的应用链，L2->L3 消息），我们需要一个服务，能够不断监听基础层上的新消息。这就是 [l1-messages](https://github.com/keep-starknet-strange/madara/blob/main/crates/client/l1-messages/src/worker.rs) 工作程序的作用。
+该工作程序被配置为监听 Starknet 核心合约在基础层触发的 `LogMessageToL2` 事件。对于公共 Starknet，你可以在[这里](https://etherscan.io/address/0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4#code)找到这个合约。这个工作程序监听这些事件，
+转换事件数据，并构造 [HandleL1MessageTransaction](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/primitives/transactions/src/lib.rs#L187) 结构体。然后交易进入内存池，并按照上面解释的方式进行处理。
+
+##### 状态差异
+
+Starknet 作为少数几个发布状态差异（state diffs）而非交易数据以实现数据可用性（DA）的二层网络（L2），因此在成本上相对较低，Madara 也遵循了同样的决策。[状态差异工作程序（state diffs worker）](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/commitment-state-diff/src/lib.rs#L140) 监听区块存储上的变化。每个新区块都会提交新的变更，并由状态差异工作程序获取。然后，工作程序将存储变化转换成[这种形式](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/commitment-state-diff/src/lib.rs#L140)，随后 DA 工作程序会将其提交到相应的 DA 层。
+
+##### 数据可用性
+
+Madara 力求在技术堆栈的每一层都尽可能保持模块化。因此，Madara 不强制应用链使用特定的数据可用性（Data Availability，简称 DA）层。在撰写本文时，我们支持 [Ethereum](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/data-availability/src/ethereum/config.rs#L14)、[Avail](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/data-availability/src/avail/config.rs#L11) 和 [Celestia](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/data-availability/src/celestia/config.rs#L9) 作为 DA 层，并且 [EigenDA](https://github.com/keep-starknet-strange/madara/pull/1377) 以及 [NearDA](https://github.com/keep-starknet-strange/madara/pull/1232) 正在开发中。我们还支持一个通用的[DA 接口](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/data-availability/src/lib.rs#L102)，可以用来添加其他 DA 层。
+
+![da_worker](../static/img/da_worker.png)
+
+在状态差异（state diffs）工作程序完成构建状态差异后，这些状态差异将传递给 DA工作程序。然后 DA 工作程序如有必要为这些状态差异创建证明，并将数据提交到相应的 DA 层。
+
+##### 映射同步工作程序
+
+Substrate 默认具有块结构。然而，如果你的链采用不同的方式（如 Madara 的情况），你可以使用[封装技术](https://corepaper.org/substrate/wrapper/)（最初由 frontier 用于他们的 EVM 链）将区块封装在 Substrate 块内部。在这样做的过程中，需要保持 Substrate 块和 Madara 块之间的映射，以便可以根据 Madara 块哈希提供 RPC 请求服务。这正是[映射同步工作程序](https://github.com/keep-starknet-strange/madara/blob/main/crates/client/mapping-sync/src/lib.rs) 的具体工作内容。
+
+![mapping_worker](../static/img/mapping_worker.png)
+
+Substrate 区块中有一个名为 `digests` 的部分，可以在其中添加 pallet 日志。因此，在 starknet pallet 中，我们将 Madara 区块作为 Substrate 区块摘要的一部分添加进去，如您所见[这里](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/pallets/starknet/src/lib.rs#L983)。
+然后，工作程序通过[这里](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/mapping-sync/src/sync_blocks.rs#L25) 消费这个区块摘要，并以
+[mapping_commitment](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/mapping-sync/src/sync_blocks.rs#L43) 的形式存储在映射数据库中。
