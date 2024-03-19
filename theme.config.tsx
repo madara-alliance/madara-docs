@@ -3,6 +3,13 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 import { useRouter } from 'next/router';
 
 const config: DocsThemeConfig = {
+  // ... existing configurations,
+
+  i18n: [
+    { locale: 'en', text: 'English' },
+    { locale: 'zh-CN', text: '中文' }
+  ],
+
 	logo: <span>Madara</span>,
 	project: {
 		link: "https://github.com/keep-starknet-strange/madara",
@@ -42,8 +49,3 @@ const config: DocsThemeConfig = {
 };
 
 export default config
-
-i18n: [
-  { locale: 'en-US', text: 'English' },
-  { locale: 'zh-CN', text: '中文' , direction: 'rtl' }
-]
