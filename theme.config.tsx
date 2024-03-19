@@ -42,3 +42,8 @@ const config: DocsThemeConfig = {
 };
 
 export default config
+
+i18n: [
+  { locale: 'en-US', text: 'English' },
+  { locale: 'zh-CN', text: '中文' , direction: 'rtl' }
+]
