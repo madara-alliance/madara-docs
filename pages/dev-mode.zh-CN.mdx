@@ -1,20 +1,19 @@
-# Running Madara with the `--dev` flag
+# 用 --dev 标志运行 Madara
 
-The --dev flag runs a development mode within Madara, offering several advantages for streamlining the app chain development process.
-Some of these features include the provision of pre-funded, pre-deployed accounts available when launching the chain.
+`--dev` 标志在 Madara 中启用开发模式，为简化应用链开发流程带来若干优势。部分特性包括在启动链时，提供预先充值资金、预先部署的帐户。
 
-These are enumerated when starting an app chain:
+启动应用链时，将会列举这些特性：
 
-- Address: `0x1` with no PK
-- Address: `0x2` with PK as `0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d`
-- Address: `0x2` with PK as `0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d`
-- Address: `0x4` with no PK (any string can be used as the PK)
+- 地址：`0x1`，没有私钥（PK）
+- 地址：`0x2`，私钥为 `0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d`
+- 地址：`0x3`，私钥为 `0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d`
+- 地址：`0x4`，没有私钥（任何字符串都可以用作私钥）
 
 ![stack](../static/madara-dev.png)
 
-These accounts can be directly plugged into your dev use cases. Since they're pre-deployed you can sign any transaction with them as well.
+这些帐户可以直接用于开发用例。由于帐户是预先部署，也可以用于签署任何交易。
 
-These accounts can also be used to fund your personal Madara wallet, an example of this is faucet.js
+这些帐户也可以用来给个人的 Madara 钱包充值，一个例子是 `faucet.js`。
 
 ```javascript
 const provider = new starknet.RpcProvider({
@@ -42,5 +41,4 @@ async function transfer(to) {
 }
 ```
 
-[Karnot](https://karnot.xyz) has also developed ready-to-use scripts using Starknet.js to fund wallets, declare and deploy contracts and some other
-useful tasks. You can refer to them [here](https://github.com/karnotxyz/madara-get-started).
+Karnot 还使用 Starknet.js 开发了一些现成的脚本，这些脚本可以用来给钱包充值、声明和部署合约以及一些其他有用的任务。可以在[这里](https://github.com/karnotxyz/madara-get-started)获得参考。

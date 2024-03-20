@@ -1,22 +1,19 @@
 import { Steps } from "nextra-theme-docs";
 
-# Configuration
+# 配置
 
-In this section, we will look at the different parameters you can tweak as a runtime engineer
-for your blockchain to be perfectly tailored to your needs.
+本章节将查看运行时工程师可以调整的不同参数，以便您的区块链能够完美符合您的需求。
 
-| Parameter           | Location                       | Interpretation                                                                       | Default   |
+| 参数           | 位置                       | 解释                                                                       | 默认   |
 | ------------------- | ------------------------------ | ------------------------------------------------------------------------------------ | --------- |
-| MILLISECS_PER_BLOCK | `crates/runtime/src/config.rs` | Average expected block time targeted.                                                | 6000 (ms) |
-| BlockHashCount      | `crates/runtime/src/config.rs` | Maximum number of block number to block hash mappings to keep (oldest pruned first). | 2400      |
+| MILLISECS_PER_BLOCK | `crates/runtime/src/config.rs` | 平均预期的区块时间目标。                                                | 6000 (ms) |
+| BlockHashCount      | `crates/runtime/src/config.rs` | 保留的最大区块号到区块哈希映射数量（先剪除最旧的）。 | 2400      |
 
-The core component of Madara is a custom substrate pallet named `starknet` which you can find under `crates/pallets/starknet`.
+Madara 的核心组件是一个名为 `starknet` 的自定义 substrate 模块，您可以在 `crates/pallets/starknet` 下找到。
 
-However as mentioned in the introduction, Madara is generic by essence.
-It defines a set of types in its configuration specifically the traits that should be implemented by these types **NOT** the types themselves.
-This very powerful concept will allow you to easily change core components of your chain.
+然而，如引言中所述，Madara 本质上是通用的。在其配置中定义了一组类型，特别是这些类型应该实现的特性**而不是**类型本身。这一概念非常强大，允许您轻松更改链的核心组件。
 
-Let's take a look at these types and their default values.
+让我们来看一下这些类型及其默认值。
 
 ```rust
 // `crates/runtime/src/pallets.rs`
@@ -33,9 +30,9 @@ impl pallet_starknet::Config for Runtime {
 }
 ```
 
-| Type              | Interpretation                                                    | Default                                                                                                                        |
+| 类型              | 解释                                                   | 默认                                                                                                                        |
 | ----------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| RuntimeEvent      | Event type that will be emitted on extrinsics' execution.         | Substrate RuntimeEvent                                                                                                         |
-| StateRoot         | Defines how the state root is computed from the state.            | [Starknet State Root](https://docs.starknet.io/documentation/architecture_and_concepts/State/starknet-state/#state-commitment) |
-| SystemHash        | Hashing function used to compute commitments.                     | Pedersen                                                                                                                       |
-| TimestampProvider | Defines how the timestamp is retrieved (used for block timestamp) | [Timestamp Pallet](https://docs.rs/pallet-timestamp/latest/pallet_timestamp/)                                                  |
+| RuntimeEvent      | 在执行外部交易时将发出的事件类型。         | Substrate RuntimeEvent                                                                                                         |
+| StateRoot         | 定义了如何从状态计算出状态根。            | [Starknet State Root](https://docs.starknet.io/documentation/architecture_and_concepts/State/starknet-state/#state-commitment) |
+| SystemHash        | 用于计算承诺的哈希函数。                     | Pedersen                                                                                                                       |
+| TimestampProvider | 定义了如何检索时间戳（用于区块时间戳）。 | [Timestamp Pallet](https://docs.rs/pallet-timestamp/latest/pallet_timestamp/)                                                  |
