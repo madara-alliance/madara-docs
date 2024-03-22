@@ -1,39 +1,39 @@
 import { Steps } from "nextra-theme-docs";
 
-# Starkli Overview
+# Starkli 概览
 
-Starkli is a command-line interface (CLI) tool designed to streamline interaction with your Madara chain. It simplifies managing accounts, deploying and interacting with smart contracts, and accessing network data.
+Starkli 是一个命令行界面（CLI）工具，旨在简化与 Madara 链交互。简化帐户管理、部署和与智能合约的互动以及访问网络数据的过程。
 
-## Installing Starkli
+## 安装 Starkli
 
 <Steps>
-### Installing starkliup
-Install Starkliup, the installer for the Starkli environment
+### 安装 starkliup
+安装 Starkli 环境的安装程序 Starkliup。
 ```bash
 curl https://get.starkli.sh | sh
 ```
-Starkliup should now be installed.
-Restart the terminal
+Starkliup 已安装完成。
+重启终端
 
-### Install starkli v0.1.20
+### 安装 starkli v0.1.20
 
-Madara currently is only compatible with starkli v0.1.20. Active development is underway to ensure the latest version is supported.
-Run starkliup to install starkli v0.1.20
+Madara 目前仅兼容 starkli v0.1.20。正在积极开发以确保支持最新版本。
+运行 starkliup 来安装 starkli v0.1.20
 
 ```bash
 starkliup -v 0.1.20
 ```
 
-Starkli should now be installed.
-Restart the terminal
+Starkli 已安装完成。
+重启终端
 
-### Verify Starkli installation
+### 验证 Starkli 安装
 
 ```bash
 starkli --version
 ```
 
-The output should display
+输出应显示为
 
 ```bash
 0.1.20 (e4d2307)
@@ -41,22 +41,21 @@ The output should display
 
 </Steps>
 
-Starkli allows you to perform all operations on your chain without leaving the command line.
+Starkli 允许您在不离开命令行的情况下对链上的所有操作进行管理。
 
-## Use Starkli in Madara
+## 在 Madara 中使用 Starkli
 
-Before starting with configuring Starkli, add your Madara RPC URL to the env. By default, this would be `http://localhost:9944`
+在开始配置 Starkli 之前，将您的 Madara RPC URL 添加到 env.。默认情况下，这将是 `http://localhost:9944`
 
 ```bash
 export STARKNET_RPC="http://localhost:9944/"
 ```
 
-### Configuring Starkli for Madara
+### 配置 Starkli 以适用于 Madara
 
-The Starkli tutorial [here](https://book.starkli.rs/tutorials/starkli-101) should work with Madara. If you face issues
-when deploying your smart contract, ensure you're Scarb `0.6.1`. You can use asdf for the same as explained [here](https://docs.swmansion.com/scarb/download.html#install-via-asdf).
+[Starkli 教程](https://book.starkli.rs/tutorials/starkli-101)可以在 Madara 上工作。如果在部署智能合约时遇到问题，请确保您的 Scarb 版本为 `0.6.1`。您可以使用 asdf 来安装，相关说明请参见 [此处](https://docs.swmansion.com/scarb/download.html#install-via-asdf)。
 
-Also, make sure you've added the following lines in your Scarb.toml
+此外，请确保您在 Scarb.toml 文件中添加以下几行代码。
 
 ```bash
 [dependencies]
@@ -65,6 +64,6 @@ starknet = ">=2.1.0"
 [[target.starknet-contract]]
 ```
 
-## Resources
+## 资源
 
-- [Docs](https://book.starkli.rs/)
+- [文档](https://book.starkli.rs/)

@@ -1,64 +1,64 @@
 import { Steps } from "nextra-theme-docs";
 
-# Braavos Overview
+# Braavos 概览
 
-[Braavos](https://www.braavos.app) is a Starknet wallet.
+[Braavos](https://www.braavos.app) 是 Starknet 钱包。
 
-## Installing Braavos
+## 安装 Braavos
 
-Follow the official Braavos installation [instructions](https://braavos.app/faq/setting-up-your-braavos-wallet-easy-starknet-guide/`).
+按照官方 Braavos 安装[说明](https://braavos.app/faq/setting-up-your-braavos-wallet-easy-starknet-guide/)进行操作。
 
-## Use Braavos with Madara
+## 在 Madara 使用 Braavos
 
-Braavos includes the Mainnet, Sepolia, and Goerli networks by default, but connecting with your local Madara chain requires manual configuration. This involves adding a custom network within Braavos's settings.
+Braavos 默认包括 Mainnet、Sepolia 和 Goerli 网络，但要连接到本地的 Madara 链则需要进行手动配置。这需要在 Braavos 的设置中添加一个自定义网络。
 
-### Configuring Braavos for Madara
+### 在 Madara 配置 Braavos
 
 <Steps>
-### Access Network Tab
+### 访问 Network 标签
 
-Open the Braavos wallet and navigate to the "Network" tab.
+打开 Braavos 钱包并导航至 Network 标签。
 
 ![stack](../../static/braavos/step1.png)
 
-### Enable Developer Mode
+### 启用开发者模式
 
-Locate the "Developer" option and select it. If prompted, choose "Add Account" to proceed.
+找到并选择 Developer 选项。如果出现提示，请选择 Add Account 以继续。
 
 ![stack](../../static/braavos/step2.png)
 
-### Access General Configuration:
+### 访问通用配置：
 
-Click on the account icon, on the top left side<br></br>
-Navigate to the "General" tab
+点击左上角的帐户图标<br></br>
+导航至 General 标签
 ![stack](../../static/braavos/step3.png)
 
-### Switch to the Developer Tab
+### 切换至开发者标签
 
-Within the "General" section, switch to the "Developer" tab.
+在 General 内，切换至 Developer 标签。
 ![stack](../../static/braavos/step4.png)
 
-### Configure RPC Connection
+### 配置 RPC 连接
 
-1. Enable the "Use RPC provider" checkbox.
-2. Set the "Node host" field to localhost.
-3. Set the "Node port" field to 9944, assuming you're using the default Madara port.
+1. 勾选 Use RPC provider 复选框。
+2. 将 Node host 字段设置为 localhost。
+3. 假设您使用的是 Madara 的默认端口，将 Node port 字段设置为 9944。
 
 ![stack](../../static/braavos/step5.png)
 
 </Steps>
 
-Once you have added Madara as a network, you can now connect to it.
+将 Madara 添加为网络之后，就可以连接。
 
-### Deploying your Starknet wallet
+### 部署 Starknet 钱包
 
-Upon creation, a Braavos wallet generates a Starknet address. However, this address exists in an "undeployed" state until you initiate your first transaction.
+创建 Braavos 钱包后会生成一个 Starknet 地址。然而，这个地址在您发起第一笔交易之前都处于「未部署」状态。
 
-Braavos manages the activation process under the hood; your first outgoing transaction acts as the trigger.
-This transaction initiates the creation and deployment of your personal smart contract on the Madara chain. This deployment incurs a one-time fee.
+Braavos 在后台管理激活过程；您的第一笔外出交易将作为触发器。
+这笔交易启动 Madara 链上智能合约的创建和部署。此部署会产生一次性费用。
 
-## Resources
+## 资源
 
-- [Website](https://braavos.app/)
-- [FAQ](https://braavos.app/faq/)
+- [官网](https://braavos.app/)
+- [常见问答集](https://braavos.app/faq/)
 - [Twitter](https://twitter.com/Braavos)

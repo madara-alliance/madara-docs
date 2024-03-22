@@ -1,33 +1,31 @@
 # Massa Labs
 
-Massa Labs is a company that has developed its own Layer 1 and is also dedicated to contributing to leading Rust projects, including Madara. The company has innovatively created a system, called Bonsai-trie, for efficiently storing the chain's state data and calculating the root hash.
+Massa Labs 是一家开发了自己的 Layer 1 技术的公司，同时也致力于为包括 Madara 在内的领先 Rust 项目做出贡献。该公司创新性地创建了一种名为 Bonsai-trie 的系统，用于高效存储链的状态数据并计算根哈希。
 
-Massa Labs has played a crucial role in enhancing the Madara project by eliminating the constraint of no_std.
+Massa Labs 在增强 Madara 项目方面发挥了至关重要的作用，消除了 no_std 的限制。
 
 ## Bonsai trie
 
-The [Bonsai Trie library](https://github.com/keep-starknet-strange/bonsai-trie) enables the storage of the [Starknet state](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/starknet-state/) as a Trie with various optimizations. This work draws inspiration from the bonsai library found in the Besu client for Ethereum.
+[Bonsai Trie 库](https://github.com/keep-starknet-strange/bonsai-trie) 使得 [Starknet 状态](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/starknet-state/)能够以 Trie 的形式存储，并进行了多项优化。该工作从以太坊 Besu 客户端中的 bonsai 库中获得灵感。
 
-Key optimizations include:
+主要优化包括：
 
-- Organizing trie nodes in the database by location to enable implicit pruning.
-- Storing key/value pairs in a separate database section from the trie branches, facilitating instant reads.
-- Recording only one state in the database alongside patches describing changes made in the latest blocks, allowing for state rollback.
+- 在数据库中按位置组织 trie 节点，以实现隐式剪枝。
+- 在数据库的不同部分存储键/值对，而不是 trie 分支，便于立即读取。
+- 在数据库中仅记录一个状态，以及描述在最新区块中所做更改的补丁，允许状态回滚。
 
-These optimizations in state trie management will enable Madara to consume fewer resources and spend less time computing the root hash for each block.
+这些对状态 trie 管理的优化使 Madara 能够减少资源消耗，并减少计算每个区块的根哈希所需的时间。
 
-The  allows to store the [state of Starknet as a Trie](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/starknet-state/) with multiple optimizations.
-This work is deeply inspired by the bonsai library that exists on the [Besu client for Ethereum](https://github.com/hyperledger/besu).
-The main optimizations are :
- - We have the nodes of the trie by location in the database allowing implicit pruning.
- - We save the key/value pair in a different part of the database than the trie branches allowing instant read.
- - We save only one state on the database along with patches describing the changes made in the latests blocks allowing to rollback the state.
-These optimizations on the state trie management will allow Madara to use less resources and spend less time computing the root hash for each block.
+Bonsai Trie 库允许存储 [Starknet 的状态 Trie](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/starknet-state/)，并进行了多种优化。这项工作深受 [以太坊 Besu 客户端](https://github.com/hyperledger/besu)中存在的 bonsai 库的启发。主要的优化有：
+ - 在数据库中按位置有组织地存放 trie 节点，实现了隐式剪枝。
+ - 将键/值对存储在数据库的不同部分，而非 trie 分支中，从而实现即时读取。
+ - 在数据库中只保存一个状态，以及描述最新区块中所做更改的补丁，这允许状态回滚。
+这些针对状态 trie 管理的优化将使 Madara 使用更少的资源，并缩短计算每个区块的根哈希所需的时间。
 
-## Modifications on Madara source code
+## 修改 Madara 源码
 
-Massa Labs has actively contributed to Madara by removing the constraint of using no_std versions of the blockifier and the cairo-vm. In a [pull request (PR)](https://github.com/keep-starknet-strange/madara/pull/1407), Massa Labs utilized a fork of the Polkadot SDK that executed the runtime in native code instead of WASM. Consequently, the code used does not require compatibility with no_std. These changes provide more flexibility during development and enhance the project's capabilities.
+Massa Labs 在 Madara 的开发中做出了积极贡献，通过移除对 blockifier 和 cairo-vm 的 no_std 版本的依赖，在 [PR](https://github.com/keep-starknet-strange/madara/pull/1407) 中，Massa Labs 利用一个 Polkadot SDK 的分叉，在 native 代码而不是 WASM 中执行 runtime。因此，使用的代码不需要与 no_std 兼容。这些更改在开发中提供了更多的灵活性，并增强了项目的能力。
 
-## Future work
+## 未来的工作
 
-Massa Labs plans to continue collaborating with the Starknet Exploration Team to further enhance Madara and the ecosystem. Explore all of their projects on [GitHub](https://github.com/massalabs).
+Massa Labs 计划继续与 Starknet 探索团队合作，以进一步提升 Madara 和整个生态系统。欢迎在 [GitHub](https://github.com/massalabs) 上探索所有项目。

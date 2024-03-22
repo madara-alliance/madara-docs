@@ -2,23 +2,23 @@ import { Steps } from "nextra-theme-docs";
 
 # Celestia
 
-[Celestia](https://celestia.org/) is a modular data availability network that makes it easy for anyone to securely launch their own blockchain.
+[Celestia](https://celestia.org/) 是模块化数据可用性网络，使任何人都能轻松安全地启动自己的区块链。
 
-Celestia acts as a separate layer dedicated to storing transaction data, enabling app chains to focus solely on transaction execution and settlement.
-This design facilitates significant scalability improvements in the blockchain ecosystem.
+Celestia 充当专门用于存储交易数据的独立层，使应用链只需专注于交易的执行和结算。
+这种设计在区块链生态系统中促进显著的可扩展性改进。
 
-## Key Features
+## 主要功能
 
-- Data Availability Sampling: Celestia allows light nodes on its network to efficiently verify data availability without downloading the entire dataset, this ensures the scalability of the network.
-- Modular Design: Celestia's modular design separates data availability from consensus and execution functionalities. This allows developers to build custom blockchains on top of Celestia, fostering innovation and flexibility within the ecosystem.
-- Tendermint Consensus: Celestia leverages Tendermint for their consensus mechanism to guarantee the security and integrity of the data layer.
+- 数据可用性抽样（Data Availability Sampling）：Celestia 允许其网络上的轻节点无需下载整个数据集就能有效地验证数据的可用性，这确保了网络的可伸缩性。
+- 模块化设计：Celestia 的模块化设计将数据可用性与共识和执行功能分离。这允许开发者在 Celestia 的基础上构建自定义区块链，促进生态系统内的创新和灵活性。
+- Tendermint 共识机制：Celestia 利用 Tendermint 作为它们的共识机制，以保证数据层的安全性和完整性。
 
-## Use Celestia in Madara
+## 在 Madara 使用 Celestia
 
-When launching a Madara node, you can specify: `--da-layer celestia`.<br></br>
-This will use Celestia to publish the state_diff instead of Ethereum.
+启动 Madara 节点时，您可以指定：`--da-layer celestia`。<br></br>
+这将使用 Celestia 发布状态差异（state_diff），而不是使用 Ethereum。
 
-When launching the node, the da-config.json file path can be provided along the `--da-conf` flag.
+启动节点时，可以通过 `--da-conf` 标志提供 da-config.json 文件的路径。
 
 _**da-config.json**_
 
@@ -31,33 +31,41 @@ _**da-config.json**_
 }
 ```
 
-### Launch with Celestia
+### 用 Celestia 启动
 
-The following steps require the [Celestia CLI tool](https://docs.celestia.org/developers/node-tutorial) to be installed and configured
+以下步骤需要安装并配置 [Celestia CLI 工具](https://docs.celestia.org/developers/node-tutorial)。
 
 <Steps>
 
-### Node Initialization
+### Node 初始化
 
-Run the following command to initialize a light node for the Mocha testnet:
+执行以下命令初始化 Mocha 测试网的轻节点：
+
+```bash
+celestia light init --network mocha
+```
 
 ```bash
 celestia light init --p2p.network mocha
 ```
 
-### Authorization Token Generation
+### 生成授权 Token
 
-Generate an authorization token required for the da-config.json file with the following command:
+使用以下命令生成 da-config.json 文件所需的授权 Token：
+
+```bash
+celestia auth token generate
+```
 
 ```bash
 celestia light auth admin --p2p.network mocha
 ```
 
-This token grants administrative privileges to the light node, **add this to `da-config.json`**
+此 Token 授予轻节点管理权限，请将其**添加到 `da-config.json`** 文件中。
 
-### Node Startup
+### Node 启动
 
-Initiate the light node using the following command:
+使用以下命令启动轻节点：
 
 ```bash
 celestia light start --core.ip rpc.celestia-mocha.com --p2p.network mocha
@@ -68,7 +76,7 @@ celestia light start --core.ip rpc.celestia-mocha.com --p2p.network mocha
 
 </Steps>
 
-### Commands
+### 命令
 
 ```bash
 # Madara needs to be built with the Celestia feature flag
@@ -82,9 +90,9 @@ cargo build --release --features celestia
 
 ```
 
-## Resources
+## 资源
 
-- [Website](https://celestia.org/)
+- [官网](https://celestia.org/)
 - [Github](https://github.com/celestiaorg)
-- [Documentation](https://docs.celestia.org/)
+- [文档](https://docs.celestia.org/)
 - [Twitter](https://twitter.com/CelestiaOrg)

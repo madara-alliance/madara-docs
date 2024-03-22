@@ -1,29 +1,29 @@
-# Avail Overview
+# Avail 概览
 
-[Avail](https://www.availproject.org/) aims to provide a trust-minimized and secure base layer focused on **data availability**. This base layer serves as the foundation for next-generation, trust-minimized applications and blockchains.
+[Avail](https://www.availproject.org/) 旨在提供一个以**数据可用性**为核心的、信任最小化且安全的基础层。这一基础层构成了下一代信任最小化应用和区块链的基石。
 
-Avail is a blockchain-based platform focused on creating a general-purpose data availability layer, addressing key challenges such as scalability, governance, and decentralization. By enabling technologies like Validiums and Sovereign Rollups, Avail allows for off-chain data availability, which significantly reduces costs and enhances efficiency.
+Avail 是一个基于区块链的平台，专注于创建一个通用的数据可用性层，解决了可扩展性、治理和去中心化等关键挑战。通过启用 Validium 和主权 Rollup 等技术，Avail 允许链下数据可用性，大大降低成本并提高效率。
 
-## Key Features
+## 主要功能
 
-- Data Blob Indexing: Avail simplifies data indexing by tying all transaction data to an application ID.
-- Erasure Encoding: Adds redundancy to the data, making it harder for nodes to suppress information.
-- KZG Polynomial Commitments: Ensures that the data has a footprint in the Avail block header.
-- Decentralized Network of Validators: Avail aims to support up to 1,000 external validators to reduce centralization risks.
-- Validity Proofs: Allows light clients to guarantee data availability and verify state execution proofs immediately after finalizing.
+- 数据 Blob 索引：Avail 通过将所有交易数据与应用程序 ID 关联，简化了数据索引的过程。
+- 抹除编码：为数据添加冗余，使得节点更难以压制信息。
+- KZG 多项式承诺：确保数据在 Avail 区块头中有足迹。
+- 去中心化验证者网络：Avail 旨在支持多达 1000 个外部验证者，以降低集中化风险。
+- 有效性证明：允许轻客户端在最终确定后立即保证数据可用性并验证状态执行证明。
 
-## Use Avail in Madara
+## 在 Madara 使用 Avail
 
-When launching a Madara node, you can specify: `--da-layer avail`.<br></br>
-This will use Avail to publish the state_diff instead of Ethereum.
+启动 Madara 节点时，您可以指定：`--da-layer avail`。<br></br>
+这将使用 Avail 发布状态差异（state_diff），而不是使用 Ethereum。
 
-When launching the node, the da-config.json file path can be provided along the `--da-conf` flag.
-Also for your specific use case, you can create your app_id, check this [example](https://github.com/availproject/avail/blob/develop/examples/ts/src/app_id.ts) using TS
+启动节点时，可以通过 `--da-conf` 标志提供 da-config.json 文件的路径。
+另外，针对特定用例，可以创建自己的 app_id，可以查看[使用 TS 示例](https://github.com/availproject/avail/blob/develop/examples/ts/src/app_id.ts)。
 
-### Launch with local node
+### 用本地节点启动
 
-You can choose to launch with a local full node by following this [documentation](https://docs.availproject.org/operate/node/rpc/).<br></br>
-The expected config file should look like this:
+可以选择按照此[文档](https://docs.availproject.org/operate/node/rpc/)来启动本地全节点。<br></br>
+预期的配置文件应该是这样：
 
 _**da-config.json**_
 
@@ -36,10 +36,10 @@ _**da-config.json**_
 }
 ```
 
-### Launch with Avail Network
+### 用 Avail 网络启动
 
-You can launch directly using the up-and-running Network.<br></br>
-The expected config file should look like this:
+可以直接使用已经运行的网络来启动。<br></br>
+预期的配置文件应该是这样：
 
 _**da-config.json**_
 
@@ -52,7 +52,7 @@ _**da-config.json**_
 }
 ```
 
-### Commands
+### 命令
 
 ```bash
 # On Avail side, after compiling/getting the binary (The ports are changed to not collide with Madara ports)
@@ -69,11 +69,11 @@ cargo build --release --features avail
 
 ```
 
-## Resources
+## 资源
 
-- [Website](https://www.availproject.org/)
+- [官网](https://www.availproject.org/)
 - [Github](https://github.com/availproject)
-- [Avail node](https://github.com/availproject/avail)
-- [Documentation](https://availproject.github.io/)
+- [Avail 节点](https://github.com/availproject/avail)
+- [文档](https://availproject.github.io/)
 - [Twitter](https://twitter.com/AvailProject)
 - [Discord](https://discord.com/invite/y6fHnxZQX8)

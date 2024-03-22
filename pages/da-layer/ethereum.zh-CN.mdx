@@ -1,16 +1,15 @@
-# Posting data to Ethereum
+# 数据发布到以太坊
 
-App chains by default post data directly to Ethereum's L1 for its robust security features, ensuring data immutability and enhanced security through inheritance.
-However, this incurs higher transaction fees compared to alternate DA layers. <br></br>
-With EIP-4844 promising future improvements, the issue of posting data to Ethereum is actively being worked upon.
+因为以太坊具有强大的安全特性，应用链默认将数据直接发布到以太坊 L1，以确保数据不可篡改，并继承其安全性。然而，这相比于其他数据可用性层（DA 层）会产生更高的交易费用。<br></br>
+随着 EIP-4844 承诺的未来改进，积极解决将数据发布到以太坊的问题正在进行中。
 
-The following steps outline the process of posting data to the Ethereum blockchain.
+以下步骤概述了将数据发布到以太坊区块链的过程。
 
-## Use Ethereum for data posting in Madara
+## 使用以太坊在 Madara 发布数据
 
-When launching a Madara node, you can specify: `--da-layer ethereum`.<br></br>
+启动 Madara 节点时，可以指定：`--da-layer ethereum`。
 
-When launching the node, the da-config.json file path can be provided along the `--da-conf` flag.
+启动节点时，可以通过 `--da-conf` 标志提供 da-config.json 文件的路径。
 
 _**da-config.json**_
 
@@ -23,15 +22,15 @@ _**da-config.json**_
 }
 ```
 
-### Start Anvil and Deploy Core Contracts:
+### 启动 Anvil 并部署核心合约：
 
-- Clone the Zaun repository:
+- 克隆 Zaun 仓库：
 
 ```bash
 git clone --recurse-submodules [https://github.com/keep-starknet-strange/zaun.git](https://github.com/keep-starknet-strange/zaun.git) target/zaun 2> /dev/null
 ```
 
-- Deploy the Core Contracts using the Zaun scripts:
+- 使用 Zaun 脚本部署核心合约：
 
 ```bash
 ./target/zaun/scripts/sn-base-dev.sh target target/zaun 2> /dev/null

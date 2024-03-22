@@ -1,20 +1,20 @@
-# Madara Prover API Overview
+# Madara 证明器 API 概述
 
-[Madara Prover API](https://github.com/Moonsong-Labs/madara-prover-api) is a comprehensive RPC server and client designed to facilitate the execution of the Stone Prover from the Madara sequencer. This project plays a crucial role in proving transactions within each Madara block, relying on the powerful [Stone Prover](https://github.com/starkware-libs/stone-prover).
+[Madara 证明器 API](https://github.com/Moonsong-Labs/madara-prover-api) 是一个全面的 RPC 服务器和客户端，旨在方便从 Madara 排序器执行 Stone 证明器。该项目依赖于强大的 [Stone 证明器](https://github.com/starkware-libs/stone-prover)，在证明每个 Madara 区块内的交易中发挥着至关重要的作用，。
 
-## Description
+## 说明
 
-The Madara Prover API project consists of three main crates:
+Madara Prover API 项目由三个主要的 Crate 组成：
 
-1. **stone-prover**: This crate provides a Rust wrapper for the Stone Prover. It utilizes a `build.rs` script to build the prover and offers a Rust library that seamlessly invokes the prover as a child process in the background.
+1. **stone-prover**：这个 Crate 提供了 Stone 证明器的 Rust 封装。使用 `build.rs` 脚本来构建证明器，并提供了一个 Rust 库，可以无缝地后台作为子进程调用证明器。
 
-2. **madara-prover-rpc-server**: This crate contains the server code, providing both a binary and library to spawn the server. The server is responsible for running any set of Cairo programs on the Starknet OS, generating the state diff and proof of execution for the programs.
+2. **madara-prover-rpc-server**：这个 Crate 包含了服务器代码，提供了一个二进制文件和库来启动服务器。服务器负责在 Starknet OS 上运行任何一组 Cairo 程序，生成程序的状态差异和执行证明。
 
-3. **madara-prover-rpc-client**: This crate furnishes a client to interact with the server, facilitating communication through [gRPC](https://grpc.io/). The protocol description can be found in `protocols/prover.proto`.
+3. **madara-prover-rpc-client**：这个 Crate 提供了一个客户端，用于与服务器进行交互，通过 [gRPC](https://grpc.io/) 实现通信。协议描述可以在 `protocols/prover.proto` 中找到。
 
-# Roadmap
+# 路线图
 
-1. Implement the client-server model to run and prove cairo programs. :white_check_mark:
-2. Implement Bootloader hints
-3. Optimize:
-   - Use FFI bindings to call the Stone prover
+1. 实现客户端-服务器模型以运行和证明 Cairo 程序。 :white_check_mark:
+2. 实现引导程序（Bootloader）提示
+3. 优化：
+   - 使用 FFI 绑定调用 Stone 证明器

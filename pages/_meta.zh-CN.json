@@ -25,14 +25,14 @@
   "protocol-config": "协议配置",
   "chain-id": "Chain ID",
   "dev-mode": "用 --dev 标志运行 Madara",
-  "tutorial": "Dapp 教程",
+  "tutorial": "dApp 教程",
   "da-layer": "数据可用性",
   "tools": "工具",
   "------": {
     "type": "separator",
     "title": "安全"
   },
-  "security": "常见问答集",
+  "security": "安全",
   "contribute": "贡献",
   "about": {
     "title": "关于",
