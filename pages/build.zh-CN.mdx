@@ -1,0 +1,132 @@
+import { Steps } from "nextra-theme-docs";
+
+# 使用 Madara 开发
+
+本节我们将指导完成构建过程，以便您可以开始在 Madara 技术栈上进行开发。
+我们将从在本地运行链开始，一直到使用智能合约与之交互。
+
+## 开始
+
+Madara 提供了两种根据您的偏好量身定制的设置方法：
+
+- **Karnot CLI**：一个由 [Karnot](https://karnot.xyz) 管理的 CLI 工具，它自动化并简化了 Madara 的设置和安装过程。适合偏好用户友好方式的用户。
+- **从源代码构建**：从 Madara 的源代码构建，允许更精细地控制 Madara 的设置和行为，适合更高级的用户或有特定定制需求的用户。
+
+### 使用 Karnot CLI
+
+由 Karnot 团队开发的 Karnot CLI 通过自动化配置和设置，简化了应用链的部署过程。
+
+以下仓库概述了如何使用 Karnot CLI 初始化和部署您的 Madara 节点。<br></br>
+`https://github.com/karnotxyz/karnot-cli`
+
+<Steps>
+### 克隆 Madara CLI 仓库： `https://github.com/karnotxyz/karnot-cli`
+```bash
+git clone https://github.com/karnotxyz/madara-cli
+```
+
+### 生成 CLI
+
+```bash
+cd madara-cli
+cargo build --release
+```
+
+### 初始化新应用链
+
+```bash
+./target/release/madara init
+```
+
+向 DA 层帐户供款（如有）
+
+### 运行应用链
+
+```bash
+./target/release/madara run
+```
+
+### 探索 StarkCompass
+
+- 访问网站界面：`http://localhost:4000`
+- 使用 `./target/release/madara explorer` 获得深入见解。
+
+</Steps>
+
+### 正在克隆 Madara 仓库
+
+<Steps>
+
+### 安装依赖项
+
+我们首先需要确保您有完成本教程所需的一切。
+
+| 依赖项 | 版本              | 安装                                                                                                  |
+| ---------- | -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Rust       | rustc 1.69.0-nightly | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \| sh `<br></br>`rustup toolchain install nightly` |
+
+### 生成链
+
+我们将用 Madara Stack 的源代码启动一个 Cairo Rollup。也可以使用 docker 镜像，但这样我们就能保留在需要时修改组件行为的选项。Madara Stack 的源代码是单体仓库，可以在[这里](https://github.com/keep-starknet-strange/madara)找到。
+
+```bash
+cd ~
+git clone git@github.com:keep-starknet-strange/madara.git
+```
+
+之后在 `release` 模式生成链
+
+```bash
+cd madara
+cargo build --release
+```
+
+### 设置链
+
+首先需要设置节点，这意味着您需要将创世状态加载到文件系统中。
+
+要详细查看创世状态中的值，请参考以下[文档](https://github.com/keep-starknet-strange/madara/blob/8c498ea363bfa995ac28154c449266f61a4679cc/docs/genesis.md#L4A%20little)。
+
+在仓库根目录下运行以下命令来进行设置。这将从 `configs` 文件夹中获取配置文件，并将它们加载到您的文件系统中。
+
+**加载文件到默认路径**
+
+```bash
+cargo run --release -- setup --chain=dev --from-local ./configs
+```
+
+**加载文件到指定路径**
+
+```bash
+cargo run --release -- setup --chain=dev --from-local ./configs --base-path=/path/to/folder
+```
+
+### 开启链
+
+现在，您可以启动节点。可以使用 `--dev` 标志来自动包含所有这些标志。
+
+| 标志                 | 目的                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --force-authoring    | 即使节点离线，也能够进行区块的编写。                                                                                                                                                                                                                                                                                                                                                                                            |
+| --alice              | 使用预定义的 `Alice` 会话密钥（在去中心化设置中更为相关），并启动验证器模式，即节点可以创建新区块                                                                                                                                                                                                                                                                                     |
+| --tmp                | 运行一个临时节点。此选项会创建一个临时目录来存储区块链配置，包括节点数据库、节点密钥和密钥库。                                                                                                                                                                                                                                                                                |
+| --rpc-external       | 监听所有 RPC 接口。默认情况下，节点只监听本地 RPC 调用。如果设置了这个命令行选项，请记住并非所有 RPC 方法都安全到可以公开暴露。请使用 RPC 代理服务器来过滤掉危险的方法。有关不应公开暴露的 RPC 方法的更多信息，请参见远程过程调用。如果您了解风险，可以使用 --unsafe-rpc-external 来抑制警告。 |
+| --rpc-methods=Unsafe | 暴露全部 RPC 方法                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
+```bash
+cargo run --release -- --dev
+```
+
+如果您在设置阶段使用了 `base-path` 命令将创世文件加载到自定义目录中，请使用以下命令
+
+```bash
+cargo run --release -- --dev --base-path=/path/to/folder
+```
+
+### 与链进行交互
+
+默认情况下，您的链将在端口 `9944` 上运行。Madara 支持完整的 Starknet 规范，这意味着任何使用 RPC 与 Starknet 交互的工具都应该可以与 Madara 一起工作，前提是您使用 `http://localhost:9944`（或您的相关 URL）作为 RPC。
+
+请前往[工具](./tools)部分，查看如何使用 Madara 与不同 Starknet 工具配合的详细概述。
+
+</Steps>

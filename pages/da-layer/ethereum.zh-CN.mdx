@@ -1,0 +1,37 @@
+# 数据发布到以太坊
+
+因为以太坊具有强大的安全特性，应用链默认将数据直接发布到以太坊 L1，以确保数据不可篡改，并继承其安全性。然而，这相比于其他数据可用性层（DA 层）会产生更高的交易费用。<br></br>
+随着 EIP-4844 承诺的未来改进，积极解决将数据发布到以太坊的问题正在进行中。
+
+以下步骤概述了将数据发布到以太坊区块链的过程。
+
+## 使用以太坊在 Madara 发布数据
+
+启动 Madara 节点时，可以指定：`--da-layer ethereum`。
+
+启动节点时，可以通过 `--da-conf` 标志提供 da-config.json 文件的路径。
+
+_**da-config.json**_
+
+```json
+{
+  "http_provider": "http://127.0.0.1:8545",
+  "core_contracts": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "sequencer_key": "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
+  "chain_id": 31337
+}
+```
+
+### 启动 Anvil 并部署核心合约：
+
+- 克隆 Zaun 仓库：
+
+```bash
+git clone --recurse-submodules [https://github.com/keep-starknet-strange/zaun.git](https://github.com/keep-starknet-strange/zaun.git) target/zaun 2> /dev/null
+```
+
+- 使用 Zaun 脚本部署核心合约：
+
+```bash
+./target/zaun/scripts/sn-base-dev.sh target target/zaun 2> /dev/null
+```

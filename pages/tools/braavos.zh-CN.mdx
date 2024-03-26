@@ -1,0 +1,64 @@
+import { Steps } from "nextra-theme-docs";
+
+# Braavos 概览
+
+[Braavos](https://www.braavos.app) 是 Starknet 钱包。
+
+## 安装 Braavos
+
+按照官方 Braavos 安装[说明](https://braavos.app/faq/setting-up-your-braavos-wallet-easy-starknet-guide/)进行操作。
+
+## 在 Madara 使用 Braavos
+
+Braavos 默认包括 Mainnet、Sepolia 和 Goerli 网络，但要连接到本地的 Madara 链则需要进行手动配置。这需要在 Braavos 的设置中添加一个自定义网络。
+
+### 在 Madara 配置 Braavos
+
+<Steps>
+### 访问 Network 标签
+
+打开 Braavos 钱包并导航至 Network 标签。
+
+![stack](../../static/braavos/step1.png)
+
+### 启用开发者模式
+
+找到并选择 Developer 选项。如果出现提示，请选择 Add Account 以继续。
+
+![stack](../../static/braavos/step2.png)
+
+### 访问通用配置：
+
+点击左上角的帐户图标<br></br>
+导航至 General 标签
+![stack](../../static/braavos/step3.png)
+
+### 切换至开发者标签
+
+在 General 内，切换至 Developer 标签。
+![stack](../../static/braavos/step4.png)
+
+### 配置 RPC 连接
+
+1. 勾选 Use RPC provider 复选框。
+2. 将 Node host 字段设置为 localhost。
+3. 假设您使用的是 Madara 的默认端口，将 Node port 字段设置为 9944。
+
+![stack](../../static/braavos/step5.png)
+
+</Steps>
+
+将 Madara 添加为网络之后，就可以连接。
+
+### 部署 Starknet 钱包
+
+创建 Braavos 钱包后会生成一个 Starknet 地址。然而，这个地址在您发起第一笔交易之前都处于「未部署」状态。
+
+Braavos 在后台管理激活过程；您的第一笔外出交易将作为触发器。
+这笔交易启动 Madara 链上智能合约的创建和部署。此部署会产生一次性费用。
+
+## 资源
+
+- [官网](https://braavos.app/)
+- [常见问答集](https://braavos.app/faq/)
+- [Twitter](https://twitter.com/Braavos)

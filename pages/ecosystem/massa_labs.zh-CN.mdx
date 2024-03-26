@@ -1,0 +1,31 @@
+# Massa Labs
+
+Massa Labs 是一家开发了自己的 Layer 1 技术的公司，同时也致力于为包括 Madara 在内的领先 Rust 项目做出贡献。该公司创新性地创建了一种名为 Bonsai-trie 的系统，用于高效存储链的状态数据并计算根哈希。
+
+Massa Labs 在增强 Madara 项目方面发挥了至关重要的作用，消除了 no_std 的限制。
+
+## Bonsai trie
+
+[Bonsai Trie 库](https://github.com/keep-starknet-strange/bonsai-trie) 使得 [Starknet 状态](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/starknet-state/)能够以 Trie 的形式存储，并进行了多项优化。该工作从以太坊 Besu 客户端中的 bonsai 库中获得灵感。
+
+主要优化包括：
+
+- 在数据库中按位置组织 trie 节点，以实现隐式剪枝。
+- 在数据库的不同部分存储键/值对，而不是 trie 分支，便于立即读取。
+- 在数据库中仅记录一个状态，以及描述在最新区块中所做更改的补丁，允许状态回滚。
+
+这些对状态 trie 管理的优化使 Madara 能够减少资源消耗，并减少计算每个区块的根哈希所需的时间。
+
+Bonsai Trie 库允许存储 [Starknet 的状态 Trie](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/starknet-state/)，并进行了多种优化。这项工作深受 [以太坊 Besu 客户端](https://github.com/hyperledger/besu)中存在的 bonsai 库的启发。主要的优化有：
+ - 在数据库中按位置有组织地存放 trie 节点，实现了隐式剪枝。
+ - 将键/值对存储在数据库的不同部分，而非 trie 分支中，从而实现即时读取。
+ - 在数据库中只保存一个状态，以及描述最新区块中所做更改的补丁，这允许状态回滚。
+这些针对状态 trie 管理的优化将使 Madara 使用更少的资源，并缩短计算每个区块的根哈希所需的时间。
+
+## 修改 Madara 源码
+
+Massa Labs 在 Madara 的开发中做出了积极贡献，通过移除对 blockifier 和 cairo-vm 的 no_std 版本的依赖，在 [PR](https://github.com/keep-starknet-strange/madara/pull/1407) 中，Massa Labs 利用一个 Polkadot SDK 的分叉，在 native 代码而不是 WASM 中执行 runtime。因此，使用的代码不需要与 no_std 兼容。这些更改在开发中提供了更多的灵活性，并增强了项目的能力。
+
+## 未来的工作
+
+Massa Labs 计划继续与 Starknet 探索团队合作，以进一步提升 Madara 和整个生态系统。欢迎在 [GitHub](https://github.com/massalabs) 上探索所有项目。

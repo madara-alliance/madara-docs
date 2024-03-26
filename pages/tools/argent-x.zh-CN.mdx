@@ -1,0 +1,61 @@
+import { Steps } from "nextra-theme-docs";
+
+# Argent X 概览
+
+[Argent X](https://www.argent.xyz/argent-x/) 是开源 Starknet 钱包。
+
+## 安装 Argent X
+
+按照官方 Argent X [安装说明](https://www.argent.xyz/learn/how-to-create-an-argent-x-wallet/)进行操作。
+
+## 在 Madara 使用 Argent X
+
+Argent X 默认包含 Mainnet、Sepolia 和 Goerli 网络，但连接您本地的 Madara 链则需要手动配置。这涉及到在 Argent X 的设置中添加一个自定义网络。
+
+### 在 Madara 配置 Argent X
+
+<Steps>
+
+### 打开 Argent X 并进入设置。
+
+![stack](../../static/argentX/step1.png)
+
+### 选择 Developer settings 之后再选 Manage networks。
+
+![stack](../../static/argentX/step2.png)
+
+### 点击右上角的加号按钮来添加网络。
+
+![stack](../../static/argentX/step3.png) #
+
+## 请填写以下字段：
+
+1. **网络名称**：为 Madara 网络设置一个便于识别的名称。
+
+2. **Chain ID**：Madara 的默认 Chain ID 是 `SN_GOERLI`，要获取您的 Chain ID 或设置自定义 Chain ID，请参阅 Madara 文档中的[Chain ID](../chain-id)部分。
+
+3. RPC URL：`http://localhost:9944`
+
+4. 顺序器 URL：`http://localhost:9944`
+
+
+![stack](../../static/argentX/step4.png)
+
+### 保存新的网络配置。
+
+</Steps>
+
+将 Madara 添加为网络之后就可以连接。
+
+### 部署 Starknet 钱包
+
+创建 Argent X 钱包时，会生成一个 Starknet 地址。然而，这个地址在您发起第一笔交易之前都处于「未部署」状态。
+
+Argent X 在后台管理激活过程；第一笔外出交易将作为触发器。
+这笔交易启动 Madara 链上智能合约的部署。此部署会产生一次性费用。
+
+## 资源
+
+- [官网](https://www.argent.xyz/argent-x/)
+- [常见问答集](https://www.argent.xyz/faq/)
+- [Twitter](https://twitter.com/argentHQ)

@@ -1,0 +1,38 @@
+import { Steps } from "nextra-theme-docs";
+
+# 配置
+
+本章节将查看运行时工程师可以调整的不同参数，以便您的区块链能够完美符合您的需求。
+
+| 参数           | 位置                       | 解释                                                                       | 默认   |
+| ------------------- | ------------------------------ | ------------------------------------------------------------------------------------ | --------- |
+| MILLISECS_PER_BLOCK | `crates/runtime/src/config.rs` | 平均预期的区块时间目标。                                                | 6000 (ms) |
+| BlockHashCount      | `crates/runtime/src/config.rs` | 保留的最大区块号到区块哈希映射数量（先剪除最旧的）。 | 2400      |
+
+Madara 的核心组件是一个名为 `starknet` 的自定义 substrate 模块，您可以在 `crates/pallets/starknet` 下找到。
+
+然而，如引言中所述，Madara 本质上是通用的。在其配置中定义了一组类型，特别是这些类型应该实现的特性**而不是**类型本身。这一概念非常强大，允许您轻松更改链的核心组件。
+
+让我们来看一下这些类型及其默认值。
+
+```rust
+// `crates/runtime/src/pallets.rs`
+
+// ...
+
+/// Configure the Starknet pallet in pallets/starknet.
+impl pallet_starknet::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+    type StateRoot = pallet_starknet::state_root::IntermediateStateRoot<Self>;
+    type SystemHash = mp_starknet::crypto::hash::pedersen::PedersenHasher;
+    type TimestampProvider = Timestamp;
+    type UnsignedPriority = UnsignedPriority;
+}
+```
+
+| 类型              | 解释                                                   | 默认                                                                                                                        |
+| ----------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| RuntimeEvent      | 在执行外部交易时将发出的事件类型。         | Substrate RuntimeEvent                                                                                                         |
+| StateRoot         | 定义了如何从状态计算出状态根。            | [Starknet State Root](https://docs.starknet.io/documentation/architecture_and_concepts/State/starknet-state/#state-commitment) |
+| SystemHash        | 用于计算承诺的哈希函数。                     | Pedersen                                                                                                                       |
+| TimestampProvider | 定义了如何检索时间戳（用于区块时间戳）。 | [Timestamp Pallet](https://docs.rs/pallet-timestamp/latest/pallet_timestamp/)                                                  |

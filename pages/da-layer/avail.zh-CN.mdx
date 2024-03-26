@@ -1,0 +1,79 @@
+# Avail 概览
+
+[Avail](https://www.availproject.org/) 旨在提供一个以**数据可用性**为核心的、信任最小化且安全的基础层。这一基础层构成了下一代信任最小化应用和区块链的基石。
+
+Avail 是一个基于区块链的平台，专注于创建一个通用的数据可用性层，解决了可扩展性、治理和去中心化等关键挑战。通过启用 Validium 和主权 Rollup 等技术，Avail 允许链下数据可用性，大大降低成本并提高效率。
+
+## 主要功能
+
+- 数据 Blob 索引：Avail 通过将所有交易数据与应用程序 ID 关联，简化了数据索引的过程。
+- 抹除编码：为数据添加冗余，使得节点更难以压制信息。
+- KZG 多项式承诺：确保数据在 Avail 区块头中有足迹。
+- 去中心化验证者网络：Avail 旨在支持多达 1000 个外部验证者，以降低集中化风险。
+- 有效性证明：允许轻客户端在最终确定后立即保证数据可用性并验证状态执行证明。
+
+## 在 Madara 使用 Avail
+
+启动 Madara 节点时，您可以指定：`--da-layer avail`。<br></br>
+这将使用 Avail 发布状态差异（state_diff），而不是使用 Ethereum。
+
+启动节点时，可以通过 `--da-conf` 标志提供 da-config.json 文件的路径。
+另外，针对特定用例，可以创建自己的 app_id，可以查看[使用 TS 示例](https://github.com/availproject/avail/blob/develop/examples/ts/src/app_id.ts)。
+
+### 用本地节点启动
+
+可以选择按照此[文档](https://docs.availproject.org/operate/node/rpc/)来启动本地全节点。<br></br>
+预期的配置文件应该是这样：
+
+_**da-config.json**_
+
+```json
+{
+  "ws_provider": "ws://127.0.0.1:9945",
+  "app_id": 0,
+  "validate_codegen": false, // Can be set to true for enhanced security but most likely not needed
+  "seed": "//Alice" // Put a seed with some AVL tokens to publish the data
+}
+```
+
+### 用 Avail 网络启动
+
+可以直接使用已经运行的网络来启动。<br></br>
+预期的配置文件应该是这样：
+
+_**da-config.json**_
+
+```json
+{
+  "ws_provider": "wss://goldberg.avail.tools/ws",
+  "app_id": 0,
+  "validate_codegen": false, // Can be set to true for enhanced security but most likely not needed
+  "seed": "//Alice" // Put a seed with some AVL tokens to publish the data
+}
+```
+
+### 命令
+
+```bash
+# On Avail side, after compiling/getting the binary (The ports are changed to not collide with Madara ports)
+./data-avail --dev --rpc-port 9945 --port 30334
+
+# Madara needs to be built with the Avail feature flag
+cargo build --release --features avail
+
+# On Madara side, after launching the Avail node
+# First setup
+./madara setup --chain=dev --from-remote --base-path=../.madara
+# Launch
+./madara --chain=dev --base-path=../.madara --da-layer=avail --da-conf=/home/da-config.json --force-authoring –alice
+
+```
+
+## 资源
+
+- [官网](https://www.availproject.org/)
+- [Github](https://github.com/availproject)
+- [Avail 节点](https://github.com/availproject/avail)
+- [文档](https://availproject.github.io/)
+- [Twitter](https://twitter.com/AvailProject)
+- [Discord](https://discord.com/invite/y6fHnxZQX8)

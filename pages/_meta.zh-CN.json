@@ -1,0 +1,47 @@
+{
+  "--": {
+    "type": "separator",
+    "title": "Madara 技术栈"
+  },
+  "index": "Madara 和应用链",
+  "cairo": "为何需要 Cairo",
+  "evm": "Madara EVM",
+  "starknet": "Madara 和 Starknet",
+  "architecture": "技术架构",
+  "interoperability": "链间互操作",
+  "contributing": "为 Madara 贡献",
+  "ecosystem": "生态系统",
+  "---": {
+    "type": "separator",
+    "title": "测试网"
+  },
+  "sharingan": "Sharingan",
+  "----": {
+    "type": "separator",
+    "title": "使用 Madara 开发"
+  },
+  "build": "开始开发",
+  "config": "配置",
+  "protocol-config": "协议配置",
+  "chain-id": "Chain ID",
+  "dev-mode": "用 --dev 标志运行 Madara",
+  "tutorial": "dApp 教程",
+  "da-layer": "数据可用性",
+  "tools": "工具",
+  "------": {
+    "type": "separator",
+    "title": "安全"
+  },
+  "security": "常见问题",
+  "contribute": "贡献",
+  "about": {
+    "title": "关于",
+    "type": "page"
+  },
+  "contact": {
+    "title": "联络方式 ↗",
+    "type": "page",
+    "href": "https://t.me/MadaraStarknet",
+    "newWindow": true
+  }
+}

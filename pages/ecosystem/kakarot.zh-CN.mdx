@@ -1,0 +1,40 @@
+# 简介
+
+[Kakarot zkEVM](https://kakarot.org) 是用 Cairo 语言编写的 [以太坊虚拟机](https://ethereum.org/en/developers/docs/evm/)（EVM）的实现。Cairo 是一种图灵完备的语言，与 CairoVM 相关。CairoVM 通过利用多项式和 [ZK-STARK 证明系统](https://starkware.co/stark/)实现可证明的计算。zkEVM 的特点在于其能够生成可证明的交易，因此也能生成可证明的区块。Kakarot 建立在 CairoVM 之上，因此在 Kakarot 上执行的每一笔交易都是可证明的。
+
+Kakarot zkEVM 让团队能够构建和部署 EVM 应用程序。开发者可以像在以太坊或 Polygon 上一样，在 Kakarot 上部署任何 Solidity （或其他 EVM 代码）。他们的最终用户可以使用他们通常的工具链（如 Metamask、Wallet connect 等）与 dApp 进行交互。
+
+最终，Kakarot 将提供与原生 Starknet 协议的互操作性，以及协议之间的组合性，例如在 DeFi 的 TVL 和 GameFi 的用户基础之间进行组合。
+
+# 分型扩展
+
+Kakarot zkEVM 可以以不同的形式存在。首先，可以作为智能合约部署在 Starknet L2 上，从而在 Starknet 上提供一个 EVM（以太坊 RPC、以太坊交易等）。
+
+另外，Kakarot 可以集成到一个堆栈中，以部署 L3 zkEVM。这就是 Madara 的用武之地。
+
+通过结合 Madara（一个 Starknet 全节点）和 Kakarot（一个 EVM 运行时环境），可以创建一个 L3 zkEVM。堆栈如下：使用 CairoVM 作为其执行引擎的 Substrate 全节点，以及将 Kakarot 作为智能合约的运行时环境。在 Kakarot 上的交易可以在一个结算层上被证明并验证，实现与 EVM 兼容的分形扩展。
+
+# 路线图
+
+## 第一阶段：将 Kakarot zkEVM 引入 Starknet - 将 EVM 带到 Starknet
+
+Kakarot 将首先作为一个内置的 EVM 存在于 Starknet L2 中。这将使开发者能够在 Starknet 上部署他们的 Solidity（或任何兼容 EVM 的语言）智能合约。
+
+## 第二阶段：Kakarot x Madara - L3 zkEVM
+
+Kakarot 和 Madara 将结合成一个统一的技术栈，以启用 L3 zkEVM —— 以及 L4、L5 等等。团队将能够部署他们的 zkEVM 应用链，并利用有效性证明在 Starknet 上结算交易。与 L2 相比，gas 费用将指数级降低，性能（交易吞吐量 TPS）将更高。这还额外增加了 Starknet 和 zkRollup 可扩展性优势。
+
+## 第三阶段：Kakarot x Madara - 类型 1 zkEVM
+
+Kakarot 和 Madara 也可以结合使用，以实现类型 1 的 zkEVM。如果能够：
+
+1. 在 Madara x Kakarot 的全节点中，使用 Cairo 编写以太坊共识规则，从而证明 L1 共识。
+2. 从 Pedersen Merkle Patricia Trie（MPT）切换到 Keccak MPT。
+
+那么，Kakarot 将成为一种类型 1 的 zkEVM 客户端，能够证明 L1 区块。这是一个更高级的使用案例，它依赖于以太坊的[发展路线图](https://ethereum.org/fr/roadmap/)，尤其是 Verge 之后的部分。在 Verge 之后，keccak 可能会被 poseidon 替代，作为以太坊的首选哈希函数。
+
+# 其他研究主题
+
+- Madara 使得 Kakarot 链能够利用 Substrate 消息协议实现跨 Rollup 的通信。
+- Substrate 的模块化使得 Kakarot 链可以在其共识协议上进行创新。
+- Substrate 的无分叉运行时升级使得 Kakarot 链能够在无需硬分叉的情况下升级其 EVM 版本。
