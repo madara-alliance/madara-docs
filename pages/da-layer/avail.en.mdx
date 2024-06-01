@@ -1,37 +1,47 @@
 # Avail Overview
 
-[Avail](https://www.availproject.org/) aims to provide a trust-minimized and secure base layer focused on **data availability**. This base layer serves as the foundation for next-generation, trust-minimized applications and blockchains.
+[Avail](https://www.availproject.org/) aims to provide a trust-minimized and secure base layer focused on data availability. This base layer serves as the foundation for next-generation, trust-minimized applications and blockchains.
 
 Avail is a blockchain-based platform focused on creating a general-purpose data availability layer, addressing key challenges such as scalability, governance, and decentralization. By enabling technologies like Validiums and Sovereign Rollups, Avail allows for off-chain data availability, which significantly reduces costs and enhances efficiency.
 
 ## Key Features
 
 - Data Blob Indexing: Avail simplifies data indexing by tying all transaction data to an application ID.
-- Erasure Encoding: Adds redundancy to the data, making it harder for nodes to suppress information.
+
+- Erasure Encoding: This adds redundancy to the data, making it harder for nodes to suppress information.
+
 - KZG Polynomial Commitments: Ensures that the data has a footprint in the Avail block header.
+
 - Decentralized Network of Validators: Avail aims to support up to 1,000 external validators to reduce centralization risks.
-- Validity Proofs: Allows light clients to guarantee data availability and verify state execution proofs immediately after finalizing.
+
+- Validity Proofs: This allows light clients to guarantee data availability and verify state execution proofs immediately after finalizing.
 
 ## Use Avail in Madara
 
 When launching a Madara node, you can specify: `--da-layer avail`.<br></br>
+
 This will use Avail to publish the state_diff instead of Ethereum.
 
 When launching the node, the da-config.json file path can be provided along the `--da-conf` flag.
-Also for your specific use case, you can create your app_id, check this [example](https://github.com/availproject/avail/blob/develop/examples/ts/src/app_id.ts) using TS
+
+Also for your specific use case, you can create your app_id; check this [example](https://github.com/availproject/avail/blob/develop/examples/ts/src/app_id.ts) using TS
 
 ### Launch with local node
 
 You can choose to launch with a local full node by following this [documentation](https://docs.availproject.org/operate/node/rpc/).<br></br>
+
 The expected config file should look like this:
 
-_**da-config.json**_
+da-config.json
 
 ```json
 {
   "ws_provider": "ws://127.0.0.1:9945",
+
   "app_id": 0,
+
   "validate_codegen": false, // Can be set to true for enhanced security but most likely not needed
+
   "seed": "//Alice" // Put a seed with some AVL tokens to publish the data
 }
 ```
@@ -39,15 +49,19 @@ _**da-config.json**_
 ### Launch with Avail Network
 
 You can launch directly using the up-and-running Network.<br></br>
+
 The expected config file should look like this:
 
-_**da-config.json**_
+da-config.json
 
 ```json
 {
   "ws_provider": "wss://goldberg.avail.tools/ws",
+
   "app_id": 0,
+
   "validate_codegen": false, // Can be set to true for enhanced security but most likely not needed
+
   "seed": "//Alice" // Put a seed with some AVL tokens to publish the data
 }
 ```
@@ -55,16 +69,23 @@ _**da-config.json**_
 ### Commands
 
 ```bash
-# On Avail side, after compiling/getting the binary (The ports are changed to not collide with Madara ports)
+
+# On Avail side, after compiling/getting the binary (The ports are changed to not collide with Madara ports),
+
 ./data-avail --dev --rpc-port 9945 --port 30334
 
 # Madara needs to be built with the Avail feature flag
+
 cargo build --release --features avail
 
 # On Madara side, after launching the Avail node
+
 # First setup
+
 ./madara setup --chain=dev --from-remote --base-path=../.madara
+
 # Launch
+
 ./madara --chain=dev --base-path=../.madara --da-layer=avail --da-conf=/home/da-config.json --force-authoring –alice
 
 ```
@@ -72,8 +93,13 @@ cargo build --release --features avail
 ## Resources
 
 - [Website](https://www.availproject.org/)
+
 - [Github](https://github.com/availproject)
+
 - [Avail node](https://github.com/availproject/avail)
+
 - [Documentation](https://availproject.github.io/)
+
 - [Twitter](https://twitter.com/AvailProject)
+
 - [Discord](https://discord.com/invite/y6fHnxZQX8)
