@@ -14,14 +14,15 @@
   },
   "homepage": "https://github.com/EvolveArt/madara-docs#readme",
   "dependencies": {
-    "next": "^13.0.6",
+    "lucide-react": "^0.427.0",
+    "next": "^13.5.6",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "18.11.10",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.5"
   }
 }

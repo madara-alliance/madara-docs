@@ -20,7 +20,7 @@ const config: DocsThemeConfig = {
 	docsRepositoryBase: "https://github.com/EvolveArt/madara-docs/tree/main",
 	footer: {
 		text: (
-			<span>MIT {new Date().getFullYear()} © Madara - Starknet App Stack</span>
+			<span>MIT {new Date().getFullYear()} © Madara - Cairo-Powered Chains</span>
 		),
 	},
 	editLink: {
@@ -46,6 +46,9 @@ const config: DocsThemeConfig = {
 			};
 		},
 	},
+	sidebar: {
+		defaultMenuCollapseLevel: 1
+	  },
 };
 
 export default config
