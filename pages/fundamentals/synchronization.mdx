@@ -1,0 +1,48 @@
+import { Callout } from "nextra-theme-docs";
+
+# Synchronization
+
+## Synchronization modes
+
+- Snap Sync
+  - Available using the **`--snap <BLOCK_NUMBER>`** command
+  - The fastest way to sync to the desired network
+  - Download the same state as full sync but starts from the desired and available snapshots
+  - It is less secure than full sync (please only use snapshots from trusted parties)
+- Full Sync
+  - Sync from the genesis of the desired network
+  - Slower than snap sync
+  - Downloads the entire state excepting receipts
+- Archive Sync
+  - Sync from the genesis of the desired network
+  - The slowest way to sync the desired network
+  - Heavy storage usage
+  - Not available on Madara nodes yet
+
+| Sync Mode | Disk Space needed | Full current state | Full current and all receipts | Time to sync | Time to RPC |
+| --------- | ----------------- | ------------------ | ----------------------------- | ------------ | ----------- |
+| Snap      | \~12TB            | YES                | NO                            | \~4 hours    | \~4 hours   |
+| Full      | \~800GB           | YES                | NO                            | \~72 hours   | \~72 hours  |
+| Archive   | n\a               | YES                | YES                           | n\a          | n\a         |
+
+<Callout type="info" emoji="ℹ️">
+  Syncing a node in Full or Snap sync doesn't means you don't have access to
+  receipts, those are reexecuted and generated internally by the node when
+  required.
+</Callout>
+
+## Addtional modes
+
+They're some additional modes you may want to use when syncing a Madara instance, for exemple for dev purposes
+
+- Disable state root
+  - Available using the **`--disable-root`** command
+  - Doesn't compute commitments
+  - Syncs more than 3x faster than a Full Sync
+  - The fastest way to sync to the desired network (yes we lied above :)
+
+<Callout type="warning" emoji="⚠️">
+  Syncing a node in `--disable-root` means that you're not verifying the
+  integrity of the state you're currently syncing. Only do it if you're aware of
+  what you're doing.
+</Callout>

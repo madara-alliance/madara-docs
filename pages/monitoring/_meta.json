@@ -1,0 +1,5 @@
+{
+  "telemetry": "Telemetry",
+  "grafana": "Grafana and Prometheus",
+  "health": "Health"
+}

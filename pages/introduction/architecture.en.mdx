@@ -24,7 +24,7 @@ to achieve the following
 
 ## Transaction Lifecycle
 
-![madara_architecture](../static/img/madara_architecture.png)
+![madara_architecture](../../static/img/madara_architecture.png)
 
 The above architecture diagram shows all the major components of Madara. Below, we describe the functionalities of each component and also walk through the lifecycle of a transaction.
 
@@ -101,13 +101,13 @@ The [settlement worker](https://github.com/keep-starknet-strange/madara/blob/mai
 The `StarknetOsOutput` is what is sent to the Starknet core contract on the base layer. In the case of Ethereum, this means calling the [updateState](https://etherscan.io/address/0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4#writeProxyContract#F16) function
 on the core contract.
 
-![settlement_worker](../static/img/settlement_worker.png)
+![settlement_worker](../../static/img/settlement_worker.png)
 
 When you send a message from an L2 to the L1 (or from an L3 to the L2), the settlement worker is also responsible for pushing that message.
 
 ##### L1->L2 Messaging
 
-![l1_messages_worker](../static/img/l1_messages_worker.png)
+![l1_messages_worker](../../static/img/l1_messages_worker.png)
 
 Madara allows [L1-L2 messaging](https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/messaging-mechanism/) just like Starknet. L2->L1 messages are sent using the settlement worker. However, for L1->L2 messages
 (or L2->L3 depending on how you're running your app chain), we need a service that constantly listens to new messages on the base layer. This is what the [l1-messages](https://github.com/keep-starknet-strange/madara/blob/main/crates/client/l1-messages/src/worker.rs) worker does.
@@ -128,7 +128,7 @@ Madara tries to be as modular as possible at each layer of the stack. That's why
 [EigenDA](https://github.com/keep-starknet-strange/madara/pull/1377) and [NearDA](https://github.com/keep-starknet-strange/madara/pull/1232) in the works. We also support a generic [DA interface](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/data-availability/src/lib.rs#L102) which can
 be used to add another DA layer.
 
-![da_worker](../static/img/da_worker.png)
+![da_worker](../../static/img/da_worker.png)
 
 After the state diffs worker has finished building the state diffs, they are propagated to the DA worker. The DA worker then creates a proof for these state diffs if needed and submits the data to the respective DA layer.
 
@@ -137,7 +137,7 @@ After the state diffs worker has finished building the state diffs, they are pro
 Substrate has a block structure by default. However, if your chain follows something different (like in the case of Madara), you can use the [wrapper technique](https://corepaper.org/substrate/wrapper/)(first used by frontier for their EVM chain) to wrap your blocks
 inside Substrate blocks. As a part of doing this, you need to keep a mapping of Substrate blocks and Madara blocks so that you can serve RPC requests based on Madara block hashes. This is specifically what the [mapping sync worker](https://github.com/keep-starknet-strange/madara/blob/main/crates/client/mapping-sync/src/lib.rs) does.
 
-![mapping_worker](../static/img/mapping_worker.png)
+![mapping_worker](../../static/img/mapping_worker.png)
 
 Substrate blocks have a section called `digests` where you can add pallet logs. So in the starknet pallet, we add the Madara block as a part of the Substrate block digest as you can see [here](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/pallets/starknet/src/lib.rs#L983).
 This block digest is then consumed by the worker over [here](https://github.com/keep-starknet-strange/madara/blob/7900c0b884ee3fb978711ff65b19e98f0c143c03/crates/client/mapping-sync/src/sync_blocks.rs#L25) and stored in the mapping DB in the form of a

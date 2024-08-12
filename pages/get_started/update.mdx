@@ -1,0 +1,181 @@
+import { Steps } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
+import { Cards, Card } from "nextra/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinux,
+  faApple,
+  faWindows,
+} from "@fortawesome/free-brands-svg-icons";
+import { Tabs, Tab } from "nextra/components";
+
+# Updating Madara
+
+In this section, we will guide you through the update process so that you can keep your Madara client up-to-date and continue to query the Starknet blockchain smoothly.
+
+Depending on how you chose to launch your client, you can update it in the same way by choosing the appropriate category:
+
+- [**Low-level**](#low-level-update-from-source) (from source directly)
+- [**Mid-level**](#mid-level-update) (from Docker **recommended**)
+- [**High-level**](#high-level-update-clicknplay) (Coming soon)
+
+## Low level Update
+
+## From source
+
+<Steps>
+### Update code
+
+First, navigate to your Madara project directory and fetch the latest changes from the Official [Madara](https://github.com/keep-starknet-strange/madara) repository. Or git checkout to your desired version.
+
+```bash
+cd <your-destination-path>
+git pull origin main
+```
+
+### Rebuild program
+
+Then let's rebuild the program. You can choose between 3 different build modes:
+
+- **Debug** (fastest build mode, but lower performances, for testing purpose only)
+
+```bash
+cargo build
+```
+
+- **Release** (the recommended build mode with production performances)
+
+```bash
+cargo build --release
+```
+
+### Restart Madara
+
+This command will restart the Madara client with a basic set of arguments which will continue the synchronization with Starknet mainnet automatically:
+
+```bash
+cargo run --release \
+  --name Madara \
+  --base-path /var/lib/madara \
+  --network main \
+  --l1-endpoint ${ETHEREUM_API_URL}
+```
+
+<Callout type="info" emoji="ℹ️">
+  We recommend you to head up to the [Configuration](/) section to customize your
+  node parameters.
+</Callout>
+
+<Callout type="info" emoji="ℹ️">
+  If you don't have an L1 endpoint URL, we recommend you to head up to the
+  [Verification](/) section to get one.
+</Callout>
+
+</Steps>
+
+## Mid level Update
+
+This is the recommended way to easily update and run Madara; it only requires terminal access.
+
+## Using Docker
+
+<Steps>
+
+### Pull latest Docker image
+
+Ensure you have Docker installed and running. Then, pull the latest Madara Docker image.
+
+```bash
+docker pull madara:latest
+```
+
+### Stop and remove old container
+
+Stop and remove the existing Madara container to prevent conflicts.
+
+```bash
+docker stop madara
+docker rm madara
+```
+
+### Run updated Docker image
+
+Run the updated Madara image with your desired parameters.
+
+```bash
+docker run -d \
+  --name Madara
+  -p 9944:9944 \
+  -v /var/lib/madara:/var/lib/madara \
+  madara:latest \
+  --base-path /var/lib/Madara \
+  --network main \
+  --l1-endpoint ${ETHEREUM_API_URL}
+```
+
+<Callout type="info" emoji="ℹ️">
+  This is a default configuration. For more information on possible
+  configurations, please visit the
+  [Configuration](../fundamentals/configuration) section.
+</Callout>
+
+<Callout type="warning" emoji="⚠️">
+  Make sure to change the volume `-v` of your container if you change the
+  `--base-path`.
+</Callout>
+
+### Check logs
+
+```bash
+docker logs -f madara
+```
+
+<Callout type="info" emoji="ℹ️">
+  Now you can head up to the [Metrics](/) section to easily deploy a Grafana and
+  Prometheus dashboard.
+</Callout>
+
+</Steps>
+
+## Using Docker Compose
+
+<Steps>
+
+### Prerequisites
+
+Ensure you have Docker and Docker Compose installed on your machine.
+
+### Pull latest Docker image
+
+Navigate to the cloned Madara repository and pull the latest Docker image.
+
+```bash
+docker-compose pull
+```
+
+### Restart the Container
+
+Stop the current container and start the updated one.
+
+```bash
+docker-compose down
+docker-compose up -d
+```
+
+### Check Logs
+
+You can view the logs of the running Madara service using the following command:
+
+```bash
+docker-compose logs -f madara
+```
+
+<Callout type="info" emoji="ℹ️">
+  Now you can head up to the [Metrics](/) section to easily deploy a Grafana and
+  Prometheus dashboard.
+</Callout>
+
+</Steps>
+
+Now that you know how to update a Madara full node, you might want to set some parameters in order to customize it.
+Therefore, you can go to the following section: [Configuration](https://link)

@@ -1,0 +1,54 @@
+
+
+# The Madara Stack
+
+![madara_logo](../static/img/madara_logomark_red.png)
+
+**Madara is an open-source framework that allows you to build your own app chain powered by Cairo.**
+
+Madara is built on a fork of the [Substrate Framework](https://substrate.io/) which has been battle-tested and used in production for multiple years now. It secures billions of dollars on
+chains like Polkadot, Moonbeam, and Astar. To execute Cairo smart contracts, Madara makes use of the [Cairo VM](https://github.com/lambdaclass/cairo-rs) and
+the [blockifier](https://github.com/starkware-libs/blockifier) both of which are used in production by Starknet.
+It leverages the power of Cairo to make any program execution provable. Madara is a generalized framework for building an app chain and can be used to build
+L2s/L3s and sovereign/validity/validium rollups.
+
+<br />
+![madara_logo](../static/img/about_madara.png)
+<br />
+
+## Why build an app chain?
+
+While there are multiple reasons why you should build an app chain as stated below, most of the reasons boil down to sovereignity. This doesn't refer to Sovereign rollups as defined
+[here](https://celestia.org/learn/sovereign-rollups/an-introduction/) (which is a novel idea in itself!). Instead, it refers to the sovereignty of your tech stack.
+
+You get to choose precisely what tech runs your chain - account abstraction, alternative DA layers, new opcodes, and the list goes on. You're in complete control of just how it
+works in the web2 world. No one forces you to use a specific version of Rust or limits you to SQL databases only. You can choose what tech works best for your application and build accordingly.
+
+The best signal for the need for app chains is the long list of [EIPs](https://eips.ethereum.org/all) that exist on Ethereum. There are several EIPs that we know are better for the protocol, however, getting them on mainnet
+can take years. And that's a feature, not a bug! However, this doesn't mean that you need to wait for years before you launch your app. Frameworks like Madara allow you to launch an app chain that
+uses ZK to leverage the security of Ethereum and at the same time provides complete flexibility to innovate on the technical front.
+
+While there are no boundaries to what's possible on an app chain, some common ideas and advantages are
+
+1. New op codes in the VM or using a different VM altogether
+2. Native account abstraction
+3. Custom fee token or no fees at all
+4. Alternative DA layers to save on fees
+5. Faster throughput and no need to compete for blockspace
+6. Custom logic at the protocol level
+7. And many more!
+
+## Pioneers of the app chain technology
+
+Starkware fostered the vision of app chain scaling as early as [2021](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f). In fact, Cairo was one of the earliest
+ZK techs which has been used to scale Ethereum. It has been used in production by the likes of dYdX, Immutable, Sorare, Starknet, and many other chains for multiple years making it the
+most battle-tested technology for ZK scaling. Today, Cairo secures more than $700 million and has been used to trade more than $1 trillion.
+
+Previously, the only way to deploy Cairo chains was to do it via StarkEx which was a closed-source solution provided by Starkware. However, we are now changing that with Madara. Madara,
+as mentioned, is an open-source framework that allows you to build app chains that leverage the power of Cairo and the Starknet technology.
+
+## Building the integrity web
+
+[Eli Ben-Sasson](https://twitter.com/EliBenSasson) (co-inventor of ZK technology and co-founder of Starkware) beautifully describes integrity webs and the Starknet vision in his blog over [here](https://hackmd.io/@Elibensasson/ryMelVulp). At Madara,
+we highly resonate with this vision and believe that the future will see thousands of these integrity webs. Each of them will be highly efficient in solving a particular problem at hand - finance, supply chain, social, and every other sector that demands
+honest computation. And all of them would be interoperating with each other transparently while maintaining integrity. Madara, being an open-source framework itself, is an attempt to enable these integrity webs one app chain at a time!

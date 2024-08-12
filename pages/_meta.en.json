@@ -1,15 +1,9 @@
 {
-  "--": {
-    "type": "separator",
-    "title": "Madara Stack"
-  },
-  "index": "Madara and App chains",
-  "cairo": "Why Cairo",
-  "evm": "EVM on Madara",
-  "starknet": "Madara and Starknet",
-  "architecture": "Architecture",
-  "interoperability": "Interoperating between chains",
-  "contributing": "Contributing to Madara",
+  "introduction": "Introduction",
+  "get_started": "Get started",
+  "fundamentals": "Fundamentals",
+  "interacting": "Interacting with Madara",
+  "monitoring": "Monitoring",
   "ecosystem": "Ecosystem",
   "---": {
     "type": "separator",
