@@ -29,7 +29,7 @@ const config: DocsThemeConfig = {
 	chat: {
 		link: "https://t.me/MadaraStarknet",
 	},
-	docsRepositoryBase: "https://github.com/EvolveArt/madara-docs/tree/main",
+	docsRepositoryBase: "https://github.com/madara-alliance/madara-docs",
 	footer: {
 		text: (
 			<span>MIT {new Date().getFullYear()} © Madara - Cairo-Powered Chains</span>

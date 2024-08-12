@@ -15,11 +15,11 @@
     "title": "DEVELOPERS",
     "type": "separator"
   },
-  "l2-developers": {
-    "title": "L2 Developers"
+  "app-chains": {
+    "title": "App Chains"
   },
-  "l3-developers": {
-    "title": "L3 Developers"
+  "chain-operators": {
+    "title": "Chain Operators"
   },
   "node-operators": {
     "title": "Node Operators"
