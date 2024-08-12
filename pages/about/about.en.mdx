@@ -1,0 +1,49 @@
+---
+title: Madara's Stack
+lang: en-US
+description: Learn about Madara's stack.
+---
+
+import Image from 'next/image'
+import { Callout } from 'nextra/components'
+
+# Getting Familiar with Madara's Stack
+
+**Madara is an open-source framework that allows you to build and launch your own Cairo-powered chain.**
+
+<Callout emoji="🔔">
+  For the latest updates and discussions, follow Madara on [Twitter/X](https://twitter.com/MadaraStarknet) and join the [Telegram](https://t.me/MadaraStarknet).
+</Callout>
+
+Madara is the permissionless path for launching Cairo-powered rollups. Madara instances are validity rollups that can settle directly to Ethereum as Layer 2s (L2s) , or a Layer 3s (L3s) settling to Starknet.
+
+Many of the components that form Starknet are also part of Madara's stack; deploying Madara out of the box results in a Starknet-equivalent chain. This means those deploying chains using Madara can re-use and benefit from all existing and future Starknet tooling. For information on how to deploy and operate a Madara chain, see the [L2 Developers](/l2-developers/overview) & [L3 Developers](/l3-developers/overview) sections.
+
+## The Stack Powering Madara
+
+Madara is built on a robust stack of components, together they deliver computational integrity and provide the foundation for creating new validity L2 and L3 chains. Below is a breakdown of each component and its role in the Madara stack:
+
+- **Cairo VM** is the Virtual Machine (VM) is at the heart of the execution process, generating a trace of execution which is used by provers to construct proofs of computational integrity. For more in-depth information on Cairo & the Cairo VM, see [The Cairo Book](https://book.cairo-lang.org/ch200-introduction.html?#introduction).
+
+- **Blockifier** is the component responsible for generating state diffs and blocks within Starknet sequencers. In Madara, it forms the execution layer in conjunction with the Cairo VM.
+
+- **SNOS (Starknet Operating System)** is a Cairo program run by SHARP to prove Starknet's state transitions, processesing the output from Blockifier and transactions to produce an OS execution trace. SNOS is registered in the Core Contracts, ensuring that state transitions are verified against a consistent OS version. For more insights on SNOS, see [The Starknet Book](https://book.starknet.io/ch03-01-transactions.html?highlight=OS#starknet-os-the-backbone).
+
+- **SHARP (SHARed Prover)** is a prover system designed to generate STARK proofs for aggregated Cairo programs. SHARP can prove and aggregate a variety of programs into a single proof. In Madara, SHARP's role is to prove SNOS executions. Its ability to bundle thousands of transactions into a single proof reduces the gas fees per transaction, making it a highly efficient system. Learn more about SHARP in [The Starknet Book](https://book.starknet.io/ch03-03-provers.html#what-is-sharp).
+
+These components ensure that Madara remains a well-engineered, efficient, and open-source framework for creating secure and scalable validity L2 and L3 chains.
+
+
+## Madara MVP
+
+The MVP release of Madara is designed to be a powerful tool for launching production-quality validity rollups. Its APIs are intentionally designed to be tightly coupled with Starknet, ensuring compatibility with Starknet tooling.
+
+Madara is built specifically for Cairo-chain developers, offering a unified development stack. With Madara's MVP, you can effortlessly create an L2 chain that is fully equivalent to Starknet.
+
+## The Future of Madara
+
+The roadmap for Madara includes several exciting features and enhancements, including:
+
+- **EVM Compatibility** - through Kakarot Madara will be EVM-compatible, allowing developers to deploy Solidity contracts on Madara chains.
+- **Starknet Layer 3 App-Chains** - projects like [Piltover](https://github.com/keep-starknet-strange/piltover) that implement Cairo smart contract equivalents of the Solidity core contracts, Madara will support the deployment of Layer 3 chains, enabling developers to deploy chains that settle directly to Starknet.
+- **Bitcoin Layer 2 Chains** - with the potential Bitcoin upgrade, OP_CAT, much like Starknet, Madara could be used to deploy Bitcoin Layer 2 chains. Check out Eli's [blog post](https://starkware.co/blog/scaling-bitcoin-for-mass-use/) on a vision for scaling Bitcoin for mass use.

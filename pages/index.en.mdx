@@ -4,7 +4,7 @@ lang: en-US
 description: Discover Madara and learn how to start building chains powered by Cairo.
 ---
 import { Cards, Card } from 'nextra/components'
-import { Code, Server, Layers, Computer, Power, Carrot, Search, Pyramid } from 'lucide-react';
+import { Code, Server, Computer, Power, Carrot, Search, Pyramid, WalletMinimalIcon, Layers2, Layers3 } from 'lucide-react';
 
 # Welcome to the Madara Documentation
 
@@ -15,9 +15,10 @@ Welcome to the Madara Documentation, a comprehensive resource for all informatio
 From chain developers deploying Cairo-powered chains to Starknet node operators and everyone in between, all the resources you need are right here.
 
 <Cards>
-    <Card title="L2 Chain Developers" href="/l2-developers/overview" icon={<Code size={24} color="#ff000d" />} />
-    <Card title="L3 Chain Developers" href="/l3-developers/overview" icon={<Layers size={24} color="#ff000d"/>} />
+    <Card title="L2 Chain Developers" href="/l2-developers/overview" icon={<Layers2 size={24} color="#ff000d" />} />
+    <Card title="L3 Chain Developers" href="/l3-developers/overview" icon={<Layers3 size={24} color="#ff000d"/>} />
     <Card title="Node Operators" href="/node-operators/overview" icon={<Server size={24} color="#ff000d"/>} />
+    <Card title="Wallets" href="/wallets/guide" icon={<WalletMinimalIcon size={24} color="#ff000d"/>} />
 </Cards>
 
 ## Essential Tooling
@@ -35,7 +36,7 @@ Take a look at these essential tools to get started with Madara and Cairo.
 
 Madara is an open-source framework that makes it simple for you to deploy your own Cairo-powered chain. Being Starknet-equivalent means that Madara developers can use and benefit from all existing and future Starknet tooling. Whether you want to build general or application-specific chains as either L2s on Ethereum or L3s on Starknet, everything you need to learn can be found in these guides.
 <Cards>
-    <Card title="About Madara" href="/about" icon={<Search size={24} color="#ff000d" />} />
+    <Card title="About Madara" href="/about/about" icon={<Search size={24} color="#ff000d" />} />
     <Card title="About Cairo" href="https://docs.cairo-lang.org/" icon={<Pyramid size={24} color="#ff000d"/>} />
     <Card title="About EVM Compatability" href="/ecosystem/kakarot" icon={<Carrot size={24} color="#ff000d"/>} />
 </Cards>

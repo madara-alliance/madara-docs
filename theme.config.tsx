@@ -1,6 +1,7 @@
 import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const config: DocsThemeConfig = {
   // ... existing configurations,
@@ -10,7 +11,18 @@ const config: DocsThemeConfig = {
     { locale: 'zh-CN', text: '中文' }
   ],
 
-	logo: <span>Madara</span>,
+	logo: (
+		<Image 
+			src="/static/img/madara_logomark_red.png"
+			style={{
+				width: 'auto',
+				height: 'auto',
+			}}
+			width={150}
+			height={150} 
+			alt={''}		
+		/>
+	  ),
 	project: {
 		link: "https://github.com/keep-starknet-strange/madara",
 	},
