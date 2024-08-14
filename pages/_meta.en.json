@@ -24,6 +24,9 @@
   "node-operators": {
     "title": "Node Operators"
   },
+  "launch-kits": {
+    "title": "Launch Kits"
+  },
   "wallets": {
     "title": "Wallets"
   },
