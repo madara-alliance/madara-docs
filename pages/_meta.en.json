@@ -1,46 +1,125 @@
 {
-  "--": {
-    "type": "separator",
-    "title": "Madara Stack"
+  "index": {
+    "title": "Getting Started",
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false,
+      "footer": true,
+      "sidebar": true,
+      "toc": true,
+      "pagination": false
+    }
   },
-  "index": "Madara and App chains",
-  "cairo": "Why Cairo",
-  "evm": "EVM on Madara",
-  "starknet": "Madara and Starknet",
-  "architecture": "Architecture",
-  "interoperability": "Interoperating between chains",
-  "contributing": "Contributing to Madara",
-  "ecosystem": "Ecosystem",
-  "---": {
-    "type": "separator",
-    "title": "Testnet"
+
+  "--- DEVELOPERS": {
+    "title": "DEVELOPERS",
+    "type": "separator"
   },
-  "sharingan": "Sharingan",
-  "----": {
-    "type": "separator",
-    "title": "Build on Madara"
+  "app-chains": {
+    "title": "App Chains"
   },
-  "build": "Get started",
-  "config": "Configure",
-  "protocol-config": "Protocol Configuration",
-  "chain-id": "Chain ID",
-  "dev-mode": "Madara with the --dev flag",
-  "tutorial": "Dapp Tutorial",
-  "da-layer": "Data Availability",
-  "tools": "Tooling",
-  "------": {
-    "type": "separator",
-    "title": "Security"
+  "chain-operators": {
+    "title": "Chain Operators"
   },
-  "security": "FAQ",
+  "node-operators": {
+    "title": "Node Operators"
+  },
+  "launch-kits": {
+    "title": "Launch Kits"
+  },
+  "wallets": {
+    "title": "Wallets"
+  },
+
+  "+++ MADARA": {
+    "title": "",
+    "type": "separator"
+  },
+  "--- MADARA": {
+    "title": "MADARA",
+    "type": "separator"
+  },
   "about": {
-    "title": "About",
-    "type": "page"
+    "title": "About"
+  },
+  "cairo": {
+    "title": "Why Cairo"
+  },
+  "architecture": {
+    "title": "Architecture"
+  }, 
+  "ecosystem": {
+    "title": "Ecosystem"
+  },
+  "interoperability": {
+    "title": "Interoperability"
+  },
+  "evm": {
+    "title": "EVM on Madara"
+  },
+  "starknet": {
+    "title": "Madara and Starknet"
+  },
+  "contributing": {
+    "title": "Contributing to Madara"
+  },
+  "contribute": {
+    "title": "Contribute"
+  },
+  "build": {
+    "title":"Get started"
+  },
+  "config": {
+    "title":"Configure"
+  },
+  "protocol-config": {
+    "title":"Protocol Configuration"
+  },
+  "chain-id": {
+    "title":"Chain ID"
+  },
+  "dev-mode": {
+    "title":"Madara with the --dev flag"
+  },
+  "tutorial": {
+    "title":"Dapp Tutorial"
+  },
+  "da-layer": {
+    "title":"Data Availability"
+  },
+  "tools": {
+    "title":"Tooling"
+  },
+  "sharingan": {
+    "title": "Sharingan"
+  },
+
+  
+  "+++ CONNECT": {
+    "title": "",
+    "type": "separator"
+  },
+  "--- CONNECT": {
+    "title": "CONNECT",
+    "type": "separator"
   },
   "contact": {
     "title": "Contact ↗",
-    "type": "page",
     "href": "https://t.me/MadaraStarknet",
+    "type": "page",
     "newWindow": true
+  },
+  
+  "+++ SECURITY": {
+    "title": "",
+    "type": "separator"
+  },
+
+  "--- SECURITY": {
+    "type": "separator",
+    "title": "SECURITY"
+  },
+  "security": {
+    "title": "FAQ"
   }
 }
