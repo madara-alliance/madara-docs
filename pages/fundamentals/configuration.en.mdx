@@ -1,0 +1,219 @@
+import { Steps } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
+
+# Configuration
+
+Configuring your Starknet client properly ensures that it answer your specific needs. Configuration can be done through three main avenues:
+
+- Command-line arguments
+- Environment variables
+- Configuration files
+
+## Priority of Configuration
+
+<Callout type="info" emoji="ℹ️">
+  Configuration priority is as follows: command-line arguments > environment
+  variables > configuration files. When the same setting is configured in
+  multiple places, the source with the highest priority takes effect.
+</Callout>
+
+## Command-Line Options
+
+For a comprehensive list of command-line options:
+
+```bash
+cargo run -- --help
+```
+
+Below are some essential command-line options and a categorized list of advanced configurations:
+
+### Basic Command-Line Options
+
+Here are the recomanded options for a quick and simple configuration of your Madara full node:
+
+- **`--name <NAME>`**: The human-readable name for this node. It's used as network node name
+
+- **`-d, --base-path <PATH>`**: Set the directory for Starknet data (dafault is `/tmp/madara`).
+
+- **`-n, --network <NETWORK>`**: The network type to connect to `main`, `test`, or `integration`
+
+- **`--l1-endpoint <URL>`**: Specify the Layer 1 endpoint the node will verify its state from.
+
+- **`--chain <CHAIN>`**: Select the blockchain configuration you want to sync from (currently only `starknet` is supported by default).
+
+- **`--rpc-port <PORT>`**: Specify JSON-RPC server TCP port.
+
+- **`--rpc-cors <ORIGINS>`**: Specify browser Origins allowed to access the HTTP & WS RPC servers.
+
+- **`--rpc-external`**: Listen to all RPC interfaces. Default is local.
+
+- **`--snap <BLOCK_NUMBER>`**: Start syncing from the closest snapshot available for the desired block (default is highest)
+
+<Callout type="info" emoji="ℹ️">
+  For more informations regarding synchronization configuration please refer to
+  the [next section](/)
+</Callout>
+
+### Advanced Command-Line Options by Namespace
+
+Toggle details for each namespace to view additional settings:
+
+<details>
+<summary className="nd-details-heading">&nbsp;**Network**</summary>
+<p>
+
+<br />
+- **`-n, --network <NETWORK>`**: The network type to connect to.
+  - [default: integration]
+
+Possible values:
+
+- `main`: The main network (mainnet)
+- `test`: The test network (testnet)
+- `integration`: The integration network
+
+<br />
+- **`--l1-endpoint <URL>`**: Specify the Layer 1 endpoint the node will verify its state from.
+
+<br />
+- **`--gateway-key <GATEWAY_KEY>`**: Gateway API key to avoid rate limiting (optional).
+
+<br />
+- **`--sync-polling-interval <SYNC_POLLING_INTERVAL>`**: Polling interval, in seconds.
+  - [default: 2]
+
+<br />- **`--no-sync-polling`**: Stop sync polling.
+
+<br />
+- **`--n-blocks-to-sync <N_BLOCKS_TO_SYNC>`**: Number of blocks to sync.
+
+<br />
+- **`--starting-block <STARTING_BLOCK>`**: The block you want to start syncing from.
+
+</p>
+</details>
+
+<details>
+<summary className="nd-details-heading">&nbsp;**RPC**</summary>
+<p>
+<br />
+- **`--rpc-external`**: Listen to all RPC interfaces. Default is local. Note: not all RPC methods are safe to be exposed publicly. Use an RPC proxy server to filter out dangerous methods. Use `--unsafe-rpc-external` to suppress the warning if you understand the risks.
+<br />
+- **`--unsafe-rpc-external`**: Listen to all RPC interfaces. Same as `--rpc-external`.
+<br />
+- **`--rpc-methods <METHOD SET>`**: RPC methods to expose.
+  - `unsafe`: Exposes every RPC method.
+  - `safe`: Exposes only a safe subset of RPC methods, denying unsafe RPC methods.
+  - `auto`: Acts as `safe` if RPC is served externally, e.g. when `--rpc-external` is passed, otherwise acts as `unsafe`.
+    - [default: auto]
+
+    Possible values:
+    - `auto`: Expose every RPC method only when RPC is listening on `localhost`, otherwise serve only safe RPC methods.
+    - `safe`: Allow only a safe subset of RPC methods.
+    - `unsafe`: Expose every RPC method (even potentially unsafe ones).
+
+<br />
+- **`--rpc-max-request-size <RPC_MAX_REQUEST_SIZE>`**: Set the maximum RPC request payload size for both HTTP and WS in megabytes.
+  - [default: 15]
+<br />
+- **`--rpc-max-response-size <RPC_MAX_RESPONSE_SIZE>`**: Set the maximum RPC response payload size for both HTTP and WS in megabytes.
+  - [default: 15]
+<br />
+- **`--rpc-max-subscriptions-per-connection <RPC_MAX_SUBSCRIPTIONS_PER_CONNECTION>`**: Set the maximum concurrent subscriptions per connection.
+  - [default: 1024]
+<br />
+- **`--rpc-port <PORT>`**: Specify JSON-RPC server TCP port.
+<br />
+- **`--rpc-max-connections <COUNT>`**: Maximum number of RPC server connections.
+  - [default: 100]
+<br />
+- **`--rpc-cors <ORIGINS>`**: Specify browser Origins allowed to access the HTTP & WS RPC servers. A comma-separated list of origins (protocol:domain or special `null` value). Value of `all` will disable origin validation. Default is to allow localhost origins. When running in --dev mode the default is to allow all origins.
+
+</p>
+</details>
+
+<details>
+<summary className="nd-details-heading">&nbsp;**Database**</summary>
+<p>
+<br />
+- **`-d, --base-path <PATH>`** [default: /tmp/madara] Specify custom base path
+<br />
+- **`--snap <BLOCK_NUMBER>`**: Start syncing from the closest snapshot available for the desired block (default is highest)
+<br />
+- **`--tmp`**: Run a temporary node. A temporary directory will be created to store the configuration and will be deleted at the end of the process. Note: the directory is random per process execution. This directory is used as base path which includes: database, node key and keystore. When `--dev` is given and no explicit `--base-path`, this option is implied.
+<br />
+- **`--backup-every-n-blocks <BACKUP_EVERY_N_BLOCKS>`**: Specify the number of blocks after which a backup should be created.
+<br />
+- **`--backup-dir <BACKUP_DIR>`**: Specify the directory where backups should be stored.
+<br />
+- **`--restore-from-latest-backup`**: Restore the database from the latest backup available.
+<br />
+</p>
+</details>
+
+<details>
+<summary className="nd-details-heading">&nbsp;**Metrics**</summary>
+<p>
+<br />
+- **`--telemetry-url <URL VERBOSITY>`**: The URL of the telemetry server to connect to. This flag can be passed multiple times as a means to specify multiple telemetry endpoints. Verbosity levels range from 0-9, with 0 denoting the least verbosity. Expected format is 'URL VERBOSITY', e.g. `--telemetry-url 'wss://foo/bar 0'`.
+<br />
+- **`--no-telemetry`**: Disable connecting to the telemetry server. Telemetry is on by default on global chains.
+<br />
+- **`--prometheus-port <PORT>`**: Specify Prometheus exporter TCP Port.
+<br />
+- **`--prometheus-external`**: Expose Prometheus exporter on all interfaces. Default is local.
+<br />
+- **`--no-prometheus`**: Do not expose a Prometheus exporter endpoint. Prometheus metric endpoint is enabled by default.
+<br />
+- **`--tui`**: This will rebuild the node from scratch allowing you to deploy a terminal user interface.
+
+</p>
+</details>
+
+<details>
+<summary className="nd-details-heading">&nbsp;**P2P**</summary>
+<p>
+
+**Comming soon**
+
+</p>
+</details>
+
+## Environment Variables
+
+Set up your node's environment variables using the `STARKNET_` prefix. For example:
+
+- `STARKNET_BASE_PATH=/path/to/data`
+- `STARKNET_LOG=info`
+
+These variables allow you to adjust the node's configuration without using command-line arguments.
+
+## Configuration File
+
+You can use a JSON, TOML, or YAML file to structure your configuration settings. Specify your configuration file on startup with the `-c` option. Here's a basic example in JSON format:
+
+```json
+{
+  "base_path": "/path/to/data",
+  "chain": "mainnet",
+  "network": {
+    "port": 30303,
+    "bootnodes": ["node1.example.com", "node2.example.com"]
+  },
+  "database": {
+    "db_cache": 1024,
+    "state_cache_size": 128
+  },
+  "log": {
+    "level": "info",
+    "filters": "starknet=trace"
+  }
+}
+```
+
+<Callout type="tip" emoji="💡">
+  Review settings carefully for optimal performance and refer to Starknet's
+  official documentation for detailed configuration guidelines.
+</Callout>
+
+Always test your configuration in a non-production environment before rolling it out to a live node to prevent downtime and other potential issues.

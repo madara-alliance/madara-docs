@@ -11,96 +11,38 @@
     }
   },
 
-  "--- DEVELOPERS": {
-    "title": "DEVELOPERS",
-    "type": "separator"
-  },
-  "app-chains": {
-    "title": "App Chains"
-  },
-  "chain-operators": {
-    "title": "Chain Operators"
-  },
-  "node-operators": {
-    "title": "Node Operators"
-  },
-  "launch-kits": {
-    "title": "Launch Kits"
-  },
-  "wallets": {
-    "title": "Wallets"
-  },
-
-  "+++ MADARA": {
-    "title": "",
-    "type": "separator"
-  },
   "--- MADARA": {
     "title": "MADARA",
     "type": "separator"
   },
-  "about": {
-    "title": "About"
+  "get-started": {
+    "title": "Get started"
   },
-  "cairo": {
-    "title": "Why Cairo"
+  "fundamentals": {
+    "title": "Fundamentals"
   },
-  "architecture": {
-    "title": "Architecture"
-  }, 
-  "ecosystem": {
-    "title": "Ecosystem"
+  "interacting": {
+    "title": "Interacting with Madara"
   },
-  "interoperability": {
-    "title": "Interoperability"
-  },
-  "evm": {
-    "title": "EVM on Madara"
-  },
-  "starknet": {
-    "title": "Madara and Starknet"
-  },
-  "contributing": {
-    "title": "Contributing to Madara"
-  },
-  "contribute": {
-    "title": "Contribute"
-  },
-  "build": {
-    "title":"Get started"
-  },
-  "config": {
-    "title":"Configure"
-  },
-  "protocol-config": {
-    "title":"Protocol Configuration"
-  },
-  "chain-id": {
-    "title":"Chain ID"
-  },
-  "dev-mode": {
-    "title":"Madara with the --dev flag"
-  },
-  "tutorial": {
-    "title":"Dapp Tutorial"
-  },
-  "da-layer": {
-    "title":"Data Availability"
-  },
-  "tools": {
-    "title":"Tooling"
-  },
-  "sharingan": {
-    "title": "Sharingan"
+  "monitoring": {
+    "title": "Monitoring"
   },
 
-  
-  "+++ CONNECT": {
+  "+++ DEVELOPERS": {
     "title": "",
     "type": "separator"
   },
-  "--- CONNECT": {
-    "title": "CONNECT",
+  "--- DEVELOPERS": {
+    "title": "DEVELOPERS",
+    "type": "separator"
+  },
+  
+  "+++ ABOUT": {
+    "title": "",
+    "type": "separator"
+  },
+  "--- ABOUT": {
+    "title": "ABOUT",
     "type": "separator"
   },
   "contact": {
