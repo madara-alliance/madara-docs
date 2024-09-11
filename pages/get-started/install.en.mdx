@@ -1,0 +1,257 @@
+---
+title: Installing Madara
+lang: en-US
+description: A guide for deploying Madara as a Starknet client.
+---
+
+import { Steps } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
+import { Cards, Card } from "nextra/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinux,
+  faApple,
+  faWindows,
+} from "@fortawesome/free-brands-svg-icons";
+import { Tabs, Tab } from "nextra/components";
+
+# Installing Madara
+
+In this section, we will guide you through the build and run process so that you can run your own Madara client, and query the Starknet blockchain as smoothly as possible.
+
+We want anyone to be able to launch a Madara full node, which is why we've divided this section into 3 difficulty levels:
+
+- [**Low-level**](#low-level-installation-from-source) (from source directly)
+- [**Mid-level**](#mid-level-installation) (from Docker **recomanded**)
+- [**High-level**](#high-level-installation-clicknplay) (Coming soon)
+
+## Low level Installation
+
+## From source
+
+<Steps>
+### Install dependencies
+
+We first need to make sure you have everything needed to complete this tutorial.
+
+| Dependency        | Version              | Installation                                                     |
+| ----------------- | -------------------- | ---------------------------------------------------------------- |
+| rust              | rustc 1.74.0-nightly | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs sh`   |
+
+You can use this command to easily install all necessary dependencies:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s
+```
+
+### Get code
+
+Fetch the code from the Official [Madara](https://github.com/keep-starknet-strange/madara) repository in the folder of your choice.
+
+```bash
+cd <your-destination-path>
+git clone https://github.com/keep-starknet-strange/madara .
+```
+
+### Build program
+
+Then let's build the dependencies. You can choose between 3 differents build modes:
+
+- **Debug** (fastest build mode, but lower performances, for testing purpose only)
+
+```bash
+cargo build
+```
+
+- **Release** (the recomanded build mode with production performances)
+
+```bash
+cargo build --release
+```
+
+### Run Madara
+
+This command will start the Madara client with a basic set arguments which will begin the synchronization with Starknet mainnet automatically:
+
+```bash
+cargo run --release \
+  --name Madara \
+  --base-path /var/lib/madara \
+  --network main \
+  --l1-endpoint ${ETHEREUM_API_URL}
+```
+
+<Callout type="info" emoji="ℹ️">
+  We recomand you to head up to the [Configuration](/) section to custom your
+  node parameters
+</Callout>
+
+<Callout type="info" emoji="ℹ️">
+  If you don't have an L1 endpoint url we recomand you to head up to the
+  [Verification](/) section to get one
+</Callout>
+
+</Steps>
+
+## Mid level installation
+
+This is the recomanded way to easily install and run Madara it only requires a terminal access.
+
+## Using Docker
+
+<Steps>
+
+### Install Docker
+
+{/* prettier-ignore */}
+{/* prettier-ignore */}
+
+<Tabs items={["MacOS", "Linux", "Windows"]}>
+  <Tab>
+    **MacOS**: To install Docker on MacOS, follow these steps: 1. Visit the
+    [Docker
+    Hub](https://hub.docker.com/editions/community/docker-ce-desktop-mac/) and
+    download Docker Desktop for Mac. 2. Open the downloaded `.dmg` file and drag
+    the Docker icon to your Applications folder to begin the installation. 3.
+    Once installed, launch Docker from your Applications folder. Docker will
+    request your admin password to complete the setup. 4. After installation,
+    you can open a terminal and run `docker --version` to verify that Docker has
+    been installed successfully.
+  </Tab>
+  <Tab>
+    **Linux**: Docker installation on Linux varies by distribution, but here are
+    the general steps: 1. Update your package manager index by running `sudo
+    apt-get update` (This command is for distributions using `apt` like Ubuntu
+    or Debian). 2. Install prerequisite packages which allow `apt` to use
+    packages over HTTPS: `sudo apt-get install apt-transport-https
+    ca-certificates curl software-properties-common`. 3. Add Docker's official
+    GPG key: `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo
+    apt-key add -`. 4. Verify that you now have the key with the fingerprint by
+    searching for the last 8 characters of the fingerprint. 5. Set up the Docker
+    repository by running `sudo add-apt-repository "deb [arch=amd64]
+    https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`. 6.
+    Update the `apt` package index again: `sudo apt-get update`. 7. Install
+    Docker: `sudo apt-get install docker-ce`. 8. To verify Docker is installed
+    correctly, run `docker run hello-world`. Note: The above commands are
+    tailored for Ubuntu. Please adjust for your particular Linux distribution.
+  </Tab>
+  <Tab>
+    **Windows**: To install Docker on Windows, ensure you meet the following
+    requirements: - Windows 10 64-bit: Pro, Enterprise, or Education (Build
+    15063 or later). - Hyper-V and Containers Windows features must be enabled.
+    Here are the steps: 1. Visit the [Docker
+    Hub](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
+    to download Docker Desktop for Windows. 2. Run the downloaded Docker Desktop
+    installer. 3. Follow the installation instructions. You might be prompted to
+    logout and log back in, or reboot your computer before you can use Docker.
+    4. After installation, run Docker by searching for it in the Start menu and
+    selecting Docker Desktop. 5. To verify Docker has been installed, open a
+    command prompt and enter `docker --version`. Note: If your system does not
+    support Hyper-V or if you are running Windows 10 Home, you may need to
+    install Docker Toolbox instead.
+  </Tab>
+</Tabs>
+
+### Run docker image
+
+Once you have successfully installed Docker, you can now run Madara using the images available here: [Madara-v0.1.0-nightly](https://link).
+You can replace the `--rpc-port`, `--base-path` with your desired parameters.
+
+<Callout type="info" emoji="ℹ️">
+  This is a default configuration. For more information on possible
+  configurations, please visit the
+  [Configuration](../fundamentals/configuration) section.
+</Callout>
+
+<Callout type="warning" emoji="⚠️">
+  Make sure to change the volume `-v` of your container if you change the
+  `--base-path`.
+</Callout>
+
+```bash
+docker run -d \
+  --name Madara
+  -p 9944:9944 \
+  -v /var/lib/madara:/var/lib/madara \
+  madara:latest \
+  --base-path /var/lib/Madara \
+  --network main \
+  --l1-endpoint ${ETHEREUM_API_URL}
+```
+
+<Callout type="info" emoji="ℹ️">
+  If you don't have an L1 endpoint url we recomand you to head up to the
+  [Verification](/) section to get one
+</Callout>
+
+### Check logs
+
+```bash
+docker logs -f madara
+```
+
+<Callout type="info" emoji="ℹ️">
+  Now you can head up to the [Metrics](/) section to easily deploy a Grafana and
+  Prometheus dashboard
+</Callout>
+
+</Steps>
+
+## Using Docker Compose
+
+<Steps>
+
+### Prerequisites
+
+Ensure you have Docker and Docker Compose installed on your machine. You can follow the installation instructions for Docker in the previous section.
+
+### Prepare the Environment
+
+Ensure you have the necessary environment variable `ETHEREUM_API_URL` set. You can set this in your shell or in a `.env` file in the same directory as your `docker-compose.yml` file:
+
+```bash
+export ETHEREUM_API_URL="your-ethereum-api-url"
+```
+
+Or create a `.env` file:
+
+```
+ETHEREUM_API_URL=your-ethereum-api-url
+```
+
+<Callout type="warning" emoji="⚠️">
+  When running with `sudo`, environment variables set in the current session might not be carried over. You can pass the variable directly to sudo using the `-E` option to preserve the environment:
+</Callout>
+
+<Callout type="info" emoji="ℹ️">
+  If you don't have an L1 endpoint url we recomand you to head up to the
+  [Verification](/) section to get one
+</Callout>
+
+### Build and Run the Container
+
+Navigate to the cloned Madara repository containing your `docker-compose.yml` file and run the following command to build and start the Madara client:
+
+```bash
+docker-compose up -d
+```
+
+This command will build the Docker image and start the container in detached mode.
+
+### Check Logs
+
+You can view the logs of the running Madara service using the following command:
+
+```bash
+docker-compose logs -f Madara
+```
+
+<Callout type="info" emoji="ℹ️">
+  Now you can head up to the [Metrics](/) section to easily deploy a Grafana and
+  Prometheus dashboard
+</Callout>
+
+</Steps>
+
+Now that you know how to launch a Madara full node, you might want to set some parameters in order to customize it.
+Therefore, you can go to the following section: [Configuration](https://link)
