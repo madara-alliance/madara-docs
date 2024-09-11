@@ -1,7 +1,10 @@
 {
   "configuration": "Configuration",
   "synchronization": "Synchronization",
+  "network": "Network",
+  "logs": "Logs",
+  "security": "Security",
   "p2p": "P2P",
   "verification": "Verification",
-  "logs": "Logs"
+  "trie": "Trie"
 }

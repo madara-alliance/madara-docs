@@ -1,0 +1,7 @@
+{
+  "grafana": "Grafana & Prometheus",
+  "telemetry": "Telemetry",
+  "tracing" : "Tracing",
+  "health": "Health",
+  "notification": "Notification"
+}
