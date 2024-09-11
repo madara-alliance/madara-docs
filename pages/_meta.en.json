@@ -11,9 +11,12 @@
     }
   },
 
-  "--- MADARA": {
-    "title": "MADARA",
+  "--- NODE OPERATORS": {
+    "title": "NODE OPERATORS",
     "type": "separator"
+  },
+  "introduction": {
+    "title": "Introduction"
   },
   "get-started": {
     "title": "Get started"
@@ -28,13 +31,52 @@
     "title": "Monitoring"
   },
 
-  "+++ DEVELOPERS": {
+  "+++ CHAIN OPERATORS": {
     "title": "",
     "type": "separator"
   },
-  "--- DEVELOPERS": {
-    "title": "DEVELOPERS",
+  "--- CHAIN OPERATORS": {
+    "title": "CHAIN OPERATORS",
     "type": "separator"
+  },
+  "chain-introduction": {
+    "title": "Introduction"
+  },
+  "architecture": {
+    "title": "Architecture"
+  },
+  "chain-deployment": {
+    "title": "Deployment"
+  },
+  "chain-configuration": {
+    "title": "Configuration"
+  },
+  "chain-management": {
+    "title": "Management"
+  },
+  "chain-devnet": {
+    "title": "Devnet"
+  },
+
+  "+++ Tutorials": {
+    "title": "",
+    "type": "separator"
+  },
+  "--- Tutorials": {
+    "title": "Tutorials",
+    "type": "separator"
+  },
+  "tutorials-full-node": {
+    "title": "Full Node"
+  },
+  "tutorials-sequencer": {
+    "title": "Sequencer"
+  },
+  "tutorials-chain": {
+    "title": "App Chain"
+  },
+  "tutorials-devnet": {
+    "title": "Devnet"
   },
   
   "+++ ABOUT": {
@@ -45,23 +87,29 @@
     "title": "ABOUT",
     "type": "separator"
   },
+  "about-version": {
+    "title": "Version"
+  },
+  "about-liscence": {
+    "title": "Liscence"
+  },
+  "about-contribute": {
+    "title": "Contribute"
+  },
+  "about-ecosystem": {
+    "title": "Ecosystem"
+  },
+  "about-support": {
+    "title": "Support"
+  },
+  "about-credits": {
+    "title": "Credits"
+  },
+
   "contact": {
     "title": "Contact ↗",
     "href": "https://t.me/MadaraStarknet",
     "type": "page",
     "newWindow": true
-  },
-  
-  "+++ SECURITY": {
-    "title": "",
-    "type": "separator"
-  },
-
-  "--- SECURITY": {
-    "type": "separator",
-    "title": "SECURITY"
-  },
-  "security": {
-    "title": "FAQ"
   }
 }
