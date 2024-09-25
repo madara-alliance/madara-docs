@@ -55,13 +55,16 @@ Madara is designed to work seamlessly on a variety of modern _64-bit_ operating 
 For optimal performance of Madara, the following hardware configurations are recommended:
 
 {/* prettier-ignore */}
-<Tabs items={['Full Node', 'Sequencer']}>
+<Tabs items={['Full Node', 'Sequencer', 'Devnet']}>
 	<Tab>
 		| Network               | Memory | CPU Cores |
 		| --------------------- | :----: | :-------: |
 		| **Mainnet**           |  16 GB |     8     |
 		| **Testnet (Sepolia)** |  8 GB  |     4     |
 		| **Appchains**         |  8 GB  |     4     |
+	</Tab>
+	<Tab>
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 	<Tab>
 		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
@@ -73,9 +76,12 @@ For optimal performance of Madara, the following hardware configurations are rec
 The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 
 {/* prettier-ignore */}
-<Tabs items={['Full Node', 'Sequencer']}>
+<Tabs items={['Full Node', 'Sequencer', 'Devnet']}>
 	<Tab>
 		A Madara full node requires at least **256 GB** of fast disk storage, such as NVMe or a high-speed SSD, to function properly. We recommend **512 GB** for reduced maintenance and greater peace of mind. For specific disk recommendations, consider referring to expert reviews and guides in the context of the Starknet network.
+	</Tab>
+	<Tab>
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may change.
 	</Tab>
 	<Tab>
 		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may change.
@@ -89,9 +95,12 @@ The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 </Callout>
 
 {/* prettier-ignore */}
-<Tabs items={['Full Node', 'Sequencer']}>
+<Tabs items={['Full Node', 'Sequencer', 'Devnet']}>
 	<Tab>
 		Upon a fresh synchronization with Starknet mainnet, Madara requires around **256 GB** of disk space, and this requirement will increase as the blockchain expands. Post-sync, expect the database to grow by approximately **2 GB** weekly. To manage this, periodic resyncing or pruning may be necessary. A larger disk reduces the frequency of this maintenance, providing a buffer for chain growth.
+	</Tab>
+	<Tab>
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 	<Tab>
 		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
@@ -101,9 +110,12 @@ The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 #### Disk Speed
 
 {/* prettier-ignore */}
-<Tabs items={['Full Node', 'Sequencer']}>
+<Tabs items={['Full Node', 'Sequencer', 'Devnet']}>
 	<Tab>
 		For Madara nodes, disk speed is a critical performance factor. We recommend using disks with a minimum of 10,000 IOPS for read and write operations to avoid sync bottlenecks and ensure swift operation.
+	</Tab>
+	<Tab>
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 	<Tab>
 		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
