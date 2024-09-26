@@ -64,10 +64,10 @@ For optimal performance of Madara, the following hardware configurations are rec
 		| **Appchains**         |  8 GB  |     4     |
 	</Tab>
 	<Tab>
-		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the Full Node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 	<Tab>
-		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the Full Node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 </Tabs>
 
@@ -78,15 +78,19 @@ The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 {/* prettier-ignore */}
 <Tabs items={['Full Node', 'Sequencer', 'Devnet']}>
 	<Tab>
-		A Madara full node requires at least **256 GB** of fast disk storage, such as NVMe or a high-speed SSD, to function properly. We recommend **512 GB** for reduced maintenance and greater peace of mind. For specific disk recommendations, consider referring to expert reviews and guides in the context of the Starknet network.
+		A Madara Full Node requires at least **300 GB** (for Starknet Mainnet state at height 700k) of fast disk storage, such as NVMe or a high-speed SSD, to function properly. We recommend **512 GB** for reduced maintenance and greater peace of mind.
 	</Tab>
 	<Tab>
-		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may change.
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the Full Node section, but depending on your app chain traffic these figures may change.
 	</Tab>
 	<Tab>
-		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may change.
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the Full Node section, but depending on your app chain traffic these figures may change.
 	</Tab>
 </Tabs>
+
+<Callout type="info" emoji="ℹ️">
+  Please note that those informations can vary a lot based on the network you are currently running.
+</Callout>
 
 #### Database Growth
 
@@ -97,13 +101,13 @@ The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 {/* prettier-ignore */}
 <Tabs items={['Full Node', 'Sequencer', 'Devnet']}>
 	<Tab>
-		Upon a fresh synchronization with Starknet mainnet, Madara requires around **256 GB** of disk space, and this requirement will increase as the blockchain expands. Post-sync, expect the database to grow by approximately **2 GB** weekly. To manage this, periodic resyncing or pruning may be necessary. A larger disk reduces the frequency of this maintenance, providing a buffer for chain growth.
+		Upon a fresh synchronization with Starknet mainnet, Madara requires around **300 GB** of disk space, and this requirement will increase as the blockchain expands. Post-sync, expect the database to grow by approximately **2 GB** weekly. To manage this, periodic resyncing or pruning may be necessary. A larger disk reduces the frequency of this maintenance, providing a buffer for chain growth.
 	</Tab>
 	<Tab>
-		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the Full Node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 	<Tab>
-		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the Full Node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 </Tabs>
 
@@ -115,10 +119,10 @@ The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 		For Madara nodes, disk speed is a critical performance factor. We recommend using disks with a minimum of 10,000 IOPS for read and write operations to avoid sync bottlenecks and ensure swift operation.
 	</Tab>
 	<Tab>
-		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the Full Node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 	<Tab>
-		We advise you to use the same specs as for Starknet mainnet as mentioned in the full node section, but depending on your app chain traffic these figures may increase for better performance.
+		We advise you to use the same specs as for Starknet mainnet as mentioned in the Full Node section, but depending on your app chain traffic these figures may increase for better performance.
 	</Tab>
 </Tabs>
 
@@ -126,11 +130,9 @@ The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 
 The sync mode selected for Madara can greatly affect disk usage:
 
-- **Archive Node:** This retains the entire blockchain history and requires substantial storage.
-- **Pruned Node:** Madara will allow for older block information to be pruned to save space while still supporting the essential functionality of the network (not supported yet).
+- **Full Node:** Synchronizes from the genesis of the desired network, downloads the entire state (without receipts), and allows limited storage proof access which makes it lighter.
+- **Archive Node:**  Not available on Madara nodes yet, syncs from the genesis of the desired network, the slowest way to sync the network, serves all storage proofs and requires heavy storage usage.
 
-For further details, it's advisable to refer to the specific documentation regarding Madara' implementation of these modes.
-
-<Callout type="warning" emoji="⚠️">
-  Madara currently supports **Full node** mode only in production.
+<Callout type="info" emoji="ℹ️">
+	Now that you have the right system requirements you can head up to the [**Installation**](/get-started/install) section were you'll learn how to install and configure your Madara client.
 </Callout>
