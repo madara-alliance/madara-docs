@@ -1,6 +1,25 @@
+---
+title: Installing Madara
+lang: en-US
+description: A guide for deploying Madara as a Starknet client.
+---
+
+import { Steps } from "nextra-theme-docs";
 import { Callout } from "nextra-theme-docs";
+import { Cards, Card } from "nextra/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinux,
+  faApple,
+  faWindows,
+} from "@fortawesome/free-brands-svg-icons";
+import { Tabs, Tab } from "nextra/components";
 
 # Synchronization
+
+<Callout type="info" emoji="ℹ️">
+  This section is about Full Nodes syncronisation only. Starknet doesn't have P2p yet, Full Nodes syncronise trough the FGW, check the [FGW section](#syncing-from-the-fgw) down bellow for more informations.
+</Callout>
 
 ## Synchronization modes
 
@@ -12,18 +31,35 @@ import { Callout } from "nextra-theme-docs";
 - Full Sync
   - Sync from the genesis of the desired network
   - Slower than snap sync
-  - Downloads the entire state excepting receipts
+  - Downloads the entire state (without receipts)
+  - Allows a limited storage proof access
 - Archive Sync
+  - Not available on Madara nodes yet
   - Sync from the genesis of the desired network
   - The slowest way to sync the desired network
   - Heavy storage usage
-  - Not available on Madara nodes yet
+  - Serves all storage proofs
 
-| Sync Mode | Disk Space needed | Full current state | Full current and all receipts | Time to sync | Time to RPC |
-| --------- | ----------------- | ------------------ | ----------------------------- | ------------ | ----------- |
-| Snap      | \~12TB            | YES                | NO                            | \~4 hours    | \~4 hours   |
-| Full      | \~800GB           | YES                | NO                            | \~72 hours   | \~72 hours  |
-| Archive   | n\a               | YES                | YES                           | n\a          | n\a         |
+{/* prettier-ignore */}
+<Tabs items={['Mainnet', 'Testnet', 'Other']}>
+	<Tab>
+  | Sync Mode | Disk Space needed | Full current state | Full current and all receipts | Time to sync | Time to RPC         |
+  | --------- | ----------------- | ------------------ | ----------------------------- | ------------ | ------------------- |
+  | Snap      | \~300GB           | YES                | NO                            | \~4 hours    | \~4 hours           |
+  | Full      | \~300GB           | YES                | NO                            | \~72 hours   | Available on start  |
+  | Archive   | n\a               | YES                | YES                           | n\a          | n\a                 |
+  </Tab>
+  <Tab>
+    | Sync Mode | Disk Space needed | Full current state | Full current and all receipts | Time to sync | Time to RPC         |
+    | --------- | ----------------- | ------------------ | ----------------------------- | ------------ | ------------------- |
+    | Snap      | \~50GB            | YES                | NO                            | \~2 hours    | \~2 hours           |
+    | Full      | \~50GB            | YES                | NO                            | \~20 hours   | Available on start  |
+    | Archive   | n\a               | YES                | YES                           | n\a          | n\a                 |
+  </Tab>
+  <Tab>
+    This information will depend on the chain you are currently syncing.
+  </Tab>
+</Tabs>
 
 <Callout type="info" emoji="ℹ️">
   Syncing a node in Full or Snap sync doesn't means you don't have access to
@@ -46,3 +82,5 @@ They're some additional modes you may want to use when syncing a Madara instance
   integrity of the state you're currently syncing. Only do it if you're aware of
   what you're doing.
 </Callout>
+
+## Syncing from the FGW
