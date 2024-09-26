@@ -39,8 +39,8 @@
     "title": "CHAIN OPERATORS",
     "type": "separator"
   },
-  "chain-introduction": {
-    "title": "Introduction"
+  "overview": {
+    "title": "Overview"
   },
   "architecture": {
     "title": "Architecture"
