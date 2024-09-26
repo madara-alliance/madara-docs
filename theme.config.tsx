@@ -24,10 +24,10 @@ const config: DocsThemeConfig = {
 		/>
 	  ),
 	project: {
-		link: "https://github.com/keep-starknet-strange/madara",
+		link: "https://github.com/madara-alliance/madara",
 	},
 	chat: {
-		link: "https://t.me/MadaraStarknet",
+		link: "https://discord.gg/xubb6PNFsb",
 	},
 	docsRepositoryBase: "https://github.com/madara-alliance/madara-docs",
 	footer: {
