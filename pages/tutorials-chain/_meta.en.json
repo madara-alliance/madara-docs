@@ -1,10 +1,5 @@
 {
-  "configuration": "Configuration",
-  "synchronization": "Synchronization",
-  "network": "Network",
-  "logs": "Logs",
-  "security": "Security",
-  "p2p": "P2P",
-  "verification": "Verification",
-  "trie": "Trie"
+  "what": "What's an App Chain?",
+  "how": "How to deploy your own Starknet mainnet?",
+  "custom": "How to custom your App Chain?"
 }
