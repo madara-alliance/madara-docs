@@ -27,6 +27,8 @@ Before diving into installation, it's important to understand the fundamental co
 
 - **Chain Architecture**: Madara currently works exactly like Starknet mainnet with a centralized sequencer that will produce the state of your chain. This one will then serve the data for proving trough SNOS and Sharp (the zk-stark prover). This means that your sequencer is the only one capable of producing state. You can then connect as many full nodes as you like to it. We recomand you to familiarize yourself with the [architecture](https://github.com/madara-alliance/madara) to understand how the entire flow works.
 
+- **Bootstrapper**: To easily deploy your first set of contracts and authority accounts you'll have to use Madara Bootstrapper.
+
 - **Smart Contracts**: Madara allows you to deploy and interact with Cairo smart contracts. Understanding Cairo contracts will help you make the most of your self-hosted chain.
 
 - **Interacting**: Madara is 100% compatible with the latest Starknet specs. You can then easily interact with your Madara client trough its JSON-RPC endpoint or FGW.
@@ -116,10 +118,6 @@ This is perfect, because we are now going to add a custom chain configuration to
 
 Now that you are able to run Madara let's customize your app chain! Customizing your chain allows you to tailor it to your specific needs, whether that's optimizing for performance, security, or functionality.
 
-### Set Up Key Management
-
-(No authority keys in madara?)
-
 ### Customize Chain Settings
 
 Madara offers various configuration options for your App Chain. You can load and modify your desired configuration via the `--chain-config-path` parameter with an adapted `.yml` chain config.
@@ -207,63 +205,80 @@ Finished `release` profile [optimized] target(s) in 0.75s
 [2024-10-03 16:10:55 INFO] 🔄 Updated L1 head #770652 (0x1dc8b2...ae78d4) with state root (0x9cec7d...fbb409)
 ```
 
-Congratulations! Your Custom App Chain is running smoothly. Now let's interact with it and make our first transfer.
+Congratulations! Your Custom App Chain is running smoothly. Now let's deploy your first contracts.
 
-### Interact with your App Chain
+## Bootstrap your App Chain
 
-Maintenant que vous avez votre Sequencer qui tourne correctement il vous fa
+Your App Chain is running, but it is mostly empty and you will need an account and some predeployed contracts to interact with it. For that you'll need to use Madara Bootstrapper a tool that helps you deploy your wallet contracts, bridge, ERC20 tokens etc. You can find the full list of contracts [here](/).
 
-To allow users and applications to interact with your chain, you need to expose a public RPC endpoint.
+<Callout type="info" emoji="ℹ️">
+    For more details regarding Madara Bootstrapper, please refer to the [Bootstrapper](/) section in Chain Operators.
+</Callout>
 
-- **Adjust RPC Settings**:
+To run Madara Bootstrapper you will have to follow the following steps:
 
-  ```bash
-  --rpc-port 9944 --rpc-external --rpc-cors all
-  ```
 
-- **Configure Firewall**: Ensure that port `9944` (or your chosen port) is open and accessible.
+<Steps>
+### Get code
 
-### Enable Metrics and Analytics
+Fetch the code from the Official [Madara-Bootstrapper](https://github.com/madara-alliance/madara-bootstrapper) repository in the folder of your choice.
 
-Monitoring your chain's performance is essential.
+```bash
+cd <your-destination-path>
+git clone https://github.com/madara-alliance/madara-bootstrapper .
+```
 
-- **Enable Prometheus Metrics**:
+### Set your environement Variables
 
-  ```bash
-  --prometheus-port 9615 --prometheus-external
-  ```
+You need to set the environement variables of your Bootstrapper with the right infos to start it:
 
-- **Set Up Grafana Dashboard**: Use Prometheus data to visualize metrics in Grafana.
+```dotenv
+APP_CHAIN_ID=""
+ETH_CHAIN_ID=0
+ETH_PRIV_KEY=""
+ETH_RPC=""
+FEE_TOKEN_ADDRESS=""
+L1_DEPLOYER_ADDRESS=""
+L1_WAIT_TIME=""
+L2_DEPLOYER_ADDRESS=""
+ROLLUP_PRIV_KEY=""
+ROLLUP_SEQ_URL=""
+SN_OS_CONFIG_HASH_VERSION=""
+SN_OS_PROGRAM_HASH=""
+CROSS_CHAIN_WAIT_TIME=0
+L1_MULTISIG_ADDRESS=""
+L2_MULTISIG_ADDRESS=""
+VERIFIER_ADDRESS=""
+```
 
-## Test Your Chain
 
-Before going live, thoroughly test your chain to ensure stability and performance.
+### Run Bootstrapper
 
-### Use a Block Explorer
+This command will start the Madara-Bootstrapper based on the previous environement configuration:
 
-A block explorer helps you visualize blocks, transactions, and addresses.
+```bash
+    cargo run --release
+```
 
-- **Option 1**: Use an existing Starknet block explorer compatible with Madara.
+<Callout type="info" emoji="ℹ️">
+    We recomand you to head up to the [Bootstrapper](/) section to custom your
+    Bootstrapper parameters
+</Callout>
+</Steps>
 
-- **Option 2**: Deploy your own block explorer like [Voyager](https://voyager.online/).
+## Interact with your App Chain
 
-### Send Test Transactions
+Maintenant que vous avez votre Sequencer qui tourne correctement et que vous avez de quoi interagir avec lui, nous allons faire notre premier transfer.
 
-Interact with your chain by sending transactions.
+<Callout type="warning" emoji="⚠">
+    To allow users and applications to interact with your chain, you need to expose a public RPC endpoint via:
 
-- **Use Wallets**: Tools like Argent X or Braavos can be used to send transactions.
+    ```bash
+    --rpc-port 9944 --rpc-external --rpc-cors all
+    ```
 
-- **Deploy Smart Contracts**: Test deploying and interacting with smart contracts on your chain.
-
-## Launch Your Chain on Mainnet
-
-After thorough testing, you're ready to launch your chain on the mainnet.
-
-- **Ensure Compliance**: Make sure your chain adheres to Starknet's protocol requirements.
-
-- **Backup Data**: Secure your chain's data by setting up regular backups.
-
-- **Monitor Continuously**: Keep an eye on your chain's health and performance.
+    Ensure that port `9944` (or your chosen port) is open and accessible.
+</Callout>
 
 ## Chain Operator Tutorials
 
