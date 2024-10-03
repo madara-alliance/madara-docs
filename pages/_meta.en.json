@@ -45,8 +45,8 @@
   "architecture": {
     "title": "Architecture"
   },
-  "chain-deployment": {
-    "title": "Deployment"
+  "start": {
+    "title": "Start a self-hosted chain"
   },
   "chain-configuration": {
     "title": "Configuration"
