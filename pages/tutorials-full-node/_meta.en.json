@@ -1,10 +1,4 @@
 {
-  "configuration": "Configuration",
-  "synchronization": "Synchronization",
-  "network": "Network",
-  "logs": "Logs",
-  "security": "Security",
-  "p2p": "P2P",
-  "verification": "Verification",
-  "trie": "Trie"
+  "launch": "How to launch a Madara full node?",
+  "query": "How to query Madara RPC endpoint?"
 }

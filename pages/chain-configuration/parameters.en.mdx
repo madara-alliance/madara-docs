@@ -1,0 +1,344 @@
+---
+title: Welcome to the Node Operators Section
+lang: en-US
+description: Learn how to install and configure your Madara client as a node operator.
+---
+
+import { Steps } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
+import { Cards, Card } from "nextra/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinux,
+  faApple,
+  faWindows,
+} from "@fortawesome/free-brands-svg-icons";
+import { Tabs, Tab } from "nextra/components";
+
+# Custom Chain Parameters
+
+In this section, you will learn how to configure your Madara client using custom chain parameters. These settings allow you to tailor the behavior of your node to match the requirements of different networks or to create your own custom network configurations.
+
+## Command-Line Options
+
+You can define these parameters via a chain configuration file, which can be specified using the `--chain-config-path` command-line option, or by using a preset with the `--preset` option. You can also override individual parameters directly via the command line using `--chain-config-override`.
+
+### Chain Config Path
+
+- **`--chain-config-path <CHAIN CONFIG FILE PATH>`**: Specifies the chain configuration file path.
+
+- **`--chain-config-override <OVERRIDES>`**: Overrides specific chain configuration parameters.
+
+### Presets
+
+- **`--preset <PRESET NAME>`**: Uses a preset as the chain configuration.
+  - Possible values: `mainnet`, `sepolia`, `integration`, `devnet`
+
+**Note**: In Full Mode, the `--network` flag defines the associated preset by default.
+
+For exemple here we are using Starknet mainnet chain configuration and overriding the Sequencer address:
+
+```bash
+    cargo run --release -- \
+    --name Madara \
+    --sequencer \
+    --base-path /tmp/madara \
+    --preset mainnet \
+    --chain-config-override sequencer_address=0x123
+```
+
+## Parameters
+
+Below are the chain configuration parameters organized by namespace. Click on each section to expand and see the available options.
+
+<details>
+<summary className="nd-details-heading">&nbsp;**Chain**</summary>
+<p>
+
+<br />
+- **`chain_name`**: Human-readable name of the chain for display purposes.
+  - *Example*: `"Starknet Mainnet"`
+
+<br />
+- **`chain_id`**: Identifier of the chain.
+  - *Example*: `"SN_MAIN"`
+
+<br />
+- **`native_fee_token_address`**: The address of the native fee token contract on Starknet.
+  - *Example*: `"0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"`
+
+<br />
+- **`parent_fee_token_address`**: The address of the parent chain's fee token contract on Starknet.
+  - *Example*: `"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"`
+
+<br />
+- **`latest_protocol_version`**: The most recent Starknet protocol version supported.
+  - *Example*: `"0.13.2"`
+
+<br />
+- **`eth_core_contract_address`**: The Starknet core contract address for the L1 watcher.
+  - *Example*: `"0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4"`
+
+</p>
+</details>
+
+<details>
+<summary className="nd-details-heading">&nbsp;**Block Production**</summary>
+<p>
+
+<br />
+- **`block_time`**: Target time interval between blocks.
+  - *Example*: `"30s"`
+  - *Note*: Only used for block production.
+
+<br />
+- **`pending_block_update_time`**: Duration after which the pending block is updated.
+  - *Example*: `"2s"`
+  - *Note*: Only used for block production.
+
+<br />
+- **`execution_batch_size`**: Number of transactions popped from the mempool per batch.
+  - *Example*: `16`
+  - *Note*: Useful for optimistic parallelization. A value too high may impact performance.
+
+</p>
+</details>
+
+<details>
+<summary className="nd-details-heading">&nbsp;**Bouncer Configuration**</summary>
+<p>
+
+<br />
+- **`bouncer_config`**: Configuration to limit block sizes.
+  - **`block_max_capacity`**: Maximum capacities per block.
+    - **`builtin_count`**: Maximum counts for built-in functions.
+      - **`add_mod`**: `18446744073709551615`
+      - **`bitwise`**: `18446744073709551615`
+      - **`ecdsa`**: `18446744073709551615`
+      - **`ec_op`**: `18446744073709551615`
+      - **`keccak`**: `18446744073709551615`
+      - **`mul_mod`**: `18446744073709551615`
+      - **`pedersen`**: `18446744073709551615`
+      - **`poseidon`**: `18446744073709551615`
+      - **`range_check`**: `18446744073709551615`
+      - **`range_check96`**: `18446744073709551615`
+
+    - **`gas`**: Maximum gas limit per block.
+      - *Example*: `5000000`
+
+    - **`n_steps`**: Maximum number of steps per block.
+      - *Example*: `40000000`
+
+    - **`message_segment_length`**: Maximum length of message segments.
+      - *Example*: `18446744073709551615`
+
+    - **`n_events`**: Maximum number of events per block.
+      - *Example*: `18446744073709551615`
+
+    - **`state_diff_size`**: Maximum size of state differences per block.
+      - *Example*: `131072`
+
+</p>
+</details>
+
+<details>
+<summary className="nd-details-heading">&nbsp;**Sequencer Settings**</summary>
+<p>
+
+<br />
+- **`sequencer_address`**: Address of the sequencer (`0x0` for a full node).
+  - *Example*: `"0x0"`
+  - *Note*: Only used for block production.
+
+<br />
+- **`max_nonce_for_validation_skip`**: Maximum nonce for which the validation step can be skipped when deploying an account and invoking a contract at the same time.
+  - *Example*: `2`
+  - *Note*: Only used for block production.
+
+</p>
+</details>
+
+## Presets and Custom Configurations
+
+You can define your chain configuration by specifying a chain configuration file using `--chain-config-path <CHAIN CONFIG FILE PATH>` or by using a preset with `--preset <PRESET NAME>`.
+
+The default presets are:
+
+- **`mainnet`**: Mainnet configuration.
+- **`sepolia`**: Sepolia testnet configuration.
+- **`integration`**: Integration network configuration.
+- **`devnet`**: Devnet for local testing.
+
+### Predefined Presets
+
+Here are some preset exemple, which are defined in [Madara Config Presets](https://github.com/madara-alliance/madara/tree/main/configs/presets) folder:
+
+{/* prettier-ignore */}
+<Tabs items={['Mainnet', 'Sepolia', 'Devnet', 'Integration',]}>
+    <Tab>
+        ```yaml
+        chain_name: "Starknet Mainnet"
+        chain_id: "SN_MAIN"
+        native_fee_token_address: "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"
+        parent_fee_token_address: "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
+        versioned_constants:
+        "0.13.0": "crates/primitives/chain_config/resources/versioned_constants_13_0.json"
+        "0.13.1": "crates/primitives/chain_config/resources/versioned_constants_13_1.json"
+        "0.13.1.1": "crates/primitives/chain_config/resources/versioned_constants_13_1_1.json"
+        "0.13.2": "crates/primitives/chain_config/resources/versioned_constants_13_2.json"
+        eth_core_contract_address: "0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4"
+        latest_protocol_version: "0.13.2"
+        block_time: "30s"
+        pending_block_update_time: "2s"
+        execution_batch_size: 16
+        bouncer_config:
+        block_max_capacity:
+            builtin_count:
+            add_mod: 18446744073709551615
+            bitwise: 18446744073709551615
+            ecdsa: 18446744073709551615
+            ec_op: 18446744073709551615
+            keccak: 18446744073709551615
+            mul_mod: 18446744073709551615
+            pedersen: 18446744073709551615
+            poseidon: 18446744073709551615
+            range_check: 18446744073709551615
+            range_check96: 18446744073709551615
+            gas: 5000000
+            n_steps: 40000000
+            message_segment_length: 18446744073709551615
+            n_events: 18446744073709551615
+            state_diff_size: 131072
+        sequencer_address: "0x0"
+        max_nonce_for_validation_skip: 2
+        ```
+    </Tab>
+    <Tab>
+        ```yaml
+        chain_name: "Starknet Sepolia"
+        chain_id: "SN_SEPOLIA"
+        native_fee_token_address: "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"
+        parent_fee_token_address: "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
+        versioned_constants:
+        "0.13.0": "crates/primitives/chain_config/resources/versioned_constants_13_0.json"
+        "0.13.1": "crates/primitives/chain_config/resources/versioned_constants_13_1.json"
+        "0.13.1.1": "crates/primitives/chain_config/resources/versioned_constants_13_1_1.json"
+        "0.13.2": "crates/primitives/chain_config/resources/versioned_constants_13_2.json"
+        eth_core_contract_address: "0xE2Bb56ee936fd6433DC0F6e7e3b8365C906AA057"
+        latest_protocol_version: "0.13.2"
+        block_time: "30s"
+        pending_block_update_time: "2s"
+        execution_batch_size: 16
+        bouncer_config:
+        block_max_capacity:
+            builtin_count:
+            add_mod: 18446744073709551615
+            bitwise: 18446744073709551615
+            ecdsa: 18446744073709551615
+            ec_op: 18446744073709551615
+            keccak: 18446744073709551615
+            mul_mod: 18446744073709551615
+            pedersen: 18446744073709551615
+            poseidon: 18446744073709551615
+            range_check: 18446744073709551615
+            range_check96: 18446744073709551615
+            gas: 5000000
+            n_steps: 40000000
+            message_segment_length: 18446744073709551615
+            n_events: 18446744073709551615
+            state_diff_size: 131072
+        sequencer_address: "0x0"
+        max_nonce_for_validation_skip: 2
+        ```
+    </Tab>
+    <Tab>
+        ```yaml
+        chain_name: "Madara"
+        chain_id: "MADARA_DEVNET"
+        native_fee_token_address: "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"
+        parent_fee_token_address: "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
+        versioned_constants:
+        "0.13.0": "crates/primitives/chain_config/resources/versioned_constants_13_0.json"
+        "0.13.1": "crates/primitives/chain_config/resources/versioned_constants_13_1.json"
+        "0.13.1.1": "crates/primitives/chain_config/resources/versioned_constants_13_1_1.json"
+        "0.13.2": "crates/primitives/chain_config/resources/versioned_constants_13_2.json"
+        eth_core_contract_address: "0xE2Bb56ee936fd6433DC0F6e7e3b8365C906AA057"
+        latest_protocol_version: "0.13.2"
+        block_time: "30s"
+        pending_block_update_time: "2s"
+        execution_batch_size: 16
+        bouncer_config:
+        block_max_capacity:
+            builtin_count:
+            add_mod: 18446744073709551615
+            bitwise: 18446744073709551615
+            ecdsa: 18446744073709551615
+            ec_op: 18446744073709551615
+            keccak: 18446744073709551615
+            mul_mod: 18446744073709551615
+            pedersen: 18446744073709551615
+            poseidon: 18446744073709551615
+            range_check: 18446744073709551615
+            range_check96: 18446744073709551615
+            gas: 5000000
+            n_steps: 40000000
+            message_segment_length: 18446744073709551615
+            n_events: 18446744073709551615
+            state_diff_size: 131072
+        sequencer_address: "0x123"
+        max_nonce_for_validation_skip: 2
+        ```
+    </Tab>
+    <Tab>
+        ```yml
+        chain_name: "Starknet Sepolia"
+        chain_id: "SN_INTEGRATION_SEPOLIA"
+        native_fee_token_address: "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"
+        parent_fee_token_address: "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
+        versioned_constants:
+        "0.13.0": "crates/primitives/chain_config/resources/versioned_constants_13_0.json"
+        "0.13.1": "crates/primitives/chain_config/resources/versioned_constants_13_1.json"
+        "0.13.1.1": "crates/primitives/chain_config/resources/versioned_constants_13_1_1.json"
+        "0.13.2": "crates/primitives/chain_config/resources/versioned_constants_13_2.json"
+        eth_core_contract_address: "0x4737c0c1B4D5b1A687B42610DdabEE781152359c"
+        latest_protocol_version: "0.13.2"
+        block_time: "30s"
+        pending_block_update_time: "2s"
+        execution_batch_size: 16
+        bouncer_config:
+        block_max_capacity:
+            builtin_count:
+            add_mod: 18446744073709551615
+            bitwise: 18446744073709551615
+            ecdsa: 18446744073709551615
+            ec_op: 18446744073709551615
+            keccak: 18446744073709551615
+            mul_mod: 18446744073709551615
+            pedersen: 18446744073709551615
+            poseidon: 18446744073709551615
+            range_check: 18446744073709551615
+            range_check96: 18446744073709551615
+            gas: 5000000
+            n_steps: 40000000
+            message_segment_length: 18446744073709551615
+            n_events: 18446744073709551615
+            state_diff_size: 131072
+        sequencer_address: "0x0"
+        max_nonce_for_validation_skip: 2
+        ```
+    </Tab>
+</Tabs>
+
+## Overriding Chain Configurations
+
+You can override individual chain configuration parameters directly via the command line using the `--chain-config-override` option. For example:
+
+```bash
+--chain-config-override sequencer_address=0x123
+```
+
+This is particularly useful when you want to make quick adjustments without modifying the entire configuration file.
+
+---
+
+Now that you understand how to use these parameters, you can effectively customize your node to suit your specific network requirements.

@@ -16,7 +16,7 @@
     "type": "separator"
   },
   "introduction": {
-    "title": "Introduction"
+    "title": "Overview"
   },
   "get-started": {
     "title": "Get started"
@@ -45,8 +45,8 @@
   "architecture": {
     "title": "Architecture"
   },
-  "chain-deployment": {
-    "title": "Deployment"
+  "start": {
+    "title": "Start a self-hosted chain"
   },
   "chain-configuration": {
     "title": "Configuration"

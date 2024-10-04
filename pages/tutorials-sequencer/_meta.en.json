@@ -1,10 +1,6 @@
 {
-  "configuration": "Configuration",
-  "synchronization": "Synchronization",
-  "network": "Network",
-  "logs": "Logs",
-  "security": "Security",
-  "p2p": "P2P",
-  "verification": "Verification",
-  "trie": "Trie"
+  "what": "What is a sequencer on Starknet?",
+  "how": "How to run a Madara sequencer?",
+  "sync_fgw": "How to sync Madara with Madara (FGW)?",
+  "query_fgw": "How to query Madara FGW endpoint?"
 }

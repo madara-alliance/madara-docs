@@ -1,0 +1,303 @@
+---
+title: Start a self-hosted chain with Madara
+lang: en-US
+description: Learn how to run and custom a Madara chain.
+---
+
+import { Steps } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
+import { Cards, Card } from "nextra/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinux,
+  faApple,
+  faWindows,
+} from "@fortawesome/free-brands-svg-icons";
+import { Tabs, Tab } from "nextra/components";
+
+# How to Start a Self-Hosted Chain with Madara
+
+This guide will walk you through the process of building, configuring, testing, and launching your own self-hosted chain using Madara. Unlike the [Node operators](/introduction) section, which focuses on understanding how Madara works as a client, here we explain in a more application-oriented way how to run and customize your own chain.
+
+## Build Your Chain
+
+### Understand Madara Components
+
+Before diving into installation, it's important to understand the fundamental components of Madara and how it functions as a Starknet client.
+
+- **Chain Architecture**: Madara currently works exactly like Starknet mainnet with a centralized sequencer that will produce the state of your chain. This one will then serve the data for proving trough SNOS and Sharp (the zk-stark prover). This means that your sequencer is the only one capable of producing state. You can then connect as many full nodes as you like to it. We recomand you to familiarize yourself with the [architecture](https://github.com/madara-alliance/madara) to understand how the entire flow works.
+
+- **Bootstrapper**: To easily deploy your first set of contracts and authority accounts you'll have to use Madara Bootstrapper.
+
+- **Smart Contracts**: Madara allows you to deploy and interact with Cairo smart contracts. Understanding Cairo contracts will help you make the most of your self-hosted chain.
+
+- **Interacting**: Madara is 100% compatible with the latest Starknet specs. You can then easily interact with your Madara client trough its JSON-RPC endpoint or FGW.
+
+### Install Madara
+This installation process will help you build the binary directly from the source code locally on your machine.
+<Callout type="info" emoji="ℹ️">
+    You'll find other installation methods such as Docker in the [Installation](/get-started/install) section of the Node Operator category.
+</Callout>
+
+
+<Steps>
+### Install dependencies
+
+We first need to make sure you have everything needed to complete this tutorial.
+
+| Dependency        | Version              | Installation                                                                              |
+| ----------------- | -------------------- | ------------------------------------------------------------------------------------------|
+| Rust              | rustc 1.78           | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs sh`                            |
+| Clang             | Latest               | `sudo apt-get install clang`                                                              |
+| Scarb             | v2.8.2               | `curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh \| sh ` |
+
+### Get code
+
+Fetch the code from the Official [Madara](https://github.com/madara-alliance/madara) repository in the folder of your choice.
+
+```bash
+cd <your-destination-path>
+git clone https://github.com/madara-alliance/madara .
+```
+
+### Build program
+
+Then let's build the dependencies. You can choose between 3 differents build modes:
+
+- **Debug** (fastest build mode, but lower performances, for testing purpose only)
+
+```bash
+cargo build
+```
+
+- **Release** (the recomanded build mode)
+
+```bash
+cargo build --release
+```
+
+- **Production** (the recomanded build mode for production performances)
+
+```bash
+cargo build --profile=production
+```
+
+### Run Madara
+
+This command will start the Madara client with a basic set arguments which will begin a basic deployment depending on your choosed mode:
+
+```bash
+    cargo run --release -- \
+    --name Madara \
+    --sequencer
+    --base-path /var/lib/madara \
+    --l1-endpoint ${ETHEREUM_API_URL}
+```
+
+<Callout type="info" emoji="ℹ️">
+    We recomand you to head up to the [Configuration](/) section to custom your
+    client parameters
+</Callout>
+
+<Callout type="info" emoji="ℹ️">
+    If you don't have an L1 endpoint url we recomand you to head up to the
+    [Verification](/) section to get one
+</Callout>
+</Steps>
+
+Now if you've runned the above command you should see an error like that:
+
+```bash
+Error: In Sequencer mode, you must define a Chain config path with `--chain-config-path <CHAIN CONFIG FILE PATH>` or use a preset with `--preset <PRESET NAME>`.
+```
+
+This is perfect, because we are now going to add a custom chain configuration to your Madara node.
+
+
+## Configure Your Chain
+
+Now that you are able to run Madara let's customize your app chain! Customizing your chain allows you to tailor it to your specific needs, whether that's optimizing for performance, security, or functionality.
+
+### Customize Chain Settings
+
+Madara offers various configuration options for your App Chain. You can load and modify your desired configuration via the `--chain-config-path` parameter with an adapted `.yml` chain config.
+
+Here we will use Starknet mainnet current chain configuration:
+
+```yml
+chain_name: "Starknet Mainnet"
+chain_id: "SN_MAIN"
+native_fee_token_address: "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"
+parent_fee_token_address: "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
+versioned_constants:
+  "0.13.0": "crates/primitives/chain_config/resources/versioned_constants_13_0.json"
+  "0.13.1": "crates/primitives/chain_config/resources/versioned_constants_13_1.json"
+  "0.13.1.1": "crates/primitives/chain_config/resources/versioned_constants_13_1_1.json"
+  "0.13.2": "crates/primitives/chain_config/resources/versioned_constants_13_2.json"
+eth_core_contract_address: "0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4"
+latest_protocol_version: "0.13.2"
+block_time: "30s"
+pending_block_update_time: "2s"
+execution_batch_size: 16
+bouncer_config:
+  block_max_capacity:
+    builtin_count:
+      add_mod: 18446744073709551615
+      bitwise: 18446744073709551615
+      ecdsa: 18446744073709551615
+      ec_op: 18446744073709551615
+      keccak: 18446744073709551615
+      mul_mod: 18446744073709551615
+      pedersen: 18446744073709551615
+      poseidon: 18446744073709551615
+      range_check: 18446744073709551615
+      range_check96: 18446744073709551615
+    gas: 5000000
+    n_steps: 40000000
+    message_segment_length: 18446744073709551615
+    n_events: 18446744073709551615
+    state_diff_size: 131072
+sequencer_address: "0x0"
+max_nonce_for_validation_skip: 2
+```
+
+<Callout type="info" emoji="ℹ️">
+    For more details regarding all configuration elements of your app chain, please refer to the [Configuration](/) section in Chain Operators.
+</Callout>
+
+It can be invoked in your client in two different ways: either by using the `--chain-config-path` parameter followed by the `<PATH>` where it is located, or by using `--preset mainnet` if it is predefined in Madara.
+
+Please note that it is possible to override chain config elements via `--chain-config-override`, for example:
+
+```bash
+    cargo run --release -- \
+    --name Madara \
+    --sequencer \
+    --base-path /var/lib/madara \
+    --preset mainnet \
+    --l1-endpoint ${ETHEREUM_API_URL} \
+    --chain-config-override sequencer_address=0x123
+```
+
+We'll continue with the command above, since the sequencer address of your application chain can't be `0x0`. You should get something like this:
+
+```bash
+Finished `release` profile [optimized] target(s) in 0.75s
+     Running `target/release/madara --name Madara --sequencer --base-path /tmp/madara --preset mainnet --l1-endpoint 'https://eth-mainnet.g.alchemy.com/v2/Oqh-00iLC3Nx08nkJOg241ky-7JA41cJ' --chain-config-override sequencer_address=0x123`
+[2024-10-03 16:10:53 INFO] 🥷  Madara Node
+[2024-10-03 16:10:53 INFO] ✌  Version 0.7.0-73989594e65
+[2024-10-03 16:10:53 INFO] 💁 Support URL: https://github.com/madara-alliance/madara/issues
+[2024-10-03 16:10:53 INFO] 🏷  Node Name: Madara
+[2024-10-03 16:10:53 INFO] 👤 Role: Sequencer
+[2024-10-03 16:10:53 INFO] 🌐 Network: Starknet Mainnet (chain id `SN_MAIN`)
+[2024-10-03 16:10:53 INFO] 💻 Operating system: MacOS 14.0 Sonoma
+[2024-10-03 16:10:53 INFO] 💻 CPU architecture: arm64
+[2024-10-03 16:10:53 INFO] 💻 CPU: Apple M2 Pro
+[2024-10-03 16:10:53 INFO] 💻 CPU cores: 12
+[2024-10-03 16:10:53 INFO] 💻 Memory: 16384MB
+[2024-10-03 16:10:53 INFO] 💻 Kernel: 23.0.0
+[2024-10-03 16:10:53 INFO] 💾 Opening database at: /tmp/madara
+[2024-10-03 16:10:54 INFO] ⏳ Getting initial L1 gas prices
+[2024-10-03 16:10:54 INFO] 🚀 Subscribed to L1 state verification
+[2024-10-03 16:10:54 INFO] ⛏  Starting block production at block #0
+[2024-10-03 16:10:54 INFO] 📱 Running JSON-RPC server at 127.0.0.1:9944 (allowed origins=["http://localhost:*", "http://127.0.0.1:*", "https://localhost:*", "https://127.0.0.1:*"])
+[2024-10-03 16:10:54 INFO] 📈 Prometheus endpoint started at 127.0.0.1:9615
+[2024-10-03 16:10:55 INFO] 🔄 Updated L1 head #770652 (0x1dc8b2...ae78d4) with state root (0x9cec7d...fbb409)
+```
+
+Congratulations! Your Custom App Chain is running smoothly. Now let's deploy your first contracts.
+
+## Bootstrap your App Chain
+
+Your App Chain is running, but it is mostly empty and you will need an account and some predeployed contracts to interact with it. For that you'll need to use Madara Bootstrapper a tool that helps you deploy your wallet contracts, bridge, ERC20 tokens etc. You can find the full list of contracts [here](/).
+
+<Callout type="info" emoji="ℹ️">
+    For more details regarding Madara Bootstrapper, please refer to the [Bootstrapper](/) section in Chain Operators.
+</Callout>
+
+To run Madara Bootstrapper you will have to follow the following steps:
+
+
+<Steps>
+### Get code
+
+Fetch the code from the Official [Madara-Bootstrapper](https://github.com/madara-alliance/madara-bootstrapper) repository in the folder of your choice.
+
+```bash
+cd <your-destination-path>
+git clone https://github.com/madara-alliance/madara-bootstrapper .
+```
+
+### Set your environement Variables
+
+You need to set the environement variables of your Bootstrapper with the right infos to start it:
+
+```dotenv
+APP_CHAIN_ID=""
+ETH_CHAIN_ID=0
+ETH_PRIV_KEY=""
+ETH_RPC=""
+FEE_TOKEN_ADDRESS=""
+L1_DEPLOYER_ADDRESS=""
+L1_WAIT_TIME=""
+L2_DEPLOYER_ADDRESS=""
+ROLLUP_PRIV_KEY=""
+ROLLUP_SEQ_URL=""
+SN_OS_CONFIG_HASH_VERSION=""
+SN_OS_PROGRAM_HASH=""
+CROSS_CHAIN_WAIT_TIME=0
+L1_MULTISIG_ADDRESS=""
+L2_MULTISIG_ADDRESS=""
+VERIFIER_ADDRESS=""
+```
+
+
+### Run Bootstrapper
+
+This command will start the Madara-Bootstrapper based on the previous environement configuration:
+
+```bash
+    cargo run --release
+```
+
+<Callout type="info" emoji="ℹ️">
+    We recomand you to head up to the [Bootstrapper](/) section to custom your
+    Bootstrapper parameters
+</Callout>
+</Steps>
+
+## Interact with your App Chain
+
+Now that your Sequencer is running properly and you have the means to interact with it, we will proceed with our first transfer.
+
+<Callout type="warning" emoji="⚠">
+    To allow users and applications to interact with your chain, you need to expose a public RPC endpoint via:
+
+    ```bash
+    --rpc-port 9944 --rpc-external --rpc-cors all
+    ```
+
+    Ensure that port `9944` (or your chosen port) is open and accessible.
+</Callout>
+
+## Chain Operator Tutorials
+
+Enhance your skills with these tutorials:
+
+- **[Installing Madara](https://github.com/madara-alliance/madara/blob/main/docs/installation.md)**: Detailed guide on installing Madara.
+
+- **[Configuration Guide](https://github.com/madara-alliance/madara/blob/main/docs/configuration.md)**: Learn how to customize your chain's settings.
+
+- **[Starknet JSON-RPC Methods](https://github.com/madara-alliance/madara/blob/main/docs/json-rpc.md)**: Understand how to interact with your chain programmatically.
+
+## Next Steps
+
+- **Explore Advanced Features**: Delve into more complex configurations and optimizations.
+
+- **Join the Community**: Engage with other Madara users and developers on [Discord](https://discord.gg/madara).
+
+- **Contribute**: Consider contributing to the Madara project on [GitHub](https://github.com/madara-alliance/madara).
+
+---
+
+*Note: Replace `<ETHEREUM_API_URL>` with your actual Ethereum RPC endpoint URL. If you don't have one, consider using services like Infura or Alchemy.*
