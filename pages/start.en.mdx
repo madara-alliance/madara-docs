@@ -25,7 +25,7 @@ This guide will walk you through the process of building, configuring, testing, 
 
 Before diving into installation, it's important to understand the fundamental components of Madara and how it functions as a Starknet client.
 
-- **Chain Architecture**: Madara currently works exactly like Starknet mainnet with a centralized sequencer that will produce the state of your chain. This one will then serve the data for proving trough SNOS and Sharp (the zk-stark prover). This means that your sequencer is the only one capable of producing state. You can then connect as many full nodes as you like to it. We recomand you to familiarize yourself with the [architecture](https://github.com/madara-alliance/madara) to understand how the entire flow works.
+- **Chain Architecture**: Madara currently works exactly like Starknet mainnet with a centralized sequencer that will produce the state of your chain. This one will then serve the data for proving trough SNOS and Sharp (the zk-stark prover). This means that your sequencer is the only one capable of producing state. You can then connect as many full nodes as you like to it. We recommend you to familiarize yourself with the [architecture](https://github.com/madara-alliance/madara) to understand how the entire flow works.
 
 - **Bootstrapper**: To easily deploy your first set of contracts and authority accounts you'll have to use Madara Bootstrapper.
 
@@ -34,22 +34,24 @@ Before diving into installation, it's important to understand the fundamental co
 - **Interacting**: Madara is 100% compatible with the latest Starknet specs. You can then easily interact with your Madara client trough its JSON-RPC endpoint or FGW.
 
 ### Install Madara
-This installation process will help you build the binary directly from the source code locally on your machine.
-<Callout type="info" emoji="ℹ️">
-    You'll find other installation methods such as Docker in the [Installation](/get-started/install) section of the Node Operator category.
-</Callout>
 
+This installation process will help you build the binary directly from the source code locally on your machine.
+
+<Callout type="info" emoji="ℹ️">
+  You'll find other installation methods such as Docker in the
+  [Installation](/get-started/install) section of the Node Operator category.
+</Callout>
 
 <Steps>
 ### Install dependencies
 
 We first need to make sure you have everything needed to complete this tutorial.
 
-| Dependency        | Version              | Installation                                                                              |
-| ----------------- | -------------------- | ------------------------------------------------------------------------------------------|
-| Rust              | rustc 1.78           | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs sh`                            |
-| Clang             | Latest               | `sudo apt-get install clang`                                                              |
-| Scarb             | v2.8.2               | `curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh \| sh ` |
+| Dependency | Version    | Installation                                                                              |
+| ---------- | ---------- | ----------------------------------------------------------------------------------------- |
+| Rust       | rustc 1.78 | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs sh`                            |
+| Clang      | Latest     | `sudo apt-get install clang`                                                              |
+| Scarb      | v2.8.2     | `curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh \| sh ` |
 
 ### Get code
 
@@ -62,7 +64,7 @@ git clone https://github.com/madara-alliance/madara .
 
 ### Build program
 
-Then let's build the dependencies. You can choose between 3 differents build modes:
+Then let's build the dependencies. You can choose between 3 different build modes:
 
 - **Debug** (fastest build mode, but lower performances, for testing purpose only)
 
@@ -70,13 +72,13 @@ Then let's build the dependencies. You can choose between 3 differents build mod
 cargo build
 ```
 
-- **Release** (the recomanded build mode)
+- **Release** (the recommend build mode)
 
 ```bash
 cargo build --release
 ```
 
-- **Production** (the recomanded build mode for production performances)
+- **Production** (the recommend build mode for production performances)
 
 ```bash
 cargo build --profile=production
@@ -84,7 +86,7 @@ cargo build --profile=production
 
 ### Run Madara
 
-This command will start the Madara client with a basic set arguments which will begin a basic deployment depending on your choosed mode:
+This command will start the Madara client with a basic set arguments which will begin a basic deployment depending on your chosen mode:
 
 ```bash
     cargo run --release -- \
@@ -95,24 +97,23 @@ This command will start the Madara client with a basic set arguments which will 
 ```
 
 <Callout type="info" emoji="ℹ️">
-    We recomand you to head up to the [Configuration](/) section to custom your
-    client parameters
+  We recommend you to head up to the [Configuration](/) section to custom your
+  client parameters
 </Callout>
 
 <Callout type="info" emoji="ℹ️">
-    If you don't have an L1 endpoint url we recomand you to head up to the
+    If you don't have an L1 endpoint url we recommend you to head up to the
     [Verification](/) section to get one
 </Callout>
 </Steps>
 
-Now if you've runned the above command you should see an error like that:
+Now if you've ran the above command you should see an error like that:
 
 ```bash
 Error: In Sequencer mode, you must define a Chain config path with `--chain-config-path <CHAIN CONFIG FILE PATH>` or use a preset with `--preset <PRESET NAME>`.
 ```
 
 This is perfect, because we are now going to add a custom chain configuration to your Madara node.
-
 
 ## Configure Your Chain
 
@@ -162,7 +163,8 @@ max_nonce_for_validation_skip: 2
 ```
 
 <Callout type="info" emoji="ℹ️">
-    For more details regarding all configuration elements of your app chain, please refer to the [Configuration](/) section in Chain Operators.
+  For more details regarding all configuration elements of your app chain,
+  please refer to the [Configuration](/) section in Chain Operators.
 </Callout>
 
 It can be invoked in your client in two different ways: either by using the `--chain-config-path` parameter followed by the `<PATH>` where it is located, or by using `--preset mainnet` if it is predefined in Madara.
@@ -212,11 +214,11 @@ Congratulations! Your Custom App Chain is running smoothly. Now let's deploy you
 Your App Chain is running, but it is mostly empty and you will need an account and some predeployed contracts to interact with it. For that you'll need to use Madara Bootstrapper a tool that helps you deploy your wallet contracts, bridge, ERC20 tokens etc. You can find the full list of contracts [here](/).
 
 <Callout type="info" emoji="ℹ️">
-    For more details regarding Madara Bootstrapper, please refer to the [Bootstrapper](/) section in Chain Operators.
+  For more details regarding Madara Bootstrapper, please refer to the
+  [Bootstrapper](/) section in Chain Operators.
 </Callout>
 
 To run Madara Bootstrapper you will have to follow the following steps:
-
 
 <Steps>
 ### Get code
@@ -228,9 +230,9 @@ cd <your-destination-path>
 git clone https://github.com/madara-alliance/madara-bootstrapper .
 ```
 
-### Set your environement Variables
+### Set your environment Variables
 
-You need to set the environement variables of your Bootstrapper with the right infos to start it:
+You need to set the environment variables of your Bootstrapper with the right infos to start it:
 
 ```dotenv
 APP_CHAIN_ID=""
@@ -251,17 +253,16 @@ L2_MULTISIG_ADDRESS=""
 VERIFIER_ADDRESS=""
 ```
 
-
 ### Run Bootstrapper
 
-This command will start the Madara-Bootstrapper based on the previous environement configuration:
+This command will start the Madara-Bootstrapper based on the previous environment configuration:
 
 ```bash
     cargo run --release
 ```
 
 <Callout type="info" emoji="ℹ️">
-    We recomand you to head up to the [Bootstrapper](/) section to custom your
+    We recommend you to head up to the [Bootstrapper](/) section to custom your
     Bootstrapper parameters
 </Callout>
 </Steps>
@@ -278,6 +279,7 @@ Now that your Sequencer is running properly and you have the means to interact w
     ```
 
     Ensure that port `9944` (or your chosen port) is open and accessible.
+
 </Callout>
 
 ## Chain Operator Tutorials
@@ -300,4 +302,4 @@ Enhance your skills with these tutorials:
 
 ---
 
-*Note: Replace `<ETHEREUM_API_URL>` with your actual Ethereum RPC endpoint URL. If you don't have one, consider using services like Infura or Alchemy.*
+_Note: Replace `<ETHEREUM_API_URL>` with your actual Ethereum RPC endpoint URL. If you don't have one, consider using services like Infura or Alchemy._

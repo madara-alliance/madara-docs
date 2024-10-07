@@ -16,3 +16,7 @@ jobs:
   vale:
     name: Run vale
     uses: ./.github/workflows/vale.yml
+
+  spellcheck:
+    name: Run spellcheck
+    uses: ./.github/workflows/spellcheck.yml

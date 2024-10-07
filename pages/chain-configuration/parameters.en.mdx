@@ -36,7 +36,7 @@ You can define these parameters via a chain configuration file, which can be spe
 
 **Note**: In Full Mode, the `--network` flag defines the associated preset by default.
 
-For exemple here we are using Starknet mainnet chain configuration and overriding the Sequencer address:
+For example here we are using Starknet mainnet chain configuration and overriding the Sequencer address:
 
 ```bash
     cargo run --release -- \
@@ -55,29 +55,24 @@ Below are the chain configuration parameters organized by namespace. Click on ea
 <summary className="nd-details-heading">&nbsp;**Chain**</summary>
 <p>
 
-<br />
-- **`chain_name`**: Human-readable name of the chain for display purposes.
-  - *Example*: `"Starknet Mainnet"`
+<br />- **`chain_name`**: Human-readable name of the chain for display purposes.
+- *Example*: `"Starknet Mainnet"`
 
-<br />
-- **`chain_id`**: Identifier of the chain.
-  - *Example*: `"SN_MAIN"`
+<br />- **`chain_id`**: Identifier of the chain. - *Example*: `"SN_MAIN"`
 
-<br />
-- **`native_fee_token_address`**: The address of the native fee token contract on Starknet.
-  - *Example*: `"0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"`
+<br />- **`native_fee_token_address`**: The address of the native fee token
+contract on Starknet. - *Example*:
+`"0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"`
 
-<br />
-- **`parent_fee_token_address`**: The address of the parent chain's fee token contract on Starknet.
-  - *Example*: `"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"`
+<br />- **`parent_fee_token_address`**: The address of the parent chain's fee
+token contract on Starknet. - *Example*:
+`"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"`
 
-<br />
-- **`latest_protocol_version`**: The most recent Starknet protocol version supported.
-  - *Example*: `"0.13.2"`
+<br />- **`latest_protocol_version`**: The most recent Starknet protocol version
+supported. - *Example*: `"0.13.2"`
 
-<br />
-- **`eth_core_contract_address`**: The Starknet core contract address for the L1 watcher.
-  - *Example*: `"0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4"`
+<br />- **`eth_core_contract_address`**: The Starknet core contract address for
+the L1 watcher. - *Example*: `"0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4"`
 
 </p>
 </details>
@@ -86,20 +81,15 @@ Below are the chain configuration parameters organized by namespace. Click on ea
 <summary className="nd-details-heading">&nbsp;**Block Production**</summary>
 <p>
 
-<br />
-- **`block_time`**: Target time interval between blocks.
-  - *Example*: `"30s"`
-  - *Note*: Only used for block production.
+<br />- **`block_time`**: Target time interval between blocks. - *Example*:
+`"30s"` - *Note*: Only used for block production.
 
-<br />
-- **`pending_block_update_time`**: Duration after which the pending block is updated.
-  - *Example*: `"2s"`
-  - *Note*: Only used for block production.
+<br />- **`pending_block_update_time`**: Duration after which the pending block
+is updated. - *Example*: `"2s"` - *Note*: Only used for block production.
 
-<br />
-- **`execution_batch_size`**: Number of transactions popped from the mempool per batch.
-  - *Example*: `16`
-  - *Note*: Useful for optimistic parallelization. A value too high may impact performance.
+<br />- **`execution_batch_size`**: Number of transactions popped from the
+mempool per batch. - *Example*: `16` - *Note*: Useful for optimistic
+parallelization. A value too high may impact performance.
 
 </p>
 </details>
@@ -108,20 +98,14 @@ Below are the chain configuration parameters organized by namespace. Click on ea
 <summary className="nd-details-heading">&nbsp;**Bouncer Configuration**</summary>
 <p>
 
-<br />
-- **`bouncer_config`**: Configuration to limit block sizes.
-  - **`block_max_capacity`**: Maximum capacities per block.
-    - **`builtin_count`**: Maximum counts for built-in functions.
-      - **`add_mod`**: `18446744073709551615`
-      - **`bitwise`**: `18446744073709551615`
-      - **`ecdsa`**: `18446744073709551615`
-      - **`ec_op`**: `18446744073709551615`
-      - **`keccak`**: `18446744073709551615`
-      - **`mul_mod`**: `18446744073709551615`
-      - **`pedersen`**: `18446744073709551615`
-      - **`poseidon`**: `18446744073709551615`
-      - **`range_check`**: `18446744073709551615`
-      - **`range_check96`**: `18446744073709551615`
+<br />- **`bouncer_config`**: Configuration to limit block sizes. -
+**`block_max_capacity`**: Maximum capacities per block. - **`builtin_count`**:
+Maximum counts for built-in functions. - **`add_mod`**: `18446744073709551615` -
+**`bitwise`**: `18446744073709551615` - **`ecdsa`**: `18446744073709551615` -
+**`ec_op`**: `18446744073709551615` - **`keccak`**: `18446744073709551615` -
+**`mul_mod`**: `18446744073709551615` - **`pedersen`**: `18446744073709551615` -
+**`poseidon`**: `18446744073709551615` - **`range_check`**:
+`18446744073709551615` - **`range_check96`**: `18446744073709551615`
 
     - **`gas`**: Maximum gas limit per block.
       - *Example*: `5000000`
@@ -145,15 +129,12 @@ Below are the chain configuration parameters organized by namespace. Click on ea
 <summary className="nd-details-heading">&nbsp;**Sequencer Settings**</summary>
 <p>
 
-<br />
-- **`sequencer_address`**: Address of the sequencer (`0x0` for a full node).
-  - *Example*: `"0x0"`
-  - *Note*: Only used for block production.
+<br />- **`sequencer_address`**: Address of the sequencer (`0x0` for a full
+node). - *Example*: `"0x0"` - *Note*: Only used for block production.
 
-<br />
-- **`max_nonce_for_validation_skip`**: Maximum nonce for which the validation step can be skipped when deploying an account and invoking a contract at the same time.
-  - *Example*: `2`
-  - *Note*: Only used for block production.
+<br />- **`max_nonce_for_validation_skip`**: Maximum nonce for which the
+validation step can be skipped when deploying an account and invoking a contract
+at the same time. - *Example*: `2` - *Note*: Only used for block production.
 
 </p>
 </details>
@@ -171,7 +152,7 @@ The default presets are:
 
 ### Predefined Presets
 
-Here are some preset exemple, which are defined in [Madara Config Presets](https://github.com/madara-alliance/madara/tree/main/configs/presets) folder:
+Here are some preset example, which are defined in [Madara Config Presets](https://github.com/madara-alliance/madara/tree/main/configs/presets) folder:
 
 {/* prettier-ignore */}
 <Tabs items={['Mainnet', 'Sepolia', 'Devnet', 'Integration',]}>
