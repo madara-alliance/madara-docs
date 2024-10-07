@@ -1,0 +1,14 @@
+---
+name: reviewdog
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  vale:
+    name: runner / vale
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: errata-ai/vale-action@reviewdog
