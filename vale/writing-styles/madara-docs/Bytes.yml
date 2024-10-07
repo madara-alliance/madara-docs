@@ -1,6 +1,6 @@
 extends: existence
 message: "Incorrect byte. Use 'kB', 'MB', 'GB', 'TB' for bytes."
-link: 'https://github.com/expo/expo/blob/main/guides/Expo%20Documentation%20Writing%20Style%20Guide.md#referencing-bytes-and-bits'
+link: "https://github.com/expo/expo/blob/main/guides/Expo%20Documentation%20Writing%20Style%20Guide.md#referencing-bytes-and-bits"
 level: warning
 scope: raw
 # Incorrect pattern(s) to flag
