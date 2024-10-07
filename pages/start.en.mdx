@@ -25,7 +25,7 @@ This guide will walk you through the process of building, configuring, testing, 
 
 Before diving into installation, it's important to understand the fundamental components of Madara and how it functions as a Starknet client.
 
-- **Chain Architecture**: Madara currently works exactly like Starknet mainnet with a centralized sequencer that will produce the state of your chain. This one will then serve the data for proving trough SNOS and Sharp (the zk-stark prover). This means that your sequencer is the only one capable of producing state. You can then connect as many full nodes as you like to it. We recomand you to familiarize yourself with the [architecture](https://github.com/madara-alliance/madara) to understand how the entire flow works.
+- **Chain Architecture**: Madara currently works exactly like Starknet mainnet with a centralized sequencer that will produce the state of your chain. This one will then serve the data for proving trough SNOS and Sharp (the zk-stark prover). This means that your sequencer is the only one capable of producing state. You can then connect as many full nodes as you like to it. We recommend you to familiarize yourself with the [architecture](https://github.com/madara-alliance/madara) to understand how the entire flow works.
 
 - **Bootstrapper**: To easily deploy your first set of contracts and authority accounts you'll have to use Madara Bootstrapper.
 
@@ -64,7 +64,7 @@ git clone https://github.com/madara-alliance/madara .
 
 ### Build program
 
-Then let's build the dependencies. You can choose between 3 differents build modes:
+Then let's build the dependencies. You can choose between 3 different build modes:
 
 - **Debug** (fastest build mode, but lower performances, for testing purpose only)
 
@@ -72,13 +72,13 @@ Then let's build the dependencies. You can choose between 3 differents build mod
 cargo build
 ```
 
-- **Release** (the recomanded build mode)
+- **Release** (the recommend build mode)
 
 ```bash
 cargo build --release
 ```
 
-- **Production** (the recomanded build mode for production performances)
+- **Production** (the recommend build mode for production performances)
 
 ```bash
 cargo build --profile=production
@@ -86,7 +86,7 @@ cargo build --profile=production
 
 ### Run Madara
 
-This command will start the Madara client with a basic set arguments which will begin a basic deployment depending on your choosed mode:
+This command will start the Madara client with a basic set arguments which will begin a basic deployment depending on your chosen mode:
 
 ```bash
     cargo run --release -- \
@@ -97,17 +97,17 @@ This command will start the Madara client with a basic set arguments which will 
 ```
 
 <Callout type="info" emoji="ℹ️">
-  We recomand you to head up to the [Configuration](/) section to custom your
+  We recommend you to head up to the [Configuration](/) section to custom your
   client parameters
 </Callout>
 
 <Callout type="info" emoji="ℹ️">
-    If you don't have an L1 endpoint url we recomand you to head up to the
+    If you don't have an L1 endpoint url we recommend you to head up to the
     [Verification](/) section to get one
 </Callout>
 </Steps>
 
-Now if you've runned the above command you should see an error like that:
+Now if you've ran the above command you should see an error like that:
 
 ```bash
 Error: In Sequencer mode, you must define a Chain config path with `--chain-config-path <CHAIN CONFIG FILE PATH>` or use a preset with `--preset <PRESET NAME>`.
@@ -230,9 +230,9 @@ cd <your-destination-path>
 git clone https://github.com/madara-alliance/madara-bootstrapper .
 ```
 
-### Set your environement Variables
+### Set your environment Variables
 
-You need to set the environement variables of your Bootstrapper with the right infos to start it:
+You need to set the environment variables of your Bootstrapper with the right infos to start it:
 
 ```dotenv
 APP_CHAIN_ID=""
@@ -255,14 +255,14 @@ VERIFIER_ADDRESS=""
 
 ### Run Bootstrapper
 
-This command will start the Madara-Bootstrapper based on the previous environement configuration:
+This command will start the Madara-Bootstrapper based on the previous environment configuration:
 
 ```bash
     cargo run --release
 ```
 
 <Callout type="info" emoji="ℹ️">
-    We recomand you to head up to the [Bootstrapper](/) section to custom your
+    We recommend you to head up to the [Bootstrapper](/) section to custom your
     Bootstrapper parameters
 </Callout>
 </Steps>

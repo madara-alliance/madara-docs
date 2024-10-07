@@ -1,0 +1,10 @@
+nextra
+rustc
+moralis
+pkill
+predeployed
+nextra
+lsync
+SLES
+sonoma
+rustup
