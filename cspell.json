@@ -1,20 +1,20 @@
 {
-    "version": "0.2",
-    "language": "en",
-    "words": [],
-    "flagWords": [],
-    "ignorePaths": [],
-    "dictionaryDefinitions": [
-      {
-        "name": "starknet",
-        "path": "./dictionary/starknet.txt",
-        "addWords": true
-      },
-      {
-        "name": "technical",
-        "path": "./dictionary/technical.txt",
-        "addWords": true
-      }
-    ],
-    "dictionaries": ["starknet", "technical"]
-  }
+  "version": "0.2",
+  "language": "en",
+  "words": [],
+  "flagWords": [],
+  "ignorePaths": [],
+  "dictionaryDefinitions": [
+    {
+      "name": "starknet",
+      "path": "./dictionary/starknet.txt",
+      "addWords": true
+    },
+    {
+      "name": "technical",
+      "path": "./dictionary/technical.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": ["starknet", "technical"]
+}
