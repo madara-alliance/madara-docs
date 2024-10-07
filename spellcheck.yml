@@ -4,8 +4,6 @@ matrix:
       lang: en
     dictionary:
       encoding: utf-8
-      wordlists:
-        - docs/spell-check-custom-words.txt
     pipeline:
       - pyspelling.filters.context:
           context_visible_first: true
