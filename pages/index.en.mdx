@@ -3,8 +3,21 @@ title: Welcome to the Madara Documentation
 lang: en-US
 description: Discover Madara and learn how to start building chains powered by Cairo.
 ---
-import { Cards, Card } from 'nextra/components'
-import { Code, Server, Computer, Power, Carrot, Search, Pyramid, WalletMinimalIcon, PanelsTopLeft, Package, Rocket } from 'lucide-react';
+
+import { Cards, Card } from "nextra/components";
+import {
+  Code,
+  Server,
+  Computer,
+  Power,
+  Carrot,
+  Search,
+  Pyramid,
+  WalletMinimalIcon,
+  PanelsTopLeft,
+  Package,
+  Rocket,
+} from "lucide-react";
 
 # Welcome to the Madara Documentation
 
@@ -15,10 +28,26 @@ Welcome to the Madara Documentation, a comprehensive resource for all informatio
 From chain developers deploying Cairo-powered chains to Starknet node operators and everyone in between, all the resources you need are right here.
 
 <Cards>
-    <Card title="Node Operators" href="/introduction" icon={<Server size={24} color="#ff000d"/>} />
-    <Card title="Chain Operators" href="/overview" icon={<Package size={24} color="#ff000d" />} />
-    <Card title="App Chains" href="/app-chains/overview" icon={<PanelsTopLeft size={24} color="#ff000d"/>} />
-    <Card title="Wallets" href="/wallets/guide" icon={<WalletMinimalIcon size={24} color="#ff000d"/>} />
+  <Card
+    title="Node Operators"
+    href="/introduction"
+    icon={<Server size={24} color="#ff000d" />}
+  />
+  <Card
+    title="Chain Operators"
+    href="/overview"
+    icon={<Package size={24} color="#ff000d" />}
+  />
+  <Card
+    title="App Chains"
+    href="/app-chains/overview"
+    icon={<PanelsTopLeft size={24} color="#ff000d" />}
+  />
+  <Card
+    title="Wallets"
+    href="/wallets/guide"
+    icon={<WalletMinimalIcon size={24} color="#ff000d" />}
+  />
 </Cards>
 
 ## Essential Tooling
@@ -26,18 +55,41 @@ From chain developers deploying Cairo-powered chains to Starknet node operators 
 Take a look at these essential tools to get started with Madara and Cairo.
 
 <Cards>
-    <Card title="Launch Kits" href="/launch-kits/overview" icon={<Rocket size={24} color="#ff000d"/>} />
-    <Card title="Madara Repo" href="https://github.com/madara-alliance/madara" icon={<Computer size={24} color="#ff000d" />} />
-    <Card title="Bootstrapper" href="https://github.com/madara-alliance/madara-bootstrapper" icon={<Power size={24} color="#ff000d"/>} />
+  <Card
+    title="Launch Kits"
+    href="/launch-kits/overview"
+    icon={<Rocket size={24} color="#ff000d" />}
+  />
+  <Card
+    title="Madara Repo"
+    href="https://github.com/madara-alliance/madara"
+    icon={<Computer size={24} color="#ff000d" />}
+  />
+  <Card
+    title="Bootstrapper"
+    href="https://github.com/madara-alliance/madara-bootstrapper"
+    icon={<Power size={24} color="#ff000d" />}
+  />
 </Cards>
-
-
 
 ## Learn About Madara
 
 Madara is an open-source framework that makes it simple for you to deploy your own Cairo-powered chain. Being Starknet-equivalent means that Madara developers can use and benefit from all existing and future Starknet tooling. Whether you want to build general or application-specific chains as either L2s on Ethereum or L3s on Starknet, everything you need to learn can be found in these guides.
+
 <Cards>
-    <Card title="About Madara" href="/about/about" icon={<Search size={24} color="#ff000d" />} />
-    <Card title="About Cairo" href="https://docs.cairo-lang.org/" icon={<Pyramid size={24} color="#ff000d"/>} />
-    <Card title="About EVM Compatability" href="/ecosystem/kakarot" icon={<Carrot size={24} color="#ff000d"/>} />
+  <Card
+    title="About Madara"
+    href="/about/about"
+    icon={<Search size={24} color="#ff000d" />}
+  />
+  <Card
+    title="About Cairo"
+    href="https://docs.cairo-lang.org/"
+    icon={<Pyramid size={24} color="#ff000d" />}
+  />
+  <Card
+    title="About EVM Compatability"
+    href="/ecosystem/kakarot"
+    icon={<Carrot size={24} color="#ff000d" />}
+  />
 </Cards>

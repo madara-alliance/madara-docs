@@ -89,13 +89,15 @@ The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 </Tabs>
 
 <Callout type="info" emoji="ℹ️">
-  Please note that those informations can vary a lot based on the network you are currently running.
+  Please note that those informations can vary a lot based on the network you
+  are currently running.
 </Callout>
 
 #### Database Growth
 
 <Callout type="warning" emoji="⚠️">
-	Since the state of your network keeps growing, it is important to plan for slightly more storage than necessary to avoid maintenance.
+  Since the state of your network keeps growing, it is important to plan for
+  slightly more storage than necessary to avoid maintenance.
 </Callout>
 
 {/* prettier-ignore */}
@@ -131,8 +133,10 @@ The Madara client uses a [RocksDB](https://rocksdb.org/) key-value storage.
 The sync mode selected for Madara can greatly affect disk usage:
 
 - **Full Node:** Synchronizes from the genesis of the desired network, downloads the entire state (without receipts), and allows limited storage proof access which makes it lighter.
-- **Archive Node:**  Not available on Madara nodes yet, syncs from the genesis of the desired network, the slowest way to sync the network, serves all storage proofs and requires heavy storage usage.
+- **Archive Node:** Not available on Madara nodes yet, syncs from the genesis of the desired network, the slowest way to sync the network, serves all storage proofs and requires heavy storage usage.
 
 <Callout type="info" emoji="ℹ️">
-	Now that you have the right system requirements you can head up to the [**Installation**](/get-started/install) section were you'll learn how to install and configure your Madara client.
+  Now that you have the right system requirements you can head up to the
+  [**Installation**](/get-started/install) section were you'll learn how to
+  install and configure your Madara client.
 </Callout>

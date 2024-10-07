@@ -61,6 +61,7 @@ Here are the recomanded options for a quick and simple configuration of your Mad
     - **`--rpc-cors <ORIGINS>`**: Specify browser Origins allowed to access the HTTP & WS RPC servers.
 
     - **`--rpc-external`**: Listen to all RPC interfaces. Default is local.
+
   </Tab>
   <Tab>
   </Tab>
@@ -106,8 +107,8 @@ Possible values:
 - **`--pending-block-poll-interval <SECONDS>`**: Pending block polling interval in seconds. This affects the sync service after catching up with the blockchain tip.
   - [default: 2]
 
-<br />
-- **`--no-sync-polling`**: Disable sync polling. Sync service will not import new blocks after catching up with the blockchain tip.
+<br />- **`--no-sync-polling`**: Disable sync polling. Sync service will not
+import new blocks after catching up with the blockchain tip.
 
 <br />
 - **`--n-blocks-to-sync <NUMBER OF BLOCKS>`**: Number of blocks to sync, useful for benchmarking.
@@ -115,14 +116,12 @@ Possible values:
 <br />
 - **`--unsafe-starting-block <BLOCK NUMBER>`**: Start syncing from a specific block. May cause database inconsistency.
 
-<br />
-- **`--sync-disabled`**: Disable the sync service. The sync service is responsible for listening for new blocks on Starknet and Ethereum.
+<br />- **`--sync-disabled`**: Disable the sync service. The sync service is
+responsible for listening for new blocks on Starknet and Ethereum.
 
-<br />
-- **`--sync-l1-disabled`**: Disable L1 sync service.
+<br />- **`--sync-l1-disabled`**: Disable L1 sync service.
 
-<br />
-- **`--gas-price-sync-disabled`**: Disable the gas price sync service.
+<br />- **`--gas-price-sync-disabled`**: Disable the gas price sync service.
 
 <br />
 - **`--gas-price-poll-ms <MILLISECONDS>`**: Interval in milliseconds for the gas price sync service to fetch the gas price.
@@ -135,21 +134,20 @@ Possible values:
 <summary className="nd-details-heading">&nbsp;**RPC**</summary>
 <p>
 
-<br />
-- **`--rpc-disabled`**: Disable the RPC server.
+<br />- **`--rpc-disabled`**: Disable the RPC server.
 
-<br />
-- **`--rpc-external`**: Listen to all network interfaces. Use `--rpc-methods unsafe` to expose all RPC methods.
+<br />- **`--rpc-external`**: Listen to all network interfaces. Use
+`--rpc-methods unsafe` to expose all RPC methods.
 
 <br />
 - **`--rpc-methods <METHOD>`**: RPC methods to expose.
   - [default: auto]
 
-  Possible values:
+Possible values:
 
-  - `auto`: Expose all methods if RPC is on localhost, otherwise serve only safe methods.
-  - `safe`: Allow only a safe subset of RPC methods.
-  - `unsafe`: Expose all RPC methods (even potentially unsafe ones).
+- `auto`: Expose all methods if RPC is on localhost, otherwise serve only safe methods.
+- `safe`: Allow only a safe subset of RPC methods.
+- `unsafe`: Expose all RPC methods (even potentially unsafe ones).
 
 <br />
 - **`--rpc-rate-limit <CALLS/MIN>`**: RPC rate limiting per connection. For example, `--rpc-rate-limit 10` will allow a maximum of 10 calls per minute per connection.
@@ -157,8 +155,8 @@ Possible values:
 <br />
 - **`--rpc-rate-limit-whitelisted-ips <IP ADDRESSES>`**: Disable RPC rate limiting for specific IP addresses or ranges (e.g., `1.2.3.4/24`).
 
-<br />
-- **`--rpc-rate-limit-trust-proxy-headers`**: Trust proxy headers for disabling rate limiting in reverse proxy setups.
+<br />- **`--rpc-rate-limit-trust-proxy-headers`**: Trust proxy headers for
+disabling rate limiting in reverse proxy setups.
 
 <br />
 - **`--rpc-max-request-size <MEGABYTES>`**: Maximum RPC request payload size for both HTTP and WebSockets.
@@ -180,8 +178,7 @@ Possible values:
 - **`--rpc-max-connections <COUNT>`**: Maximum number of RPC server connections at a given time.
   - [default: 100]
 
-<br />
-- **`--rpc-disable-batch-requests`**: Disable RPC batch requests.
+<br />- **`--rpc-disable-batch-requests`**: Disable RPC batch requests.
 
 <br />
 - **`--rpc-max-batch-request-len <LEN>`**: Limit the max length for an RPC batch request.
@@ -210,8 +207,8 @@ Possible values:
 <br />
 - **`--backup-every-n-blocks <NUMBER OF BLOCKS>`**: Periodically create a backup, useful for debugging.
 
-<br />
-- **`--restore-from-latest-backup`**: Restore the database from the latest backup version.
+<br />- **`--restore-from-latest-backup`**: Restore the database from the latest
+backup version.
 
 </p>
 </details>
@@ -220,21 +217,21 @@ Possible values:
 <summary className="nd-details-heading">&nbsp;**Block Production**</summary>
 <p>
 
-<br />
-- **`--block-production-disabled`**: Disable the block production service. This service is only enabled with the authority (sequencer) mode.
+<br />- **`--block-production-disabled`**: Disable the block production service.
+This service is only enabled with the authority (sequencer) mode.
 
-<br />
-- **`--devnet`**: Launch in block production mode, with devnet contracts.
+<br />- **`--devnet`**: Launch in block production mode, with devnet contracts.
 
 <br />
 - **`--devnet-contracts <DEVNET_CONTRACTS>`**: Create this number of contracts in the genesis block for the devnet configuration.
   - [default: 10]
 
-<br />
-- **`--override-devnet-chain-id`**: Launch a devnet with a production chain ID (like SN_MAINNET, SN_SEPOLIA). This is unsafe because your devnet transactions can be replayed on the actual network.
+<br />- **`--override-devnet-chain-id`**: Launch a devnet with a production
+chain ID (like SN_MAINNET, SN_SEPOLIA). This is unsafe because your devnet
+transactions can be replayed on the actual network.
 
-<br />
-- **`--authority`**: Enable authority mode; the node will run as a sequencer and try to produce its own blocks.
+<br />- **`--authority`**: Enable authority mode; the node will run as a
+sequencer and try to produce its own blocks.
 
 </p>
 </details>
@@ -243,8 +240,8 @@ Possible values:
 <summary className="nd-details-heading">&nbsp;**Metrics**</summary>
 <p>
 
-<br />
-- **`--telemetry-disabled`**: Disable connection to the Madara telemetry server. Telemetry is enabled by default.
+<br />- **`--telemetry-disabled`**: Disable connection to the Madara telemetry
+server. Telemetry is enabled by default.
 
 <br />
 - **`--telemetry-url <URL VERBOSITY>`**: The URL of the telemetry server with verbosity level. Expected format is 'URL VERBOSITY', e.g., `--telemetry-url 'wss://foo/bar 0'`.
@@ -254,11 +251,10 @@ Possible values:
 - **`--prometheus-port <PORT>`**: The port used by the Prometheus RPC service.
   - [default: 9615]
 
-<br />
-- **`--prometheus-external`**: Listen on all network interfaces for Prometheus.
+<br />- **`--prometheus-external`**: Listen on all network interfaces for
+Prometheus.
 
-<br />
-- **`--prometheus-disabled`**: Disable the Prometheus service.
+<br />- **`--prometheus-disabled`**: Disable the Prometheus service.
 
 </p>
 </details>
@@ -303,5 +299,6 @@ You can use a JSON, TOML, or YAML file to structure your configuration settings.
 Always test your configuration in a non-production environment before rolling it out to a live node to prevent downtime and other potential issues.
 
 <Callout type="info" emoji="ℹ️">
-  For a custom Chain configuration you can head up to the configuration section of Chain operators deployments
+  For a custom Chain configuration you can head up to the configuration section
+  of Chain operators deployments
 </Callout>
