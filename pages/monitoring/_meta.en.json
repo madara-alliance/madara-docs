@@ -2,6 +2,6 @@
   "monitor": "Overview",
   "grafana": "Grafana & Prometheus",
   "telemetry": "Telemetry",
-  "tracing" : "Tracing",
+  "tracing": "Tracing",
   "notification": "Notification"
 }

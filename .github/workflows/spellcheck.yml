@@ -1,0 +1,16 @@
+---
+name: Spell Check
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install cspell
+        run: npm install -g cspell
+      - name: Run spell check
+        run: cspell "**/*.mdx"
