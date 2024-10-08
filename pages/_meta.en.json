@@ -42,11 +42,11 @@
   "overview": {
     "title": "Overview"
   },
-  "architecture": {
-    "title": "Architecture"
-  },
   "start": {
     "title": "Start a self-hosted chain"
+  },
+  "chain-architecture": {
+    "title": "Architecture"
   },
   "chain-configuration": {
     "title": "Configuration"
@@ -63,7 +63,7 @@
     "type": "separator"
   },
   "--- Tutorials": {
-    "title": "Tutorials",
+    "title": "TUTORIALS",
     "type": "separator"
   },
   "tutorials-full-node": {

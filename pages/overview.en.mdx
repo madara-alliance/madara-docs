@@ -5,29 +5,26 @@ description: Learn how to run and custom your Madara client as a chain operator.
 ---
 
 import { Cards, Card } from 'nextra/components'
-import { Server, Settings, Network, Plug, Wrench, Rocket, MonitorCog, HardDrive, FlaskConical, Globe, Activity } from 'lucide-react';
+import { Server, Settings, Network, Play, Wrench, Blocks, Rocket, PencilRuler, HardDrive, FlaskConical, Globe, Sprout, BrainCircuit } from 'lucide-react';
 import { Callout } from "nextra-theme-docs";
 
 # Chain Operators
 
-Welcome to the Chain Operators section of the Madara documentation, your comprehensive resource for running and customizing your Madara App Chain.
-
-Here, we will help you install and configure your Madara client to best meet your needs. We wanted to make this documentation accessible to everyone, so we divided it into several levels ranging from low to high, and covers different ways of launching your Madara client: **Sequencer**, **Full Node**, and **Devenet**.
+Welcome to the Chain Operators section of the Madara documentation, your comprehensive resource for running your Madara App Chain. Here, we will help you configure and customize your own App Chain to best meet your needs.
 
 <Callout type="info" emoji="ℹ️">
-      This section is intended to configure your node to participate in or launch your own network. To configure your own App Chain, you should head up to the [Chain Operator](/overview) section.
+      This section is intended to help you configure and customize your Chain. To configure Madara as a client, you should head up to the [Chain Operator](/overview) section.
 </Callout>
 
-## Starting Points for Node Operators
+## Starting Points for Chain Operators
 
-From setting up a Full Node to configuring a Sequencer or your own Devnet, all the guides and resources you need are here.
+From launching a self-hosted Madara App Chain to configuring an entire Network, here are all the ressources you need to get started
 
 <Cards>
-    <Card title="System requirements" href="/get-started/requirements" icon={<MonitorCog size={24} color="#ff000d"/> } />
-    <Card title="Installation Guides" href="/get-started/install" icon={<Plug size={24} color="#ff000d"/>} />
+    <Card title="Architecture" href="/get-started/requirements" icon={<PencilRuler size={24} color="#ff000d"/> } />
+    <Card title="Launch your chain" href="/get-started/install" icon={<Play size={24} color="#ff000d"/>} />
     <Card title="Configuration" href="/fundamentals/configuration" icon={<Settings size={24} color="#ff000d" />} />
-    <Card title="Interact with Madara" href="/interacting/methods" icon={<Globe size={24} color="#ff000d"/>} />
-    <Card title="Monitor" href="/monitoring/grafana" icon={<Activity size={24} color="#ff000d"/>} />
+    <Card title="Management" href="/interacting/methods" icon={<Blocks size={24} color="#ff000d"/>} />
 </Cards>
 
 ## Essential Tools for Node Operators
@@ -37,6 +34,7 @@ Take advantage of these essential tools to start and optimize your Madara node.
 <Cards>
   <Card title="Madara Repo" href="https://github.com/madara-alliance/madara" icon={<Wrench size={24} color="#ff000d" />} />
   <Card title="Bootstrapper" href="https://github.com/madara-alliance/madara-bootstrapper" icon={<Rocket size={24} color="#ff000d"/>} />
+  <Card title="Snos" href="https://github.com/keep-starknet-strange/snos" icon={<BrainCircuit size={24} color="#ff000d"/>} />
 </Cards>
 
 ## Learn More
