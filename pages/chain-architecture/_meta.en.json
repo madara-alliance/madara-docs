@@ -1,0 +1,7 @@
+{
+  "architecture": "Architecture",
+  "sequencer": "Sequencer",
+  "bootstrapper": "Bootstrapper",
+  "orchestrator": "Orchestrator",
+  "snos": "SNOS"
+}
