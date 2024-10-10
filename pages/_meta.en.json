@@ -10,7 +10,12 @@
       "pagination": false
     }
   },
-
+  "madara-overview": {
+    "title": "Overview"
+  },
+  "get-started": {
+    "title": "Get started"
+  },
   "--- NODE OPERATORS": {
     "title": "NODE OPERATORS",
     "type": "separator"
@@ -18,9 +23,7 @@
   "introduction": {
     "title": "Overview"
   },
-  "get-started": {
-    "title": "Get started"
-  },
+
   "fundamentals": {
     "title": "Fundamentals"
   },

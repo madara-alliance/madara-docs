@@ -15,111 +15,30 @@ In this section, we will guide you through the process of updating your Madara c
 Like the previous [Installation section](/get-started/install) we divided the updating process into 3 difficulty levels.
 
 {/* prettier-ignore */}
-<Tabs items={['Low-level', 'Mid-level', 'High-level']}>
-	<Tab>
-
-    This update process will help you pull the latest code from the repository and rebuild the binary locally on your machine.
+<Tabs items={['High-level', 'Mid-level', 'Low-level']}>
+	  <Tab>
+    This is the highest-level way to update Madara with some custom features. For advanced configuration, we recommend you use the source or Docker methods.
 
     <Steps>
 
-    ### Update dependencies (if needed)
+    ### Run the update script
 
-    First, ensure that your dependencies are up to date. It's recommended to check if there are any updates to the dependencies.
-
-    | Dependency        | Version              | Update Command                                                                           |
-    | ----------------- | -------------------- | ---------------------------------------------------------------------------------------- |
-    | Rust              | rustc 1.78 or later  | `rustup update`                                                                          |
-    | Clang             | Latest               | Depends on OS (e.g., `sudo apt-get update && sudo apt-get upgrade clang`)                |
-    | Scarb             | v2.8.2               | Re-run the installation script or check [Scarb documentation](https://docs.swmansion.com/scarb/) |
-
-    ### Fetch the latest code
-
-    Navigate to your Madara directory where you initially cloned the repository.
+    You will need to run the update script using the following command:
 
     ```bash
-    cd <your-madara-directory>
-    git pull origin main
+    # Assuming the script is available in your installation
+    ./update_madara.sh
     ```
 
-    If you are on a specific branch or tag, you may need to switch to the main branch or the desired release tag.
+    ### Follow instructions
 
-    ```bash
-    git checkout main
-    git pull origin main
-    ```
+    The script will guide you through the update process, including pulling the latest code or images and restarting the client.
 
-    ### Rebuild the program
-
-    After pulling the latest code, rebuild the Madara client. You can choose between 3 different build modes:
-
-    - **Debug** (fastest build mode, but lower performance, for testing purposes only)
-
-    ```bash
-    cargo build
-    ```
-
-    - **Release** (the recommended build mode)
-
-    ```bash
-    cargo build --release
-    ```
-
-    - **Production** (the recommended build mode for production performance)
-
-    ```bash
-    cargo build --profile=production
-    ```
-
-    ### Restart Madara
-
-    Stop your currently running Madara client if it's running.
-
-    ```bash
-    # Find the process ID and kill it, or use your method of stopping the client
-    pkill madara
-    ```
-
-    Then, start the updated Madara client with your desired arguments.
-
-    {/* prettier-ignore */}
-    <Tabs items={['Full Node', 'Sequencer', 'Devnet']}>
-      <Tab>
-        ```bash
-        cargo run --release -- \
-          --name Madara \
-          --full \
-          --base-path /var/lib/madara \
-          --network mainnet \
-          --l1-endpoint ${ETHEREUM_API_URL}
-        ```
-      </Tab>
-      <Tab>
-        ```bash
-        cargo run --release -- \
-          --name Madara \
-          --sequencer \
-          --base-path /var/lib/madara \
-          --preset test \
-          --l1-endpoint ${ETHEREUM_API_URL}
-        ```
-      </Tab>
-      <Tab>
-        ```bash
-        cargo run --release -- \
-          --name Madara \
-          --devnet \
-          --base-path /var/lib/madara \
-          --preset test
-        ```
-      </Tab>
-    </Tabs>
-
-    <Callout type="info" emoji="ℹ️">
-      We recommend you head over to the [Configuration](/) section to customize your node parameters.
-    </Callout>
+    {/* You can include a video or further instructions here */}
 
     </Steps>
-    </Tab>
+
+  </Tab>
 
   <Tab>
     This is the recommended way to easily update and run Madara, as it only requires terminal access and Docker installed.
@@ -223,27 +142,110 @@ Like the previous [Installation section](/get-started/install) we divided the up
     </Steps>
 
   </Tab>
-  <Tab>
-    This is the highest-level way to update Madara with some custom features. For advanced configuration, we recommend you use the source or Docker methods.
+    <Tab>
+
+    This update process will help you pull the latest code from the repository and rebuild the binary locally on your machine.
 
     <Steps>
 
-    ### Run the update script
+    ### Update dependencies (if needed)
 
-    You will need to run the update script using the following command:
+    First, ensure that your dependencies are up to date. It's recommended to check if there are any updates to the dependencies.
+
+    | Dependency        | Version              | Update Command                                                                           |
+    | ----------------- | -------------------- | ---------------------------------------------------------------------------------------- |
+    | Rust              | rustc 1.78 or later  | `rustup update`                                                                          |
+    | Clang             | Latest               | Depends on OS (e.g., `sudo apt-get update && sudo apt-get upgrade clang`)                |
+    | Scarb             | v2.8.2               | Re-run the installation script or check [Scarb documentation](https://docs.swmansion.com/scarb/) |
+
+    ### Fetch the latest code
+
+    Navigate to your Madara directory where you initially cloned the repository.
 
     ```bash
-    # Assuming the script is available in your installation
-    ./update_madara.sh
+    cd <your-madara-directory>
+    git pull origin main
     ```
 
-    ### Follow instructions
+    If you are on a specific branch or tag, you may need to switch to the main branch or the desired release tag.
 
-    The script will guide you through the update process, including pulling the latest code or images and restarting the client.
+    ```bash
+    git checkout main
+    git pull origin main
+    ```
 
-    {/* You can include a video or further instructions here */}
+    ### Rebuild the program
+
+    After pulling the latest code, rebuild the Madara client. You can choose between 3 different build modes:
+
+    - **Debug** (fastest build mode, but lower performance, for testing purposes only)
+
+    ```bash
+    cargo build
+    ```
+
+    - **Release** (the recommended build mode)
+
+    ```bash
+    cargo build --release
+    ```
+
+    - **Production** (the recommended build mode for production performance)
+
+    ```bash
+    cargo build --profile=production
+    ```
+
+    ### Restart Madara
+
+    Stop your currently running Madara client if it's running.
+
+    ```bash
+    # Find the process ID and kill it, or use your method of stopping the client
+    pkill madara
+    ```
+
+    Then, start the updated Madara client with your desired arguments.
+
+    {/* prettier-ignore */}
+    <Tabs items={['Full Node', 'Sequencer', 'Devnet']}>
+      <Tab>
+        ```bash
+        cargo run --release -- \
+          --name Madara \
+          --full \
+          --base-path /var/lib/madara \
+          --network mainnet \
+          --l1-endpoint ${ETHEREUM_API_URL}
+        ```
+      </Tab>
+      <Tab>
+        ```bash
+        cargo run --release -- \
+          --name Madara \
+          --sequencer \
+          --base-path /var/lib/madara \
+          --preset test \
+          --l1-endpoint ${ETHEREUM_API_URL}
+        ```
+      </Tab>
+      <Tab>
+        ```bash
+        cargo run --release -- \
+          --name Madara \
+          --devnet \
+          --base-path /var/lib/madara \
+          --preset test
+        ```
+      </Tab>
+    </Tabs>
+
+    <Callout type="info" emoji="ℹ️">
+      We recommend you head over to the [Configuration](/) section to customize your node parameters.
+    </Callout>
 
     </Steps>
 
   </Tab>
+
 </Tabs>
