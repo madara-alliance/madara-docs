@@ -76,9 +76,7 @@
   "tutorials-chain": {
     "title": "App Chain"
   },
-  "tutorials-devnet": {
-    "title": "Devnet"
-  },
+
   "--- ABOUT": {
     "title": "ABOUT",
     "type": "separator"
