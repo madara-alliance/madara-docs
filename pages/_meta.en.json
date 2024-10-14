@@ -1,7 +1,6 @@
 {
   "index": {
-    "title": "Getting Started",
-    "display": "hidden",
+    "title": "Welcome",
     "theme": {
       "breadcrumb": false,
       "footer": true,
@@ -10,34 +9,13 @@
       "pagination": false
     }
   },
-  "madara-overview": {
-    "title": "Overview"
-  },
-  "get-started": {
+  "Installation": {
     "title": "Installation"
   },
-  "--- NODE OPERATORS": {
-    "title": "NODE OPERATORS",
-    "type": "separator"
-  },
-  "introduction": {
-    "title": "Overview"
+  "quickstart": {
+    "title": "Quickstart"
   },
 
-  "fundamentals": {
-    "title": "Fundamentals"
-  },
-  "interacting": {
-    "title": "Interacting with Madara"
-  },
-  "monitoring": {
-    "title": "Monitoring"
-  },
-
-  "+++ CHAIN OPERATORS": {
-    "title": "",
-    "type": "separator"
-  },
   "--- CHAIN OPERATORS": {
     "title": "CHAIN OPERATORS",
     "type": "separator"
@@ -57,14 +35,34 @@
   "chain-management": {
     "title": "Management"
   },
+
+  "--- NODE OPERATORS": {
+    "title": "NODE OPERATORS",
+    "type": "separator"
+  },
+  "introduction": {
+    "title": "Overview"
+  },
+  "fundamentals": {
+    "title": "Fundamentals"
+  },
+  "interacting": {
+    "title": "Interacting with Madara"
+  },
+  "monitoring": {
+    "title": "Monitoring",
+    "type": "page",
+    "display": "hidden"
+  },
+
+  "--- DEVNET": {
+    "title": "DEVNET",
+    "type": "separator"
+  },
   "chain-devnet": {
     "title": "Devnet"
   },
 
-  "+++ Tutorials": {
-    "title": "",
-    "type": "separator"
-  },
   "--- Tutorials": {
     "title": "TUTORIALS",
     "type": "separator"
@@ -81,34 +79,13 @@
   "tutorials-devnet": {
     "title": "Devnet"
   },
-
-  "+++ ABOUT": {
-    "title": "",
-    "type": "separator"
-  },
   "--- ABOUT": {
     "title": "ABOUT",
     "type": "separator"
   },
-  "about-version": {
-    "title": "Version"
+  "about": {
+    "type": "page"
   },
-  "about-liscence": {
-    "title": "Liscence"
-  },
-  "about-contribute": {
-    "title": "Contribute"
-  },
-  "about-ecosystem": {
-    "title": "Ecosystem"
-  },
-  "about-support": {
-    "title": "Support"
-  },
-  "about-credits": {
-    "title": "Credits"
-  },
-
   "contact": {
     "title": "Contact ↗",
     "href": "https://t.me/MadaraStarknet",

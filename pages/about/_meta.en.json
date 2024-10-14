@@ -1,0 +1,25 @@
+{
+  "version": {
+    "title": "Version",
+    "display": "hidden"
+  },
+  "license": {
+    "title": "License"
+  },
+  "contribute": {
+    "title": "Contribute",
+    "display": "hidden"
+  },
+  "ecosystem": {
+    "title": "Ecosystem",
+    "display": "hidden"
+  },
+  "support": {
+    "title": "Support",
+    "display": "hidden"
+  },
+  "credits": {
+    "title": "Credits",
+    "display": "hidden"
+  }
+}
