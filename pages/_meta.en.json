@@ -9,9 +9,6 @@
       "pagination": false
     }
   },
-  "Installation": {
-    "title": "Installation"
-  },
   "quickstart": {
     "title": "Quickstart"
   },
@@ -29,9 +26,6 @@
   "chain-configuration": {
     "title": "Configuration"
   },
-  "chain-management": {
-    "title": "Management"
-  },
 
   "--- NODE OPERATORS": {
     "title": "NODE OPERATORS",
@@ -39,6 +33,9 @@
   },
   "introduction": {
     "title": "Overview"
+  },
+  "installation": {
+    "title": "Installation"
   },
   "fundamentals": {
     "title": "Fundamentals"
@@ -50,14 +47,6 @@
     "title": "Monitoring",
     "type": "page",
     "display": "hidden"
-  },
-
-  "--- DEVNET": {
-    "title": "DEVNET",
-    "type": "separator"
-  },
-  "chain-devnet": {
-    "title": "Devnet"
   },
 
   "--- Tutorials": {
