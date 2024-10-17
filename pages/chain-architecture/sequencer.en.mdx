@@ -1,7 +1,7 @@
 ---
-title: Sequencer
+title: What is a sequencer?
 lang: en-US
-description: A guide to monitor your node using Sequencer.
+description: Learn about what is a Sequencer
 ---
 
 import { Steps } from "nextra-theme-docs";
@@ -15,8 +15,42 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Tabs, Tab } from "nextra/components";
 
-# 🚧 Sequencer
+# Sequencer
 
-<Callout type="warning" emoji="⚠️">
-  This section is still under construction.
-</Callout>
+Sequencers are a crucial component of the Starknet network, playing a role similar to validators in Ethereum. They serve as the backbone of the Starknet ecosystem, responsible for ushering transactions into the system.
+
+In the context of Validity Rollups like Starknet, sequencers are specialized entities that handle transaction processing. Their primary function is to provide transaction capacity to the network, rather than security (which is handled differently in this architecture).
+
+## How Sequencers Work
+
+Sequencers follow a systematic method for processing transactions, which can be broken down into four main steps:
+
+1. **Sequencing**: Sequencers collect transactions from users and order them.
+2. **Executing**: After collection, sequencers process these transactions.
+3. **Batching**: For efficiency, transactions are grouped together in batches.
+4. **Block Production**: Finally, sequencers produce blocks that contain these batches of processed transactions.
+
+This process allows Validity Rollups like Starknet to handle a higher volume of transactions while maintaining the security of the underlying Ethereum network, thus enhancing scalability without compromising on security.
+
+## The Role of Sequencers in Transaction Flow
+
+To understand how sequencers fit into the broader Starknet ecosystem, let's look at the transaction flow:
+
+1. A transaction is received by a gateway (which serves as the Mempool) and is marked as `RECEIVED` (See [Transaction Flow](https://docs.starknet.io/architecture-and-concepts/network-architecture/starknet-architecture-overview#transaction-flow)).
+2. The sequencer then incorporates the transaction into the network state and tags it as `ACCEPTED_ON_L2`.
+3. After the sequencer has done its job, a prover executes the operating system on the new block, calculates its proof, and submits it to Layer 1 (Ethereum) for verification.
+
+## Requirements for Sequencers
+
+Sequencers play a critical role in the network's smooth functioning, and as such, they must meet certain requirements:
+
+1. **Reliability**: Sequencers need to be highly reliable to ensure consistent transaction processing.
+2. **Availability**: High availability is crucial as sequencers must be ready to process transactions at all times.
+3. **Computational Power**: Sequencers require powerful machines to perform their role effectively, as they must process transactions rapidly and continuously.
+4. **Network Connectivity**: Well-connected machines are necessary to ensure efficient communication within the network.
+
+## Future of Sequencers in Starknet
+
+It's worth noting that Starknet is actively moving towards decentralization [Starknet Architecture Overview](https://docs.starknet.io/architecture-and-concepts/network-architecture/starknet-architecture-overview#starknet-architecture-overview). The current roadmap for Starknet includes plans to decentralize the sequencer role. This shift towards decentralization will allow more participants to become sequencers, contributing to the overall robustness and resilience of the network.
+
+Sequencers are a vital component of the Starknet ecosystem, responsible for ordering, executing, and batching transactions into blocks. Their efficient operation is crucial for Starknet's ability to handle high transaction volumes while maintaining security and scalability.
