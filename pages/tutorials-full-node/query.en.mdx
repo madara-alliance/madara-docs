@@ -26,7 +26,9 @@ As an introduction to the following section, we have created a video tutorial to
 -- Insert video here --
 
 <Callout type="info" emoji="ℹ️">
-  We recommend continuing with the [Step-by-Step Tutorial](#step-by-step-tutorial), which will help you better understand how to interact with Madara RPC endpoints.
+  We recommend continuing with the [Step-by-Step
+  Tutorial](#step-by-step-tutorial), which will help you better understand how
+  to interact with Madara RPC endpoints.
 </Callout>
 
 ## Step-by-Step Tutorial
@@ -42,11 +44,11 @@ Before you begin, ensure that:
 1. **You have a Madara client running**: If you haven't set up a node yet, you can refer to the [Launch a Madara Full Node](/tutorials-full-node/launch) tutorial.
 2. **This client have an RPC Endpoint accessible**: You can expose the RPC endpoint of your Madara client by using the following parameters:
 
-  - **`--rpc-port <PORT>`**: Specify JSON-RPC server TCP port.
+- **`--rpc-port <PORT>`**: Specify JSON-RPC server TCP port.
 
-  - **`--rpc-cors <ORIGINS>`**: Specify browser Origins allowed to access the HTTP & WS RPC servers.
+- **`--rpc-cors <ORIGINS>`**: Specify browser Origins allowed to access the HTTP & WS RPC servers.
 
-  - **`--rpc-external`**: Listen to all RPC interfaces. Default is local.
+- **`--rpc-external`**: Listen to all RPC interfaces. Default is local.
 
 3. **You have an HTTP Client Tool**: Have a tool to make HTTP POST requests, such as [curl](https://curl.se/docs/manpage.html), [Postman](https://www.postman.com/), or any programming language with HTTP capabilities.
 
@@ -54,20 +56,23 @@ Before you begin, ensure that:
 
 Now that you have everything set up, let's try to understand the interface Madara exposes.
 A Madara client exposes a JSON-RPC interface that adheres to the latest [Starknet JSON-RPC specifications](https://github.com/starkware-libs/starknet-specs/releases). This interface allows you to interact with the node by sending JSON-RPC requests and receiving responses.
+Here is the reformulated text in English:
 
-Cette interface JSON-RPC a plusieurs catégorie de methodes:
+This JSON-RPC interface has several categories of methods:
 
-- **Read methods**: des methodes de lecture seule, celles ci vont juste demander a votre client des donnees statique stockee par celui ci tel que par exemple les transactions du block 100000.
-- **Historical methods**: Celle-ci sont des methodes de lecture particulieres. Toutes les methodes finissant par "at" tel que `starknet_getStorageAt` vous permettent de recuperer une valeur a un momment donnee de sa vie. L'address de stockage 0x5 d'un contract peut avoir eu la valeur "0x123" au block 50000 et "0x321" au block 100000.
-- **Trace methods**: ces methodes permettent de generer la trace d'une execution et necessitent generalement une re-execution de celle ci via Blockifier
-- **Write methods**: ces methodes vont directement modifier l'état de la chaine en question. Si celle-ci sont run depuis un Full Node alors celui-ci les forward au sequencer, seul responsavle des modification d'etat
+- **Read methods**: These are read-only methods, which simply request static data stored by your client, such as transactions from block 100000.
+- **Historical methods**: These are special read methods. All methods ending with "at", such as `starknet_getStorageAt`, allow you to retrieve a value at a specific point in time. For instance, the storage address 0x5 of a contract may have had the value "0x123" at block 50000 and "0x321" at block 100000.
+- **Trace methods**: These methods allow you to generate the trace of an execution, usually requiring a re-execution via Blockifier.
+- **Write methods**: These methods directly modify the state of the chain. If run from a Full Node, they are forwarded to the sequencer, which is the only entity responsible for state changes.
 
 ### Testing the Connection
 
 To verify that your client is accessible, let's send a simple request to get the chain id:
 
 <Callout type="info" emoji="ℹ️">
-  **Note**: Pour des raisons de simplicité ici nous allons utiliser l'endpoint par defaut: http://localhost:9944, il se peut que le votre soit different, pour savoir quel est votre endpoint RPC veuillez examiner les logs au lancement de votre client.
+  **Note**: For simplicity, we'll use the default endpoint here:
+  http://localhost:9944. Yours may be different, so check your client's logs
+  when launching to find your RPC endpoint.
 </Callout>
 
 ```bash
@@ -167,21 +172,21 @@ While `curl` is useful for quick tests, you can use programming languages and li
 **JavaScript Example:**
 
 ```javascript
-const axios = require('axios');
+const axios = require("axios");
 
-const rpcEndpoint = 'http://localhost:9944/';
+const rpcEndpoint = "http://localhost:9944/";
 
 const getBlockNumber = async () => {
   try {
     const response = await axios.post(rpcEndpoint, {
-      jsonrpc: '2.0',
-      method: 'starknet_blockNumber',
+      jsonrpc: "2.0",
+      method: "starknet_blockNumber",
       params: [],
-      id: 1
+      id: 1,
     });
-    console.log('Current block number:', response.data.result);
+    console.log("Current block number:", response.data.result);
   } catch (error) {
-    console.error('Error:', error.response.data.error);
+    console.error("Error:", error.response.data.error);
   }
 };
 
@@ -222,7 +227,8 @@ Now that you're familiar with querying the Madara RPC endpoint, you can:
 </Steps>
 
 <Callout type="info" emoji="ℹ️">
-  For more advanced interactions, consider using Starknet SDKs or client libraries that provide higher-level abstractions over the JSON-RPC API.
+  For more advanced interactions, consider using Starknet SDKs or client
+  libraries that provide higher-level abstractions over the JSON-RPC API.
 </Callout>
 
 ## Summary
