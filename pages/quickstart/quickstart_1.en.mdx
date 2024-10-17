@@ -1,5 +1,5 @@
 ---
-title: Launch your first Madara appchain
+title: Start a self-hosted chain with Madara
 lang: en-US
 description: Learn how to run and custom a Madara chain.
 ---
@@ -19,11 +19,29 @@ import { Tabs, Tab } from "nextra/components";
 
 This guide will walk you through the process of building, configuring, testing, and launching your own self-hosted chain using Madara. Unlike the [Node operators](/introduction) section, which focuses on understanding how Madara works as a client, here we explain in a more application-oriented way how to run and customize your own chain.
 
-## Build Your Chain
+## Quick start tutorial
+
+As an introduction to the following section, we created a video tutorial to give you more context on what happens when you launch your own App Chain. It uses an installation script that will guide you through all the steps of a minimalist setup of the Madara client.
+
+<Steps>
+### Download and launch the installer
+
+```bash
+   curl -sL https://madara.build/launcher.sh && chmod +x launcher && ./launcher
+```
+
+### Follow the tutorial
+</Steps>
+
+<Callout type="info" emoji="ℹ️">
+  We recommend continuing with the [Next Section](#build-your-chain-from-source), which will help you better understand the different components of Madara by building from source.
+</Callout>
+
+## Build Your Chain from source
 
 ### Understand Madara Components
 
-Before diving into installation, it's important to understand the fundamental components of Madara and how it functions as a Starknet client.
+Now that you have some context around the Madara client, it's important to understand the fundamental components of Madara and how it functions as a Starknet client.
 
 - **Chain Architecture**: Madara currently works exactly like Starknet mainnet with a centralized sequencer that will produce the state of your chain. This one will then serve the data for proving trough SNOS and Sharp (the zk-stark prover). This means that your sequencer is the only one capable of producing state. You can then connect as many full nodes as you like to it. We recommend you to familiarize yourself with the [architecture](https://github.com/madara-alliance/madara) to understand how the entire flow works.
 

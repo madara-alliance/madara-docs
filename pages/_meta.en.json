@@ -23,9 +23,6 @@
   "overview": {
     "title": "Overview"
   },
-  "start": {
-    "title": "Start a self-hosted chain"
-  },
   "chain-architecture": {
     "title": "Architecture"
   },
