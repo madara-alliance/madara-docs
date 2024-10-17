@@ -4,6 +4,7 @@
   "words": [],
   "flagWords": [],
   "ignorePaths": [],
+  "ignoreWords": ["Rollups", "Blockifier", "Starklone", "KLONE"],
   "dictionaryDefinitions": [
     {
       "name": "starknet",

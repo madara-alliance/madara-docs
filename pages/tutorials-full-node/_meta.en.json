@@ -1,4 +1,5 @@
 {
-  "launch": "How to launch a Madara full node?",
+  "launch": "How to launch a Madara Full Node?",
+  "customize": "How to customize a Madara Full Node?",
   "query": "How to query Madara RPC endpoint?"
 }
