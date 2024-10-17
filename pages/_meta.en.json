@@ -56,9 +56,6 @@
   "tutorials-full-node": {
     "title": "Full Node"
   },
-  "tutorials-sequencer": {
-    "title": "Sequencer"
-  },
   "tutorials-chain": {
     "title": "App Chain"
   },
