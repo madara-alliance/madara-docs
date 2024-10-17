@@ -49,7 +49,7 @@
     "display": "hidden"
   },
 
-  "--- Tutorials": {
+  "--- TUTORIALS": {
     "title": "TUTORIALS",
     "type": "separator"
   },
@@ -67,8 +67,17 @@
     "title": "ABOUT",
     "type": "separator"
   },
-  "about": {
-    "type": "page"
+  "releases": {
+    "title": "Releases Notes"
+  },
+  "liscense": {
+    "title": "Liscence"
+  },
+  "support": {
+    "title": "Support"
+  },
+  "credits": {
+    "title": "Credits"
   },
   "contact": {
     "title": "Contact ↗",
