@@ -1,0 +1,98 @@
+---
+title: Launch a Madara Full Node
+lang: en-US
+description: Learn how to launch a Madara Full Node
+---
+
+import { Steps } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
+import { Cards, Card } from "nextra/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinux,
+  faApple,
+  faWindows,
+} from "@fortawesome/free-brands-svg-icons";
+import { Tabs, Tab } from "nextra/components";
+
+# How to launch a Madara Full Node
+
+This guide will walk you through the process of installing and launching a Madara Full Node.
+
+## Quick start tutorial
+
+As an introduction to the following section, we created a video tutorial to give you more context how to launch your Madara Full Node.
+
+/video goes here/
+
+<Callout type="info" emoji="ℹ️">
+  We recommend continuing with the [Next Section](#Step-by-step-tutorial), which
+  will help you better understand the different components of Madara by building
+  from source.
+</Callout>
+
+## Step by step tutorial
+
+### Install your Full Node
+
+<Steps>
+    ### Install dependencies
+
+    We first need to make sure you have everything needed to complete this tutorial.
+
+    | Dependency        | Version              | Installation                                                                              |
+    | ----------------- | -------------------- | ------------------------------------------------------------------------------------------|
+    | Rust              | rustc 1.78           | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs sh`                            |
+    | Clang             | Latest               | `sudo apt-get install clang`                                                              |
+    | Scarb             | v2.8.2               | `curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh \| sh ` |
+
+    ### Get code
+
+    Fetch the code from the Official [Madara](https://github.com/madara-alliance/madara) repository in the folder of your choice.
+
+    ```bash
+    cd <your-destination-path>
+    git clone https://github.com/madara-alliance/madara .
+    ```
+
+    ### Build program
+
+    Then let's build the dependencies. You can choose between 3 different build modes:
+
+    - **Debug** (fastest build mode, but lower performances, for testing purpose only)
+
+    ```bash
+    cargo build
+    ```
+
+    - **Release** (the recommend build mode)
+
+    ```bash
+    cargo build --release
+    ```
+
+    - **Production** (the recommend build mode for production performances)
+
+    ```bash
+    cargo build --profile=production
+    ```
+
+    ### Run Madara
+
+    This command will start the Madara client with a basic set arguments synchronizing directly with Starknet mainnet. For further configuration we recommend you to head up to the [Configure Your Node](#configure-your-node) section down below.
+
+    ```bash
+        cargo run --release -- \
+        --name Madara \
+        --full
+        --base-path /var/lib/madara \
+        --network mainnet \
+        --l1-endpoint ${ETHEREUM_API_URL}
+    ```
+
+    <Callout type="info" emoji="ℹ️">
+      If you don't have an L1 endpoint url we recommend you to head up to the
+      [Verification](/) section to get one
+    </Callout>
+
+</Steps>

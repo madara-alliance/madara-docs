@@ -9,9 +9,6 @@
       "pagination": false
     }
   },
-  "Installation": {
-    "title": "Installation"
-  },
   "quickstart": {
     "title": "Quickstart"
   },
@@ -23,17 +20,11 @@
   "overview": {
     "title": "Overview"
   },
-  "start": {
-    "title": "Start a self-hosted chain"
-  },
   "chain-architecture": {
     "title": "Architecture"
   },
   "chain-configuration": {
     "title": "Configuration"
-  },
-  "chain-management": {
-    "title": "Management"
   },
 
   "--- NODE OPERATORS": {
@@ -42,6 +33,9 @@
   },
   "introduction": {
     "title": "Overview"
+  },
+  "installation": {
+    "title": "Installation"
   },
   "fundamentals": {
     "title": "Fundamentals"
@@ -55,23 +49,12 @@
     "display": "hidden"
   },
 
-  "--- DEVNET": {
-    "title": "DEVNET",
-    "type": "separator"
-  },
-  "chain-devnet": {
-    "title": "Devnet"
-  },
-
-  "--- Tutorials": {
+  "--- TUTORIALS": {
     "title": "TUTORIALS",
     "type": "separator"
   },
   "tutorials-full-node": {
     "title": "Full Node"
-  },
-  "tutorials-sequencer": {
-    "title": "Sequencer"
   },
   "tutorials-chain": {
     "title": "App Chain"
@@ -81,8 +64,17 @@
     "title": "ABOUT",
     "type": "separator"
   },
-  "about": {
-    "type": "page"
+  "releases": {
+    "title": "Releases Notes"
+  },
+  "liscense": {
+    "title": "Liscence"
+  },
+  "support": {
+    "title": "Support"
+  },
+  "credits": {
+    "title": "Credits"
   },
   "contact": {
     "title": "Contact ↗",

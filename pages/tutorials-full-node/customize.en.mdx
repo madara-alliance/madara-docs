@@ -1,0 +1,178 @@
+---
+title: Customize a Madara Full Node
+lang: en-US
+description: Learn how to customize a Madara Full Node
+---
+
+import { Steps } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
+import { Cards, Card } from "nextra/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinux,
+  faApple,
+  faWindows,
+} from "@fortawesome/free-brands-svg-icons";
+import { Tabs, Tab } from "nextra/components";
+
+# How to customize a Madara Full Node
+
+This guide will walk you through the process of customizing a Madara Full Node.
+
+## Quick start tutorial
+
+As an introduction to the following section, we created a video tutorial to give you more context on how to customize your Madara Full Node.
+
+-- Video goes here --
+
+<Callout type="info" emoji="ℹ️">
+  We recommend continuing with the [Next Section](#step-by-step-tutorial), which
+  will help you better understand the different components of Madara
+  customization.
+</Callout>
+
+## Step by step tutorial
+
+<Callout type="warning" emoji="⚠️">
+  This tutorial assumes that you already know how to launch a Madara Full Node.
+  For more information about how to launch a Madara Full Node, please head up to
+  [this tutorial](/tutorials-full-node/launch).
+</Callout>
+
+### Configure your Full Node
+
+Now that you have your node installed and running smoothly, you may want to configure it further to match your desired configuration or network. There are two types of configuration for your node:
+
+- **Node Configuration**: the configuration of your node itself as an engine.
+- **Chain Configuration**: the configuration of the chain you are currently running your node on.
+
+In this tutorial, we'll focus on a simple configuration of both so you can understand them better.
+
+<Steps>
+  
+  ### Node Configuration
+
+We have over a hundred configuration options available for your Full Node client. You can find all the configuration parameters in the [Configuration](/fundamentals/configuration) chapter of the Node Operators section. For a comprehensive list of command-line options, you can also run:
+
+```bash
+cargo run -- --help
+```
+
+Here, we will simply add the necessary parameters so that you can query your RPC endpoint from anywhere. To do this, we will use 3 additional parameters:
+
+- **`--rpc-port <PORT>`**: Specify JSON-RPC server TCP port.
+
+- **`--rpc-cors <ORIGINS>`**: Specify browser Origins allowed to access the HTTP & WS RPC servers.
+
+- **`--rpc-external`**: Listen to all RPC interfaces. Default is local.
+
+This will give us the following command:
+
+```bash
+cargo run --release -- \
+  --name Madara \
+  --full
+  --base-path /var/lib/madara \
+  --network mainnet \
+  --l1-endpoint ${ETHEREUM_API_URL} \
+  --rpc-port 9945 \
+  --rpc-cors '*' \
+  --rpc-external
+```
+
+If you run this command, you can now query your Madara Full Node on the RPC endpoint 9945.
+
+{" "}
+
+<Callout type="info" emoji="ℹ️">
+  For more information on how to query your Full Node client, we recommend
+  following the tutorial [How to query a Madara RPC
+  endpoint](/tutorials-full-node/query).
+</Callout>
+
+### Chain Configuration
+
+Your Madara Full Node is a configurable client that can connect and synchronize with any network respecting the Starknet specs. These networks may have specific configurations, so it's preferable to adapt your Full Node to this configuration to ensure compatibility.
+
+Here, we will simply imagine that our node wants to connect to a Starknet clone App Chain with the following configuration:
+
+```yml
+chain_name: "Starklone"
+chain_id: "SN_KLONE"
+native_fee_token_address: "0x012345a0fc34fa1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"
+parent_fee_token_address: "0x012346570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
+latest_protocol_version: "0.13.2"
+block_time: "30s"
+pending_block_update_time: "2s"
+execution_batch_size: 16
+bouncer_config:
+block_max_capacity:
+  builtin_count:
+  add_mod: 18446744073709551615
+  bitwise: 18446744073709551615
+  ecdsa: 18446744073709551615
+  ec_op: 18446744073709551615
+  keccak: 18446744073709551615
+  mul_mod: 18446744073709551615
+  pedersen: 18446744073709551615
+  poseidon: 18446744073709551615
+  range_check: 18446744073709551615
+  range_check96: 18446744073709551615
+  gas: 5000000
+  n_steps: 40000000
+  message_segment_length: 18446744073709551615
+  n_events: 18446744073709551615
+  state_diff_size: 131072
+sequencer_address: "0x01234a1bd84444c89232ec27754698e5d2e7e1a7f1539f12027f28b23ec9f3d8"
+eth_core_contract_address: "0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4"
+eth_gps_statement_verifier: "0x47312450B3Ac8b5b8e247a6bB6d523e7605bDb60"
+```
+
+You simply need to take this configuration and save it as a `.yml` file somewhere on your machine, then call it via:
+
+- **`--chain-config-path <CHAIN CONFIG FILE PATH>`**: Specifies the chain configuration file path.
+
+Which in our case would give the following command:
+
+```bash
+cargo run --release -- \
+  --name Madara \
+  --full
+  --base-path /var/lib/madara \
+  --l1-endpoint ${ETHEREUM_API_URL} \
+  --rpc-port 9945 \
+  --rpc-cors '*' \
+  --rpc-external \
+  --chain-config-path "/path/to/your/config.yml"
+```
+
+{" "}
+
+<Callout type="info" emoji="ℹ️">
+  Please note that the `--network mainnet` parameter, which overwrites any chain
+  config with the mainnet configuration preset, has been removed here to allow
+  the custom chain config via `--chain-config-path`.
+</Callout>
+
+Another way to run this configuration would have been, for example, to override the elements that differ here with the original Starknet mainnet configuration using:
+
+- **`--chain-config-override <OVERRIDES>`**: Overrides specific chain configuration parameters.
+
+This would give the following command:
+
+```bash
+cargo run --release -- \
+  --name Madara \
+  --full \
+  --network mainnet \
+  --base-path /var/lib/madara \
+  --l1-endpoint ${ETHEREUM_API_URL} \
+  --rpc-port 9945 \
+  --rpc-cors '*' \
+  --rpc-external \
+  --chain-config-override chain_name="Starklone" chain_id="SN_KLONE" native_fee_token_address="0x012345a0fc34fa1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d" parent_fee_token_address="0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7" sequencer_address="0x01234a1bd84444c89232ec27754698e5d2e7e1a7f1539f12027f28b23ec9f3d8"
+```
+
+</Steps>
+
+You now know how to configure both your Full Node client and the chain it connects to! To learn more, visit the sections [Node Configuration](/fundamentals/configuration) and [Chain Configuration](/chain-configuration/parameters).
